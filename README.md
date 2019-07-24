@@ -1,3 +1,3 @@
 # Snowtricks
-# practice development on symfony
+# practice developement on symfony
 
