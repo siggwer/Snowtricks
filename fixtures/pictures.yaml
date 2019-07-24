@@ -1,0 +1,8 @@
+App\Entity\Picture:
+  picture_{1..500}:
+    alt: 'Alt'
+    path: 'uploads/image.png'
+    trick: '@trick_<($current % 100 + 1)>'
+  picture_on_front_{1..100}:
+    alt: 'Alt'
+    path: 'uploads/image.png'

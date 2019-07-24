@@ -1,0 +1,19 @@
+{% for trick in tricks %}
+    <div class="col-12 col-md-6 col-lg-4 my-4">
+        <div class="card">
+            <div class="card-header">
+                {{ trick.name }}
+            </div>
+            <div class="card-body p-0">
+                <img src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}" class="w-100">
+            </div>
+            <div class="card-body small d-flex justify-content-between">
+                <span>{{ trick.author.username }}</span>
+                <span>{{ trick.publishedAt|date("d/m/Y") }}</span>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+                <a href="{{ path("trick_show", { id: trick.id }) }}" class="btn btn-info">PLus d'infos</a>
+            </div>
+        </div>
+    </div>
+{% endfor %}

@@ -1,0 +1,4 @@
+App\Entity\Video:
+  video_{1..500}:
+    url: 'https://www.youtube.com/embed/oI-umOzNBME'
+    trick: '@trick_<($current % 100 + 1)>'

@@ -1,0 +1,62 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <h1 class="my-4">{{ trick.name }}</h1>
+            <div class="my-4 d-flex justify-content-between">
+                <span>{{ trick.author.username }}</span>
+                <span>{{ trick.category.name }}</span>
+                <span>{{ trick.publishedAt|date("d/m/Y") }}</span>
+            </div>
+            <p class="my-4">
+                {{ trick.description|nl2br }}
+            </p>
+            <div class="row align-item-stretch my-4">
+                {% for picture in trick.pictures %}
+                    <div class="col-6 col-md-4 col-lg-3 my-3">
+                        <img src="{{ asset(picture.path) }}" alt="{{ picture.alt }}" class="w-100"/>
+                    </div>
+                {% endfor %}
+                {% for video in trick.videos %}
+                    <div class="col-6 col-md-4 col-lg-3 my-3">
+                        <iframe width="100%" height="100%" src="{{ video.url }}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                {% endfor %}
+            </div>
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+            <button class="btn btn-success">Envoyer</button>
+            {{ form_end(form) }}
+            <div class="list-group my-4" id="comments">
+                {% for comment in comments %}
+                    <div class="list-group-item">
+
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">{{ comment.author.username }}</h5>
+                            <small>{{ comment.publishedAt|date("d/m/Y H:i") }}</small>
+                        </div>
+                        <p class="mb-1">{{ comment.content|nl2br }}</small>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if pagination.pages > 1 %}
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        {% if pagination.page > 1 %}
+                            <li class="page-item"><a class="page-link" href="{{ path("trick_show", { id: trick.id, page: pagination.page - 1 }) }}">Previous</a></li>
+                        {% endif %}
+                        {% for page in pagination.range %}
+                            <li class="page-item {{ pagination.page == page ? "active" : "" }}">
+                                <a class="page-link" href="{{ path("trick_show", { id: trick.id, page: page }) }}">{{ page }}</a>
+                            </li>
+                        {% endfor %}
+                        {% if pagination.page < pagination.pages %}
+                            <li class="page-item"><a class="page-link" href="{{ path("trick_show", { id: trick.id, page: pagination.page + 1 }) }}">Next</a></li>
+                        {% endif %}
+                    </ul>
+                </nav>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
