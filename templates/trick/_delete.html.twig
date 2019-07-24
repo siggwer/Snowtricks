@@ -1,0 +1,27 @@
+<div class="text-center">
+    <!-- Button HTML (to Trigger Modal) -->
+    <a href="#myModal" class="btn btn-danger float-right" data-toggle="modal">Supprimer</a>
+</div>
+
+<!-- Modal HTML -->
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Confirmation</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Êtes-vous sûr de vouloir supprimer ce trick? Cette action ne peut pas être annulée et vous ne pourrez récupérer aucune donnée.</p>
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{{ path("trick_delete", { id: trick.id }) }}">
+                    <input type="hidden" name="_method" value="DELETE">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.id ) }}">
+                    <a href="#" class="btn btn-info" data-dismiss="modal">Annuler</a>
+                    <button class="btn btn-danger float-right">Supprimer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

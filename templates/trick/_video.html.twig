@@ -1,0 +1,15 @@
+<div id="video-{{ form.vars.name }}" class="col-4 mb-3">
+    <div class="input-group">
+        <div class="input-group-prepend">
+            <span class="input-group-text"> <i class="fa fa-file-video-o"></i> </span>
+        </div>
+        {{ form_widget(form.url)}}
+        <div class="input-group-append">
+            <button type="button"
+                    class="btn btn-outline-danger remove-video"
+                    data-target="#video-{{ form.vars.name }}">
+                <i class="fa fa-remove"></i>
+            </button>
+        </div>
+    </div>
+</div>
