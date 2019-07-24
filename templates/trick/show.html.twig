@@ -1,6 +1,9 @@
 {% extends "base.html.twig" %}
 
+{% block title %}Détail{% endblock %}
+
 {% block body %}
+    <div class="container py-5">
     <div class="row">
         <div class="col-12">
             <h1 class="my-4">{{ trick.name }}</h1>
@@ -25,6 +28,7 @@
                 {% endfor %}
             </div>
             {{ form_start(form) }}
+            {{ form_widget(form._token) }}
             {{ form_rest(form) }}
             <button class="btn btn-success">Envoyer</button>
             {{ form_end(form) }}
@@ -36,7 +40,7 @@
                             <h5 class="mb-1">{{ comment.author.username }}</h5>
                             <small>{{ comment.publishedAt|date("d/m/Y H:i") }}</small>
                         </div>
-                        <p class="mb-1">{{ comment.content|nl2br }}</small>
+                        <p class="mb-1">{{ comment.content|nl2br }}</small></p>
                     </div>
                 {% endfor %}
             </div>
@@ -58,5 +62,6 @@
                 </nav>
             {% endif %}
         </div>
+    </div>
     </div>
 {% endblock %}
