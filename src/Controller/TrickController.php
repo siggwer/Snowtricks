@@ -146,7 +146,7 @@ class TrickController extends AbstractController
      * @param string $uploadDir
      * @param Trick $trick
      * @param Request $request
-     * 
+     *
      * @return Response
      */
     public function update(string $uploadDir,Trick $trick, Request $request): Response
