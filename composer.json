@@ -61,16 +61,16 @@
     },
     "scripts": {
         "prepare-test": [
-            "bin/console d:d:d --force --if-exists --env=test",
-            "bin/console d:d:c --env=test",
-            "bin/console d:s:u -f --env=test",
-            "bin/console h:f:l -n --env=test"
+            "php ./bin/console d:d:d --force --if-exists --env=test",
+            "php ./bin/console d:d:c --env=test",
+            "php ./bin/console d:s:u -f --env=test",
+            "php ./bin/console h:f:l -n --env=test"
         ],
         "prepare": [
-            "bin/console d:d:d --force --if-exists",
-            "bin/console d:d:c",
-            "bin/console d:s:u -f",
-            "bin/console h:f:l -n"
+            "php ./bin/console d:d:d --force --if-exists",
+            "php ./bin/console d:d:c",
+            "php ./bin/console d:s:u -f",
+            "php ./bin/console h:f:l -n"
         ],
         "auto-scripts": {
             "cache:clear": "symfony-cmd",

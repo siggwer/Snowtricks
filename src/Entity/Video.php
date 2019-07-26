@@ -7,16 +7,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Video
- *
  * @package App\Entity
- *
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
  */
 class Video
 {
     /**
      * @var int|null
-     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,18 +22,14 @@ class Video
 
     /**
      * @var Trick|null
-     *
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="videos")
-     * @ORM\JoinColumn(name="video_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
      */
     private $trick;
 
     /**
      * @var string|null
-     *
      * @Assert\NotBlank
      * @Assert\Url
-     *
      * @ORM\Column(type="string")
      */
     private $url;

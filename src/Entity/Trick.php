@@ -9,16 +9,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Trick
- *
  * @package App\Entity
- *
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
  */
 class Trick
 {
     /**
      * @var int|null
-     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -27,89 +24,73 @@ class Trick
 
     /**
      * @var string|null
-     *
      * @Assert\NotBlank
-     *
      * @ORM\Column(type="string")
      */
     private $name;
 
     /**
      * @var \DateTimeInterface|null
-     *
      * @ORM\Column(type="datetime_immutable")
      */
     private $publishedAt;
 
     /**
      * @var \DateTimeInterface|null
-     *
      * @ORM\Column(type="datetime_immutable")
      */
     private $updatedAt;
 
     /**
      * @var User|null
-     *
      * @ORM\ManyToOne(targetEntity="User")
      */
     private $author;
 
     /**
      * @var string|null
-     *
      * @Assert\NotBlank
-     *
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="string")
      */
     private $description;
 
     /**
      * @var Category|null
-     *
      * @Assert\NotNull
-     *
      * @ORM\ManyToOne(targetEntity="Category")
      */
     private $category;
 
     /**
      * @var Collection|Comment[]
-     *
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="trick")
      */
     private $comments;
 
     /**
      * @var Picture|null
-     *
+     * @Assert\NotNull
      * @Assert\Valid
-     *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
     private $pictureOnFront;
 
     /**
      * @var Collection|Picture[]
-     *
      * @Assert\Valid
-     *
-     * @ORM\OneToMany(targetEntity="Picture", mappedBy="trick", cascade={"persist"}, orphanRemoval=false)
+     * @ORM\OneToMany(targetEntity="Picture", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      */
     private $pictures;
 
     /**
      * @var Collection|Video[]
-     *
      * @Assert\Valid
-     *
      * @ORM\OneToMany(targetEntity="Video", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      */
     private $videos;
 
     /**
      * Trick constructor.
-     *
      * @throws \Exception
      */
     public function __construct()
@@ -267,98 +248,53 @@ class Trick
 
     /**
      * @param Picture $picture
-     *
-     * @return Trick
      */
-    public function addPicture(Picture $picture): self //void
+    public function addPicture(Picture $picture): void 
     {
-        /*if (!$this->pictures->contains($picture)) {
+        if (!$this->pictures->contains($picture)) {
             $picture->setTrick($this);
             $this->pictures->add($picture);
-        }*/
-
-        if (!$this->pictures->contains($picture)) {
-            $this->pictures[] = $picture;
-            $picture->setTrick($this);
         }
-        return $this;
     }
 
     /**
      * @param Picture $picture
-     *
-     * @return Trick
      */
-    public function removePicture(Picture $picture):  self //void
+    public function removePicture(Picture $picture): void
     {
-        /*if ($this->pictures->contains($picture)) {
+        if ($this->pictures->contains($picture)) {
             $picture->setTrick(null);
             $this->pictures->removeElement($picture);
-        }*/
-
-        if ($this->pictures->contains($picture)) {
-            $this->pictures->removeElement($picture);
-            if ($picture->getTrick() === $this) {
-                $picture->setTrick(null);
-            }
         }
-
-        return $this;
     }
 
     /**
      * @return Video[]|Collection
      */
-    public function getVideos(): Collection
+    public function getVideos()
     {
         return $this->videos;
     }
 
     /**
-     * @param Video|null $video
-     */
-    public function setVideos(?Video $videos): void
-    {
-        $this->videos = $videos;
-    }
-
-    /**
      * @param Video $video
-     *
-     * @return Trick
      */
-    public function addVideo(Video $video): self //void
+    public function addVideo(Video $video): void
     {
-        /*if (!$this->videos->contains($video)) {
+        if (!$this->videos->contains($video)) {
             $video->setTrick($this);
             $this->videos->add($video);
-        }*/
-        if (!$this->videos->contains($video)) {
-            $this->videos[] = $video;
-            $video->setTrick($this);
         }
-        return $this;
     }
 
     /**
      * @param Video $video
-     *
-     * @return Trick
      */
-    public function removeVideo(Video $video): self //void
+    public function removeVideo(Video $video): void
     {
-        /*if ($this->videos->contains($video)) {
+        if ($this->videos->contains($video)) {
             $video->setTrick(null);
             $this->videos->removeElement($video);
-        }*/
-
-        if ($this->videos->contains($video)) {
-            $this->videos->removeElement($video);
-            if ($video->getTrick() === $this) {
-                $video->setTrick(null);
-            }
         }
-
-        return $this;
     }
 }

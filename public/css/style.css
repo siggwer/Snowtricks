@@ -1,0 +1,338 @@
+/* BEGIN LICENCE AND CREDIT */
+/*Created by http://www.twitter.com/halibegic @halibegic
+Code licensed under the ttp://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0
+Based on http://getbootstrap.com Bootstrap v4
+Icons by http://fontawesome.io/
+http://www.github.com/halibegic/merlin GitHub*/
+
+/* END LICENCE */
+
+/* BEGIN HTML */
+
+/* BEGIN BODY */
+
+/* BEGIN BUTTON */
+
+.btn {
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all .2s;
+    -moz-transition: all .2s;
+    -ms-transition: all .2s;
+    transition: all .2s;
+}
+
+.btn-blue {
+    color: #fff;
+    background: #227fe8;
+}
+
+.btn-blue:hover,
+.btn-blue:focus {
+    color: #fff;
+    background: #233b6f;
+}
+
+/* END BUTTON */
+
+/* BEGIN NAVBAR */
+
+.navbar-light {
+    margin-bottom: 0;
+    background: #fff;
+    -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
+    -moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
+}
+
+.navbar-light .navbar-brand {
+    font-weight: bold;
+    color: #666;
+    text-transform: uppercase;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .active > .nav-link:hover,
+.navbar-light .navbar-nav .active > .nav-link:focus {
+    color: #233b6f;
+    background: transparent;
+}
+
+.navbar-light .navbar-toggler {
+    border-color: transparent;
+}
+
+.navbar-light.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 99;
+    width: 100%;
+    border-bottom-color: transparent;
+}
+/* END NAVBAR */
+
+/* BEGIN MODAL */
+.modal-dialog {
+    max-width: 750px !important;
+}
+
+/*END MODAL */
+
+.page {
+    position: relative;
+    overflow: hidden;
+}
+
+.page .content {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+}
+
+.page .content.cover {
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+}
+
+.page .border {
+    width: 6rem;
+    height: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    background: #f5b76a;
+}
+
+.page.overlay:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.page.overlay .content {
+    position: relative;
+    z-index: 1;
+}
+
+#home {
+    /*padding: 0;*/
+    padding-bottom: 500px;
+    color: #fff;
+    background-image: url(../images/Accueil_snowboard_2.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* BEGIN LOGIN */
+
+.login-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 21%;
+}
+
+.login-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.login-form-2{
+    padding: 5%;
+    background: #233b6f;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.login-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.login-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.login-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #233b6f;
+}
+.login-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #233b6f;
+    background-color: #fff;
+}
+.login-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.login-form-1 .ForgetPwd{
+    color: #233b6f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/*END LOGIN */
+
+/* BEGIN REGISTER */
+
+.card-register{
+    padding-top: 100px !important;
+    padding-bottom: 30px !important;
+}
+.divider-text {
+    position: relative;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.divider-text span {
+    padding: 7px;
+    font-size: 12px;
+    position: relative;
+    z-index: 2;
+}
+.divider-text:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    top: 55%;
+    left: 0;
+    z-index: 1;
+}
+
+.btnSubmitRegister {
+    color: #fff;
+    background-color: #233b6f;
+    border-color: #233b6f;
+}
+
+.btn-facebook {
+    background-color: #405D9D;
+    color: #fff;
+}
+.btn-twitter {
+    background-color: #42AEEC;
+    color: #fff;
+}
+
+/* END REGISTER */
+
+/* BEGIN ADD TRICK PAGE */
+
+.add-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+.addtrick{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+/* END ADD TRICK PAGE */
+
+/* BEGIN UPDATE TRICK PAGE */
+.card-register-form{
+    padding-bottom: 30px !important;
+}
+/* END UPDATE TRICK PAGE */
+
+/* END BODY */
+
+/* BEGIN FOOTER */
+
+#footer {
+    padding: 4rem 0;
+    color: #ccc;
+    text-align: center;
+    background: #233b6f;
+}
+
+#footer a,
+#footer a:hover,
+#footer a:focus {
+    color: #fff;
+}
+
+#footer .social {
+    margin-bottom: 1rem;
+}
+
+#footer .social li .facebook:hover,
+#footer .social li .facebook:focus {
+    color: #3b5998
+}
+
+#footer .social li .twitter:hover,
+#footer .social li .twitter:focus {
+    color: #00aced
+}
+
+#footer .social li .google-plus:hover,
+#footer .social li .google-plus:focus {
+    color: #d34836
+}
+
+#footer .social li .dribbble:hover,
+#footer .social li .dribbble:focus {
+    color: #ea4c89
+}
+
+#footer .copyright {
+    margin-bottom: 0;
+}
+
+/* END FOOTER */
+
+/* BEGIN SCROLL UP */
+#scrollUp
+{
+    position: fixed;
+    bottom : 30px;
+    right: -100px;
+    opacity: 0.5;
+}
+/* END SCROLL UP */
+
+/* BEGIN RESPONSIVE */
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 750px !important;
+    }
+}
+
+@media (min-width: 500px) and (max-width: 572px) {
+    /* BEGIN ADD TRICK PAGE */
+
+    .add-container{
+        margin-left: 0px;
+    }
+
+    /* END ADD TRICK PAGE */
+}
+
+/* END RESPONSIVE */
+
+/* END HTML */

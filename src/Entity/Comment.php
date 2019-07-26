@@ -42,7 +42,6 @@ class Comment
     /**
      * @var Trick|null
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="comments")
-     * @ORM\JoinColumn(name="comment_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
      */
     private $trick;
 
