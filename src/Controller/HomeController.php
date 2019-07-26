@@ -9,13 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class HomeController
+ *
  * @package App\Controller
  */
 class HomeController extends AbstractController
 {
     /**
      * @Route("/", name="home")
+     *
      * @param TrickRepository $trickRepository
+     *
      * @return Response
      */
     public function __invoke(TrickRepository $trickRepository): Response

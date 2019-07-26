@@ -8,13 +8,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Picture
+ *
  * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
  */
 class Picture
 {
     /**
      * @var int|null
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -23,27 +26,33 @@ class Picture
 
     /**
      * @var Trick|null
+     *
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="pictures")
+     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
      */
     private $trick;
 
     /**
      * @var string|null
+     *
      * @Assert\NotBlank
+     *
      * @ORM\Column(type="string")
      */
     private $alt;
 
     /**
      * @var string|null
+     *
      * @ORM\Column(type="string")
      */
     private $path;
 
     /**
      * @var UploadedFile|null
+     *
      * @Assert\Image
-     * @Assert\NotNull
+     * @Assert\NotNull(groups={"add"})
      */
     private $uploadedFile;
 
