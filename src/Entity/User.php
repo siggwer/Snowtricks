@@ -4,19 +4,23 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class User
+ *
  * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */
-class User
+class User implements UserInterface
 {
     /**
      * @var int|null
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -25,33 +29,40 @@ class User
 
     /**
      * @var string|null
+     *
      * @Assert\NotBlank
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $username;
 
     /**
      * @var string|null
+     *
      * @Assert\NotBlank
      * @Assert\Email
+     *
      * @ORM\Column(type="string", unique=true)
      */
     private $email;
 
     /**
      * @var string|null
+     *
      * @ORM\Column(type="string")
      */
     private $password;
 
     /**
      * @var string|null
+     *
      * @Assert\NotBlank
      */
     private $plainPassword;
 
     /**
      * @var \DateTimeImmutable|null
+     *
      * @ORM\Column(type="datetime_immutable")
      */
     private $registeredAt;
@@ -63,6 +74,7 @@ class User
 
     /**
      * User constructor.
+     *
      * @throws \Exception
      */
     public function __construct()
@@ -172,5 +184,47 @@ class User
     public function setRole(?string $role): void
     {
         $this->role = $role;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     *     public function getRoles()
+     *     {
+     *         return ['ROLE_USER'];
+     *     }
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return (Role|string)[] The user roles
+     */
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    /**
+     * Returns the salt that was originally used to encode the password.
+     *
+     * This can return null if the password was not encoded using a salt.
+     *
+     * @return string|null The salt
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }
