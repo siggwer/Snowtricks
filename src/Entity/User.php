@@ -13,6 +13,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\EntityListeners({"App\EntityListener\UserListener"})
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */

@@ -1,21 +1,19 @@
 
 {% for trick in tricks %}
-    <div class="col-12 col-md-8 col-lg-6 my-4">
-        <div class="card">
-            <div class="card-header">
-                {{ trick.name }}
-            </div>
-            <div class="card-body p-0">
-               <img src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}" class="w-100">
-            </div>
-            <div class="card-body small d-flex justify-content-between">
+    <div class="col-12 col-md-8 col-lg-4 my-4">
+    <div class="card-group">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ trick.name }}</h5>
                 <span>{{ trick.author.username }}</span>
-                <span>{{ trick.publishedAt|date("d/m/Y") }}</span>
+                <p class="card-text"><small class="text-muted">{{ trick.publishedAt|date("d/m/Y") }}</small></p>
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <a href="{{ path("trick_show", { id: trick.id }) }}" class="btn btn-info">PLus d'infos</a>
                 <a href="{{ path("trick_update", { id: trick.id }) }}" class="btn btn-secondary">Modifier</a>
             </div>
         </div>
+    </div>
     </div>
 {% endfor %}
