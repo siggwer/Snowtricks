@@ -58,7 +58,7 @@ class TrickController extends AbstractController
     {
         $trick = new Trick();
 
-        $trick->setAuthor($this->getDoctrine()->getManager()->find(User::class, 1));
+        $trick->setAuthor($this->getUser());
 
         $form = $this->createForm(AddTrickType::class, $trick, [
             'validation_groups' => ["Default", "add"]
@@ -81,7 +81,7 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute("trick_add", ["id" => $trick->getId()]);
+            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
         }
         return $this->render("trick/add.html.twig", [
             "form" => $form->createView(),
@@ -109,7 +109,7 @@ class TrickController extends AbstractController
         $comment->setTrick($trick);
 
         // ATTENTION CETTE ETAPE SERA A SUPPRIME QUAND ON AURA FAIT LA CONNEXION
-        $comment->setAuthor($this->getDoctrine()->getManager()->find(User::class, 1));
+        $comment->setAuthor($this->getUser());
 
         $form = $this->createForm(CommentType::class, $comment)->handleRequest($request);
 
