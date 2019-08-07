@@ -43,7 +43,7 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 .navbar-light {
     margin-bottom: 0;
-    background: #fff;
+    background: #233b6f !important;
     -webkit-box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
     -moz-box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
     box-shadow: 0 0 2px 0 rgba(0, 0, 0, .2);
@@ -51,20 +51,25 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 .navbar-light .navbar-brand {
     font-weight: bold;
-    color: #666;
+    color: #ffffff;
     text-transform: uppercase;
 }
 
 .navbar-light .navbar-nav .nav-link {
     font-weight: bold;
     text-transform: uppercase;
+    color: #ffffff;
 }
 
 .navbar-light .navbar-nav .active > .nav-link,
 .navbar-light .navbar-nav .active > .nav-link:hover,
 .navbar-light .navbar-nav .active > .nav-link:focus {
-    color: #233b6f;
+    color: #ffffff;
     background: transparent;
+}
+
+.nav-link:hover{
+    color: #007bff !important;
 }
 
 .navbar-light .navbar-toggler {
@@ -79,6 +84,14 @@ http://www.github.com/halibegic/merlin GitHub*/
     border-bottom-color: transparent;
 }
 /* END NAVBAR */
+
+/* BEGIN JUMBOTRON */
+
+.jumbotron{
+    margin-bottom: unset !important;
+}
+
+/* END JUMBOTRON */
 
 /* BEGIN MODAL */
 .modal-dialog {
@@ -127,9 +140,9 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 #home {
     /*padding: 0;*/
-    padding-bottom: 500px;
+    padding: 20rem 2rem !important;
     color: #fff;
-    background-image: url(../images/Accueil_snowboard_2.jpg);
+    background-image: url(../images/Accueil_snowboard_3.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;

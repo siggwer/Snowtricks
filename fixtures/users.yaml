@@ -2,4 +2,4 @@ App\Entity\User:
   user_{1..10}:
     username: 'username-<current()>'
     email: 'email+<current()>\@email.com'
-    password: 'password'
+    plainPassword: 'password'
