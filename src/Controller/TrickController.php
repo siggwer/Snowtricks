@@ -4,26 +4,31 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Trick;
-use App\Entity\User;
+use App\Form\TrickType;
 use App\Form\CommentType;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * Class TrickController
+ *
  * @package App\Controller
+ *
  * @Route("/trick")
  */
 class TrickController extends AbstractController
 {
     /**
-     * @Route("/list", name="trick_list")
+     * @Route("/list", name="trick_list", methods={"GET"})
+     *
      * @param TrickRepository $trickRepository
      * @param Request $request
+     *
      * @return Response
      */
     public function list(TrickRepository $trickRepository, Request $request): Response
@@ -39,11 +44,43 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="trick_show")
+     * @Route("/add", name="trick_add", methods={"GET","POST"})
+     *
+     * @param Request $request
+     *
+     * @return Response
+     *
+     * @throws \Exception
+     */
+    public function add(Request $request): Response
+    {
+        $trick = new Trick();
+
+        $form = $this->createForm(TrickType::class, $trick, [
+            'validation_groups' => ["Default", "add"]
+        ])
+            ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($trick);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
+        }
+        return $this->render("trick/add.html.twig", [
+            "form" => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
+     *
      * @param Trick $trick
      * @param CommentRepository $commentRepository
      * @param Request $request
+     *
      * @return Response
+     *
      * @throws \Exception
      */
     public function show(Trick $trick, CommentRepository $commentRepository, Request $request): Response
@@ -56,7 +93,7 @@ class TrickController extends AbstractController
         $comment->setTrick($trick);
 
         // ATTENTION CETTE ETAPE SERA A SUPPRIME QUAND ON AURA FAIT LA CONNEXION
-        $comment->setAuthor($this->getDoctrine()->getManager()->find(User::class, 1));
+        //$comment->setAuthor($this->getUser());
 
         $form = $this->createForm(CommentType::class, $comment)->handleRequest($request);
 
@@ -85,5 +122,50 @@ class TrickController extends AbstractController
                 )
             ]
         ]);
+    }
+
+    /**
+     * @Route("/update/{id}", name="trick_update", methods={"GET","POST"})
+     *
+     * @param Trick $trick
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function update(Trick $trick, Request $request): Response
+    {
+        $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->persist($trick);
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
+        }
+
+        return $this->render("trick/update.html.twig", [
+            "trick" => $trick,
+            "form" => $form->createView()
+
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="trick_delete", methods={"DELETE"})
+     *
+     * @param Trick $trick
+     * @param Request $request
+     *
+     * @return RedirectResponse
+     */
+    public function delete(Trick $trick, Request $request): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$trick->getId(), $request->request->get('_token'))) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->remove($trick);
+            $entityManager->flush();
+        }
+
+        return $this->redirectToRoute('home');
     }
 }

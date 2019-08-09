@@ -1,22 +1,13 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Snowtrick / Accueil{% endblock %}
 
 {% block body %}
-    <div id="home" class="page overlay">
-        <div class="container">
-            <div class="content cover text-center">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <h1 class="mt-0 mb-0 animated hiding" data-animation="fadeIn" data-delay="600">Les meilleurs tricks.</h1>
-                        <br>
-                        <a class="mt-0 mb-4 btn btn-blue nav-external animated hiding" data-animation="fadeIn" data-delay="900" href="#tricks">Voir les tricks</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div id="home" class="jumbotron text-center">
+            <h1 class="jumbotron-heading">Les meilleurs tricks</h1>
+            <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
-    <div class="container py-5">
+    <div class="container-fluid album py-5 bg-light">
     <div class="row" id="tricks">
         {{ include("trick/list.html.twig", { tricks: tricks }) }}
     </div>
@@ -24,7 +15,9 @@
 
         <div class="col-12 text-center">
             <button class="btn btn-info" id="load-more">Load more</button>
-            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% endif %}
         </div>
     </div>
     </div>
