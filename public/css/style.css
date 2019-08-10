@@ -209,6 +209,66 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 /* BEGIN REGISTER */
 
+.register-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 21%;
+    padding-bottom: 12.5%;
+}
+
+.register-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.register-form-2{
+    padding: 5%;
+    background: #233b6f;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.register-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.register-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #233b6f;
+}
+.register-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #233b6f;
+    background-color: #fff;
+}
+.register-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.register-form-1 .ForgetPwd{
+    color: #233b6f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* END REGISTER */
+
+/* BEGIN REGISTER */
+
 .card-register{
     padding-top: 100px !important;
     padding-bottom: 30px !important;
@@ -233,6 +293,12 @@ http://www.github.com/halibegic/merlin GitHub*/
     top: 55%;
     left: 0;
     z-index: 1;
+}
+
+.btnSubmitLogin {
+    color: #fff;
+    background-color: #233b6f;
+    border-color: #233b6f;
 }
 
 .btnSubmitRegister {
@@ -344,6 +410,45 @@ http://www.github.com/halibegic/merlin GitHub*/
     }
 
     /* END ADD TRICK PAGE */
+}
+
+@media (min-width: 1200px) {
+
+    #home {
+        /*padding: 0;*/
+        padding: 30rem 1rem !important;
+    }
+
+    .login-container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+    .login-form-1{
+        padding: 3%;
+        margin-top: 163px;
+        margin-left: 250px;
+    }
+
+    .register-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .register-form-1 {
+        padding: 3%;
+        margin-top: 43px;
+        margin-left: 250px;
+    }
+    #footer {
+        padding: 4rem 0;
+        color: #ccc;
+        text-align: center;
+        background: #233b6f;
+    }
 }
 
 /* END RESPONSIVE */

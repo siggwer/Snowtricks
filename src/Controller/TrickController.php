@@ -11,6 +11,7 @@ use App\Form\UpdateTrickType;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -185,7 +186,7 @@ class TrickController extends AbstractController
      * @param Trick $trick
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return RedirectResponse
      */
     public function delete(Trick $trick, Request $request): Response
     {
