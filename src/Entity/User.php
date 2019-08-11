@@ -62,6 +62,12 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
+     *
+     * @Assert\EqualTo(propertyPath="password", message="Do not match password")
+     */
+    private $confirm_password;
+
+    /**
      * @var \DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable")

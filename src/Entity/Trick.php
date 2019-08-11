@@ -13,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
- * @ORM\EntityListeners({"App\EntityListener\TrickListener"})
  */
 class Trick
 {

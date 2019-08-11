@@ -8,6 +8,9 @@
             <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
     <div class="container-fluid album py-5 bg-light">
+        {% for message in app.flashes("success") %}
+            {{ include("flash_message/_success_flash.html.twig") }}
+        {% endfor %}
     <div class="row" id="tricks">
         {{ include("trick/list.html.twig", { tricks: tricks }) }}
     </div>
@@ -15,9 +18,7 @@
 
         <div class="col-12 text-center">
             <button class="btn btn-info" id="load-more">Load more</button>
-            {% if is_granted("ROLE_USER") %}
-                    <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
-            {% endif %}
+            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
         </div>
     </div>
     </div>

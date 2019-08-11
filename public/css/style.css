@@ -140,7 +140,7 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 #home {
     /*padding: 0;*/
-    padding: 30rem 1rem 1rem !important;
+    padding: 20rem 2rem !important;
     color: #fff;
     background-image: url(../images/Accueil_snowboard_3.jpg);
     background-repeat: no-repeat;
@@ -157,8 +157,7 @@ http://www.github.com/halibegic/merlin GitHub*/
 }
 
 .login-form-1{
-    margin-bottom: 21.3rem;
-    padding: 3%;
+    padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 .login-form-1 h3{
@@ -207,6 +206,66 @@ http://www.github.com/halibegic/merlin GitHub*/
 }
 
 /*END LOGIN */
+
+/* BEGIN REGISTER */
+
+.register-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 21%;
+    padding-bottom: 12.5%;
+}
+
+.register-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.register-form-2{
+    padding: 5%;
+    background: #233b6f;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.register-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.register-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #233b6f;
+}
+.register-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #233b6f;
+    background-color: #fff;
+}
+.register-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.register-form-1 .ForgetPwd{
+    color: #233b6f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* END REGISTER */
 
 /* BEGIN REGISTER */
 
@@ -361,11 +420,42 @@ http://www.github.com/halibegic/merlin GitHub*/
     }
 
     .login-container {
-        padding-top: 5.5rem;
-        margin-top: 7rem;
-        margin-bottom: 0.1rem;
-        margin-left: 50rem;
-        padding-left: 8.9rem;
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+    .login-form-1{
+        padding: 3%;
+        margin-top: 163px;
+        margin-left: 250px;
+    }
+
+    .register-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .register-form-1 {
+        padding: 3%;
+        margin-top: 43px;
+        margin-left: 250px;
+    }
+
+    .addtrick{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 5%;
+        padding-bottom: 14.9%;
+    }
+
+    #footer {
+        padding: 4rem 0;
+        color: #ccc;
+        text-align: center;
+        background: #233b6f;
     }
 }
 
