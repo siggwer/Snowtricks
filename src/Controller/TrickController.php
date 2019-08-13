@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Entity\User;
-use App\Form\AddTrickType;
+use App\Form\TrickType;
 use App\Form\CommentType;
 use App\Form\UpdateTrickType;
 use App\Repository\CommentRepository;
@@ -61,7 +61,7 @@ class TrickController extends AbstractController
 
         $trick->setAuthor($this->getUser());
 
-        $form = $this->createForm(AddTrickType::class, $trick, [
+        $form = $this->createForm(TrickType::class, $trick, [
             'validation_groups' => ["Default", "add"]
         ])
             ->handleRequest($request);
@@ -152,7 +152,7 @@ class TrickController extends AbstractController
      */
     public function update(string $uploadDir,Trick $trick, Request $request): Response
     {
-        $form = $this->createForm(UpdateTrickType::class, $trick)->handleRequest($request);
+        $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $filename = md5(uniqid("", true)). "." . $trick

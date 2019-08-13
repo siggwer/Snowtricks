@@ -58,14 +58,10 @@ class User implements UserInterface
      * @var string|null
      *
      * @Assert\NotBlank
+     *
+     * @Assert\Length(min=6)
      */
     private $plainPassword;
-
-    /**
-     *
-     * @Assert\EqualTo(propertyPath="password", message="Do not match password")
-     */
-    private $confirm_password;
 
     /**
      * @var \DateTimeImmutable|null

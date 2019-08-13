@@ -16,11 +16,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class AddTrickType
+ * Class TrickType
  *
  * @package App\Form
  */
-class AddTrickType extends AbstractType
+class TrickType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
