@@ -72,6 +72,16 @@ class User implements UserInterface
 
     /**
      * @var string|null
+     *
+     * @Assert\Valid
+     *
+     * @ORM\Column(type="string", name="avantar", nullable=true)
+     * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
+     */
+    private $avatar;
+
+    /**
+     * @var string|null
      */
     private $role = "ROLE_USER";
 
@@ -166,11 +176,28 @@ class User implements UserInterface
     }
 
     /**
+     * @return string|null
+     */
+    public function getAvatar(): ?string
+    {
+        return $this->avatar;
+    }
+
+
+    /**
      * @param \DateTimeImmutable|null $registeredAt
      */
     public function setRegisteredAt(?\DateTimeImmutable $registeredAt): void
     {
         $this->registeredAt = $registeredAt;
+    }
+
+    /**
+     * @param string|null $avatar
+     */
+    public function setAvatar(?string $avatar): void
+    {
+        $this->avatar = $avatar;
     }
 
     /**
