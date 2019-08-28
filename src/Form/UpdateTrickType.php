@@ -24,7 +24,7 @@ class UpdateTrickType extends AbstractType
      *
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class,  [
@@ -41,7 +41,7 @@ class UpdateTrickType extends AbstractType
                 'label' => 'Indiquez une description',
                 'required' => true
             ])
-            ->add("pictures", CollectionType::class, [
+            ->add('pictures', CollectionType::class, [
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -49,7 +49,7 @@ class UpdateTrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-            ->add("videos", CollectionType::class, [
+            ->add('videos', CollectionType::class, [
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
@@ -63,7 +63,7 @@ class UpdateTrickType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Trick::class);
     }

@@ -8,10 +8,8 @@ use App\Entity\Trick;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -27,24 +25,27 @@ class TrickType extends AbstractType
      *
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
-                'required' => false])
+                'required' => false
+            ])
             ->add('category', EntityType::class,  [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Indiquez la catégorie',
-                'required' => true])
+                'required' => true
+            ])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
-                'required' => true])
+                'required' => true
+            ])
             ->add('pictureOnFront', PictureType::class, [
                 'label' => 'Image principale'
             ])
-            ->add("pictures", CollectionType::class, [
+            ->add('pictures', CollectionType::class, [
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -52,7 +53,7 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-            ->add("videos", CollectionType::class, [
+            ->add('videos', CollectionType::class, [
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
@@ -66,7 +67,7 @@ class TrickType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefault('data_class', Trick::class);
     }

@@ -170,12 +170,12 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
+            return $this->redirectToRoute('trick_show', ["id" => $trick->getId()]);
         }
 
         return $this->render("trick/update.html.twig", [
-            "trick" => $trick,
-            "form" => $form->createView()
+            'trick' => $trick,
+            'form' => $form->createView()
 
         ]);
     }

@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeImmutable;
+use Exception;
 
 /**
  * Class User
@@ -64,18 +66,17 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-     * @var \DateTimeImmutable|null
+     * @var DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable")
      */
     private $registeredAt;
 
     /**
-     * @var string|null
+     * @var Picture|null
      *
      * @Assert\Valid
      *
-     * @ORM\Column(type="string", name="avantar", nullable=true)
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
     private $avatar;
@@ -83,16 +84,16 @@ class User implements UserInterface
     /**
      * @var string|null
      */
-    private $role = "ROLE_USER";
+    private $role = 'ROLE_USER';
 
     /**
      * User constructor.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct()
     {
-        $this->registeredAt = new \DateTimeImmutable();
+        $this->registeredAt = new DateTimeImmutable();
     }
 
     /**
@@ -168,34 +169,34 @@ class User implements UserInterface
     }
 
     /**
-     * @return \DateTimeImmutable|null
+     * @return DateTimeImmutable|null
      */
-    public function getRegisteredAt(): ?\DateTimeImmutable
+    public function getRegisteredAt(): ?DateTimeImmutable
     {
         return $this->registeredAt;
     }
 
     /**
-     * @return string|null
+     * @return Picture|null
      */
-    public function getAvatar(): ?string
+    public function getAvatar(): ?Picture
     {
         return $this->avatar;
     }
 
 
     /**
-     * @param \DateTimeImmutable|null $registeredAt
+     * @param DateTimeImmutable|null $registeredAt
      */
-    public function setRegisteredAt(?\DateTimeImmutable $registeredAt): void
+    public function setRegisteredAt(?DateTimeImmutable $registeredAt): void
     {
         $this->registeredAt = $registeredAt;
     }
 
     /**
-     * @param string|null $avatar
+     * @param Picture|null $avatar
      */
-    public function setAvatar(?string $avatar): void
+    public function setAvatar(?Picture $avatar): void
     {
         $this->avatar = $avatar;
     }
@@ -228,7 +229,7 @@ class User implements UserInterface
      * and populated in any number of different ways when the user object
      * is created.
      *
-     * @return (Role|string)[] The user roles
+     * @return array (Role|string)[] The user roles
      */
     public function getRoles()
     {
@@ -256,5 +257,35 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * @return string
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->email
+            // see section on salt below
+            // $this->salt,
+        ));
+    }
+
+    /**
+     * @param $serialized
+     */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->email
+            // see section on salt below
+            // $this->salt
+            ) = unserialize($serialized, array('allowed_classes' => false));
     }
 }
