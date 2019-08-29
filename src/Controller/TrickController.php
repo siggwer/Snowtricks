@@ -5,7 +5,7 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Entity\User;
-use App\Form\AddTrickType;
+use App\Form\TrickType;
 use App\Form\CommentType;
 use App\Form\UpdateTrickType;
 use App\Repository\CommentRepository;
@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -34,9 +33,7 @@ class TrickController extends AbstractController
      *
      * @return Response
      */
-    public function list(TrickRepository $trickRepository,
-                         Request $request
-                        ): Response
+    public function list(TrickRepository $trickRepository, Request $request): Response
     {
         return $this->render("trick/list.html.twig", [
             "tricks" => $trickRepository->findBy(
@@ -51,24 +48,20 @@ class TrickController extends AbstractController
     /**
      * @Route("/add", name="trick_add", methods={"GET","POST"})
      *
-     * @param string $uploadDir
-     * @param FlashBagInterface $flashBag
+     * @param Trick $trick
      * @param Request $request
      *
      * @return Response
      *
      * @throws \Exception
      */
-    public function add(string $uploadDir,
-                        FlashBagInterface $flashBag,
-                        Request $request
-                        ): Response
+    public function add(string $uploadDir,Request $request): Response
     {
         $trick = new Trick();
 
         $trick->setAuthor($this->getUser());
 
-        $form = $this->createForm(AddTrickType::class, $trick, [
+        $form = $this->createForm(TrickType::class, $trick, [
             'validation_groups' => ["Default", "add"]
         ])
             ->handleRequest($request);
@@ -89,12 +82,10 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            $flashBag->add("success", "Votre trick a bien été ajouté");
-
             return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
         }
         return $this->render("trick/add.html.twig", [
-            "form" => $form->createView()
+            "form" => $form->createView(),
         ]);
     }
 
@@ -109,10 +100,7 @@ class TrickController extends AbstractController
      *
      * @throws \Exception
      */
-    public function show(Trick $trick,
-                         CommentRepository $commentRepository,
-                         Request $request
-                        ): Response
+    public function show(Trick $trick, CommentRepository $commentRepository, Request $request): Response
     {
         $totalComments = $commentRepository->count(["trick" => $trick]);
 
@@ -162,13 +150,9 @@ class TrickController extends AbstractController
      *
      * @return Response
      */
-    public function update(string $uploadDir,
-                           Trick $trick,
-                           FlashBagInterface $flashBag,
-                           Request $request
-                            ): Response
+    public function update(string $uploadDir,Trick $trick, Request $request): Response
     {
-        $form = $this->createForm(UpdateTrickType::class, $trick)->handleRequest($request);
+        $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $filename = md5(uniqid("", true)). "." . $trick
@@ -186,14 +170,12 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            $flashBag->add("success", "Votre trick a bien été ajouté");
-
-            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
+            return $this->redirectToRoute('trick_show', ["id" => $trick->getId()]);
         }
 
         return $this->render("trick/update.html.twig", [
-            "trick" => $trick,
-            "form" => $form->createView()
+            'trick' => $trick,
+            'form' => $form->createView()
 
         ]);
     }

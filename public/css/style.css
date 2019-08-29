@@ -83,12 +83,29 @@ http://www.github.com/halibegic/merlin GitHub*/
     width: 100%;
     border-bottom-color: transparent;
 }
+
+.navbar-nav .show>.nav-link{
+    color: #ffffff !important;
+}
+
+.img-circle {
+    border-radius: 50% !important;
+    margin-right: 30px;
+}
+
+.dropdown-menu{
+    margin-left: 100px !important;
+}
 /* END NAVBAR */
 
 /* BEGIN JUMBOTRON */
 
 .jumbotron{
     margin-bottom: unset !important;
+}
+
+.display-3{
+    font-weight: 500 !important;
 }
 
 /* END JUMBOTRON */
@@ -338,6 +355,20 @@ http://www.github.com/halibegic/merlin GitHub*/
 }
 /* END UPDATE TRICK PAGE */
 
+/* BEGIN USER PROFILE PAGE */
+
+.add-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+.update-avatar{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+/* END USER PROFILE PAGE */
+
 /* END BODY */
 
 /* BEGIN FOOTER */
@@ -412,12 +443,7 @@ http://www.github.com/halibegic/merlin GitHub*/
     /* END ADD TRICK PAGE */
 }
 
-@media (min-width: 1200px) {
-
-    #home {
-        /*padding: 0;*/
-        padding: 30rem 1rem !important;
-    }
+@media (min-width: 993px) and (max-width: 1400px) {
 
     .login-container {
         margin-top: 5%;
@@ -427,8 +453,7 @@ http://www.github.com/halibegic/merlin GitHub*/
     }
     .login-form-1{
         padding: 3%;
-        margin-top: 163px;
-        margin-left: 250px;
+        margin-left: 150px;
     }
 
     .register-container{
@@ -443,12 +468,38 @@ http://www.github.com/halibegic/merlin GitHub*/
         margin-top: 43px;
         margin-left: 250px;
     }
+    #footer {
+        padding: 4rem 0;
+        color: #ccc;
+        text-align: center;
+        background: #233b6f;
+    }
+}
 
-    .addtrick{
+@media (min-width: 1435px) {
+
+    .login-container {
         margin-top: 5%;
         margin-bottom: 5%;
-        padding-left: 5%;
-        padding-bottom: 14.9%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .login-form-1{
+        padding: 3%;
+        margin-left: 130px;
+    }
+
+    .register-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .register-form-1 {
+        padding: 3%;
+        margin-left: 130px;
     }
 
     #footer {

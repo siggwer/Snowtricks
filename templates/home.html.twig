@@ -4,13 +4,10 @@
 
 {% block body %}
     <div id="home" class="jumbotron text-center">
-            <h1 class="jumbotron-heading">Les meilleurs tricks</h1>
+            <h1 class="jumbotron-heading display-3">Les meilleurs tricks</h1>
             <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
     <div class="container-fluid album py-5 bg-light">
-        {% for message in app.flashes("success") %}
-            {{ include("flash_message/_success_flash.html.twig") }}
-        {% endfor %}
     <div class="row" id="tricks">
         {{ include("trick/list.html.twig", { tricks: tricks }) }}
     </div>

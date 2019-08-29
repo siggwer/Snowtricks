@@ -7,9 +7,9 @@ use App\Form\RegistrationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Exception;
 
 /**
@@ -29,10 +29,7 @@ class RegistrationController extends AbstractController
      *
      * @throws Exception
      */
-    public function register(Request $request,
-                             UserPasswordEncoderInterface $passwordEncoder,
-                             FlashBagInterface $flashBag
-                            ): Response
+    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -44,16 +41,13 @@ class RegistrationController extends AbstractController
             $user->setPassword(
                 $passwordEncoder->encodePassword(
                     $user,
-                    $form->get('plainPassword')->getData()
+                    $user->getPlainPassword()
                 )
             );
 
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
-
-            $flashBag->add("success", "Votre compte a bien été créé,
-                                                    un email de confirmation vous a été envoyé.");
 
             // do anything else you need here, like send an email
 

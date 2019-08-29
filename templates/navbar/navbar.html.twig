@@ -2,18 +2,27 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white fixed">
         <div class="container">
             <a class="navbar-brand nav-link" href="/">Snowtricks</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false"
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false"
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/">Accueil</a>
-                    </li>
                     {% if is_granted("ROLE_USER") %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('security_logout') }}">Se déconnecter</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://www.jeromesauvage.fr"
+                               id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="/uploads/jerome_id_gris2_60x51.png" class="img-circle" alt="">
+                                Jérôme Sauvage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+                                <a class="dropdown-item" href="{{ path('security_logout') }}">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Se déconnecter
+                                </a>
+                            </div>
                         </li>
                     {% else %}
                         <li class="nav-item">
