@@ -6,3 +6,7 @@ App\Entity\Picture:
   picture_on_front_{1..100}:
     alt: 'Alt'
     path: 'uploads/image.png'
+  avatar_{1..10}:
+    alt: 'Alt'
+    path: 'uploads/avatar.png'
+

@@ -26,7 +26,10 @@ class UserProfileController extends AbstractController
      *
      * @return Response
      */
-    public function EditProfile(Request $request, ObjectManager $manager, UserRepository $user, string $uploadDir): Response
+    public function EditProfile(Request $request,
+                                ObjectManager $manager,
+                                UserRepository $user,
+                                string $uploadDir): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
