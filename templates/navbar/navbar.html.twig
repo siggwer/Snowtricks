@@ -22,6 +22,10 @@
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                                     Se déconnecter
                                 </a>
+                                <a class="dropdown-item" href="{{ path('contact') }}">
+                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                    Contact
+                                </a>
                             </div>
                         </li>
                     {% else %}
@@ -31,6 +35,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                        </li>
                     {% endif %}
                     <!--<li class="nav-item">
                         <a class="nav-link" href="#clients">Clients</a>
@@ -38,9 +45,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>-->
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
-                    </li>
                 </ul>
             </div>
         </div>
