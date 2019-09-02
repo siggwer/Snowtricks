@@ -1,4 +1,7 @@
 {
+    "composer/ca-bundle": {
+        "version": "1.2.4"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -147,6 +150,12 @@
     "ocramius/proxy-manager": {
         "version": "2.2.2"
     },
+    "padraic/humbug_get_contents": {
+        "version": "1.1.2"
+    },
+    "padraic/phar-updater": {
+        "version": "v1.0.6"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
@@ -155,6 +164,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phuml/phuml": {
+        "version": "1.7.0"
     },
     "psr/cache": {
         "version": "1.0.1"

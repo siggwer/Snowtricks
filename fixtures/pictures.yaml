@@ -9,4 +9,3 @@ App\Entity\Picture:
   avatar_{1..10}:
     alt: 'Alt'
     path: 'uploads/avatar.png'
-

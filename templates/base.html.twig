@@ -14,7 +14,13 @@
     {% include("navbar/navbar.html.twig") %}
 
     <body>
-
+    {% if app.request.hasPreviousSession %}
+        {% for message in app.flashes('notice') %}
+            <div class="flash-notice">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
     {% block body %}{% endblock %}
 
     {% include("footer/footer.html.twig") %}
