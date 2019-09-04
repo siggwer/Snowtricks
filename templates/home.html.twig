@@ -12,10 +12,11 @@
         {{ include("trick/list.html.twig", { tricks: tricks }) }}
     </div>
     <div class="row mt-4">
-
         <div class="col-12 text-center">
             <button class="btn btn-info" id="load-more">Load more</button>
-            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% if is_granted("ROLE_USER") %}
+                <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% endif %}
         </div>
     </div>
     </div>

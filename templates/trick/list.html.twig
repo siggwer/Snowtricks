@@ -11,7 +11,9 @@
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <a href="{{ path("trick_show", { id: trick.id }) }}" class="btn btn-info">PLus d'infos</a>
-                <a href="{{ path("trick_update", { id: trick.id }) }}" class="btn btn-secondary">Modifier</a>
+                {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path("trick_update", { id: trick.id }) }}" class="btn btn-warning">Modifier</a>
+                {% endif %}
             </div>
         </div>
     </div>

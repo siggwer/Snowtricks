@@ -7,13 +7,17 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Class Comment
+ *
  * @package App\Entity
+ *
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
+ * @ORM\EntityListeners({"App\EntityListener\CommentListener"})
  */
 class Comment
 {
     /**
      * @var int|null
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -22,25 +26,30 @@ class Comment
 
     /**
      * @var string|null
+     *
      * @Assert\NotBlank
+     *
      * @ORM\Column(type="string")
      */
     private $content;
 
     /**
      * @var \DateTimeInterface|null
+     *
      * @ORM\Column(type="datetime_immutable")
      */
     private $publishedAt;
 
     /**
      * @var User|null
+     *
      * @ORM\ManyToOne(targetEntity="User")
      */
     private $author;
 
     /**
      * @var Trick|null
+     *
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="comments")
      * @ORM\JoinColumn(name="comment_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
      */
@@ -48,6 +57,7 @@ class Comment
 
     /**
      * Comment constructor.
+     *
      * @throws \Exception
      */
     public function __construct()

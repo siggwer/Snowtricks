@@ -9,7 +9,7 @@
             </button>
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav ml-auto">
-                    {% if is_granted("ROLE_USER") %}
+                    {% if is_granted("ROLE_USER") and user is defined %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="https://www.jeromesauvage.fr"
                                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -18,10 +18,6 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
-                                <a class="dropdown-item" href="{{ path('security_logout') }}">
-                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
-                                    Se déconnecter
-                                </a>
                                 <a class="dropdown-item" href="{{ path('mon-compte') }}">
                                     <i class="fa fa-user" aria-hidden="true"></i>
                                     Mon compte
@@ -30,8 +26,34 @@
                                     <i class="fa fa-envelope-open" aria-hidden="true"></i>
                                     Contact
                                 </a>
+                                <a class="dropdown-item" href="{{ path('security_logout') }}">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Se déconnecter
+                                </a>
                             </div>
                         </li>
+                        {% elseif is_granted("ROLE_USER") and user is not defined %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="https://www.jeromesauvage.fr"
+                                   id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Jérôme Sauvage
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+                                    <a class="dropdown-item" href="{{ path('mon-compte') }}">
+                                        <i class="fa fa-user" aria-hidden="true"></i>
+                                        Mon compte
+                                    </a>
+                                    <a class="dropdown-item" href="{{ path('contact') }}">
+                                        <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                        Contact
+                                    </a>
+                                    <a class="dropdown-item" href="{{ path('security_logout') }}">
+                                        <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                        Se déconnecter
+                                    </a>
+                                </div>
+                            </li>
                     {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('security_register') }}">S'enregistrer</a>

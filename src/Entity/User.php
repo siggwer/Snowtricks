@@ -269,7 +269,8 @@ class User implements UserInterface
             $this->id,
             $this->username,
             $this->password,
-            $this->email
+            $this->email,
+            $this->avatar
             // see section on salt below
             // $this->salt,
         ));
