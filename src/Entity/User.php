@@ -2,9 +2,9 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use DateTimeImmutable;
@@ -83,6 +83,14 @@ class User implements UserInterface
     private $avatar;
 
     /**
+     * @var UploadedFile|null
+     *
+     * @Assert\Image
+     * @Assert\NotNull(groups={"add"})
+     */
+    private $uploadedFile;
+
+    /**
      * @var string|null
      */
     private $role = 'ROLE_USER';
@@ -111,6 +119,14 @@ class User implements UserInterface
     public function getUsername(): ?string
     {
         return $this->username;
+    }
+
+    /**
+     * @return UploadedFile|null
+     */
+    public function getUploadedFile(): ?UploadedFile
+    {
+        return $this->uploadedFile;
     }
 
     /**
@@ -219,6 +235,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param UploadedFile|null $uploadedFile
+     */
+    public function setUploadedFile(?UploadedFile $uploadedFile): void
+    {
+        $this->uploadedFile = $uploadedFile;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      *     public function getRoles()
@@ -270,7 +294,8 @@ class User implements UserInterface
             $this->username,
             $this->password,
             $this->email,
-            $this->avatar
+            $this->avatar,
+            $this->uploadedFile
             // see section on salt below
             // $this->salt,
         ));
@@ -285,7 +310,9 @@ class User implements UserInterface
             $this->id,
             $this->username,
             $this->password,
-            $this->email
+            $this->email,
+            $this->avatar,
+            $this->uploadedFile
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));

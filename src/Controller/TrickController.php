@@ -60,6 +60,8 @@ class TrickController extends AbstractController
     {
         $trick = new Trick();
 
+        $trick->setAuthor($this->getUser());
+
         $form = $this->createForm(TrickType::class, $trick, [
             'validation_groups' => ['Default', "add"]
         ])
@@ -70,7 +72,7 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('trick_show',  ['slug' => $trick->getSlug()]);
         }
         return $this->render('trick/add.html.twig', [
             'form' => $form->createView(),
@@ -78,7 +80,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
+     * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
      * @param Trick $trick
      * @param CommentRepository $commentRepository
@@ -107,7 +109,7 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($comment);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('trick_show', ["id" => $trick->getId(), '_fragment' => 'comments']);
+            return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug(), '_fragment' => 'comments']);
         }
 
         return $this->render('trick/show.html.twig', [
@@ -131,7 +133,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/update/{id}", name="trick_update", methods={"GET","POST"})
+     * @Route("/update/{slug}", name="trick_update", methods={"GET","POST"})
      *
      * @param Trick $trick
      * @param Request $request
@@ -148,7 +150,10 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('trick_show', ['id' => $trick->getId()]);
+            //$this->addFlash('success', 'L\'article a été modifié avec succes');
+            $this->get('session')->getFlashBag()->set('success', 'L\'article a été modifié avec succes');
+
+            return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
 
         return $this->render("trick/update.html.twig", [
@@ -159,7 +164,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="trick_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="trick_delete", methods={"DELETE"})
      *
      * @param Trick $trick
      * @param Request $request
@@ -169,7 +174,7 @@ class TrickController extends AbstractController
     public function delete(Trick $trick,
                            Request $request): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$trick->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete'.$trick->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($trick);
             $entityManager->flush();

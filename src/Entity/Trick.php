@@ -7,7 +7,9 @@ use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Class Trick
@@ -114,9 +116,16 @@ class Trick
     private $videos;
 
     /**
+     * @ORM\Column(type="string", length=255, unique=true)
+     *
+     * @Gedmo\Slug(fields={"name"})
+     */
+    private $slug;
+
+    /**
      * Trick constructor.
      *
-     * @throws \Exception
+     * @throws Exception
      */
     public function __construct()
     {
@@ -144,27 +153,11 @@ class Trick
     }
 
     /**
-     * @param string|null $name
-     */
-    public function setName(?string $name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
      * @return DateTimeInterface|null
      */
     public function getPublishedAt(): ?DateTimeInterface
     {
         return $this->publishedAt;
-    }
-
-    /**
-     * @param DateTimeInterface|null $publishedAt
-     */
-    public function setPublishedAt(?DateTimeInterface $publishedAt): void
-    {
-        $this->publishedAt = $publishedAt;
     }
 
     /**
@@ -176,27 +169,11 @@ class Trick
     }
 
     /**
-     * @param DateTimeInterface|null $updatedAt
-     */
-    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
-    }
-
-    /**
      * @return User|null
      */
     public function getAuthor(): ?User
     {
         return $this->author;
-    }
-
-    /**
-     * @param User|null $author
-     */
-    public function setAuthor(?User $author): void
-    {
-        $this->author = $author;
     }
 
     /**
@@ -208,11 +185,11 @@ class Trick
     }
 
     /**
-     * @param string|null $description
+     * @return Comment[]|Collection
      */
-    public function setDescription(?string $description): void
+    public function getComments()
     {
-        $this->description = $description;
+        return $this->comments;
     }
 
     /**
@@ -224,19 +201,83 @@ class Trick
     }
 
     /**
+     * @return Picture|null
+     */
+    public function getPictureOnFront(): ?Picture
+    {
+        return $this->pictureOnFront;
+    }
+
+    /**
+     * @return Picture[]|Collection
+     */
+    public function getPictures()
+    {
+        return $this->pictures;
+    }
+
+    /**
+     * @return Video[]|Collection
+     */
+    public function getVideos(): Collection
+    {
+        return $this->videos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string|null $name
+     */
+    public function setName(?string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @param DateTimeInterface|null $publishedAt
+     */
+    public function setPublishedAt(?DateTimeInterface $publishedAt): void
+    {
+        $this->publishedAt = $publishedAt;
+    }
+
+    /**
+     * @param DateTimeInterface|null $updatedAt
+     */
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * @param User|null $author
+     */
+    public function setAuthor(?User $author): void
+    {
+        $this->author = $author;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
      * @param Category|null $category
      */
     public function setCategory(?Category $category): void
     {
         $this->category = $category;
-    }
-
-    /**
-     * @return Comment[]|Collection
-     */
-    public function getComments()
-    {
-        return $this->comments;
     }
 
     /**
@@ -248,14 +289,6 @@ class Trick
     }
 
     /**
-     * @return Picture|null
-     */
-    public function getPictureOnFront(): ?Picture
-    {
-        return $this->pictureOnFront;
-    }
-
-    /**
      * @param Picture|null $pictureOnFront
      */
     public function setPictureOnFront(?Picture $pictureOnFront): void
@@ -264,11 +297,21 @@ class Trick
     }
 
     /**
-     * @return Picture[]|Collection
-     */
-    public function getPictures()
+    * @param Video|null $video
+    */
+    public function setVideos(?Video $videos): void
     {
-        return $this->pictures;
+        $this->videos = $videos;
+    }
+
+    /**
+     * @param string $slug
+     */
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
     /**
@@ -313,22 +356,6 @@ class Trick
     }
 
     /**
-     * @return Video[]|Collection
-     */
-    public function getVideos(): Collection
-    {
-        return $this->videos;
-    }
-
-    /**
-     * @param Video|null $video
-     */
-    public function setVideos(?Video $videos): void
-    {
-        $this->videos = $videos;
-    }
-
-    /**
      * @param Video $video
      *
      * @return Trick
@@ -364,7 +391,6 @@ class Trick
                 $video->setTrick(null);
             }
         }
-
         return $this;
     }
 }

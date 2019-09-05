@@ -63,6 +63,7 @@ class PictureListener
         if ($picture->getUploadedFile() === null) {
             return;
         }
+
         $filename = md5(uniqid("", true)). "." . $picture
                 ->getUploadedFile()
                 ->getClientOriginalExtension();

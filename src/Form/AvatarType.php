@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\User;
@@ -24,7 +26,8 @@ class AvatarType extends AbstractType
         $builder
             ->add('avatar', PictureType::class, [
               'label' => 'Mon nouvel avatar'
-            ]);
+            ])
+        ;
     }
 
     /**
