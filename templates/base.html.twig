@@ -16,14 +16,18 @@
     <body>
 
     {% if app.request.hasPreviousSession %}
-        {% for message in app.session('notice') %}
-            <div class="flash-notice">
-                {{ message }}
-            </div>
+        {% for label, messages in app.flashes(['success', 'warning']) %}
+            {% for message in messages %}
+                <div class="alert alert-success" role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
         {% endfor %}
     {% endif %}
 
-    {% block body %}{% endblock %}
+    {% block body %}
+
+    {% endblock %}
 
     {% include("footer/footer.html.twig") %}
 

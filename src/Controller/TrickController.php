@@ -72,6 +72,9 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash('success',
+                'Le trick a bien été crée.');
+
             return $this->redirectToRoute('trick_show',  ['slug' => $trick->getSlug()]);
         }
         return $this->render('trick/add.html.twig', [
@@ -101,13 +104,16 @@ class TrickController extends AbstractController
         $comment = new Comment();
         $comment->setTrick($trick);
 
-        $comment->setAuthor($trick->getAuthor());
+        $comment->setAuthor($this->getUser());
 
         $form = $this->createForm(CommentType::class, $comment)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->persist($comment);
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success',
+                'Le trick a bien été modifié.');
 
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug(), '_fragment' => 'comments']);
         }

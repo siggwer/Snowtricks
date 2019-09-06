@@ -1,5 +1,5 @@
 <div id="navbar-top">
-    <nav class="navbar navbar-expand-md navbar-light bg-white fixed">
+    <nav class="navbar navbar-expand-md navbar-light bg-white fixed" {{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}>
         <div class="container">
             <a class="navbar-brand nav-link" href="/">Snowtricks</a>
             <button class="navbar-toggler" type="button"

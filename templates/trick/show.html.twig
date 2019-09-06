@@ -34,10 +34,10 @@
             {{ form_end(form) }}
             <div class="list-group my-4" id="comments">
                 {% for comment in comments %}
+                    {{ dump(comment) }}
                     <div class="list-group-item">
-
                         <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1"></h5>
+                            <h5 class="mb-1">{{ comment.author.username }}</h5>
                             <small>{{ comment.publishedAt|date("d/m/Y H:i") }}</small>
                         </div>
                         <p class="mb-1">{{ comment.content|nl2br }}</small></p>

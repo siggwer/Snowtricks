@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Form\AvatarType;
+use App\Repository\UserRepository;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,6 +26,8 @@ class UserProfileController extends AbstractController
      * @return Response
      */
     public function EditProfile(Request $request,
+                                ObjectManager $manager,
+                                UserRepository $user,
                                 string $uploadDir): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
