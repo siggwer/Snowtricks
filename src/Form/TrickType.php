@@ -30,7 +30,10 @@ class TrickType extends AbstractType
         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
-                'required' => false
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'Titre'
+                )
             ])
             ->add('category', EntityType::class,  [
                 'class' => Category::class,
@@ -40,7 +43,10 @@ class TrickType extends AbstractType
             ])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
-                'required' => true
+                'required' => true,
+                'attr' => array(
+                    'placeholder' => 'Description'
+                )
             ])
             ->add('pictureOnFront', PictureType::class, [
                 'label' => 'Image principale'

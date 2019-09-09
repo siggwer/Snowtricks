@@ -111,9 +111,18 @@ http://www.github.com/halibegic/merlin GitHub*/
 /* END JUMBOTRON */
 
 /* BEGIN MODAL */
+
 .modal-dialog {
     max-width: 750px !important;
 }
+
+/* BEGIN FLASHBAG */
+
+.alert{
+    margin-top: 5rem !important;
+}
+
+/* END FLASHBAG */
 
 /*END MODAL */
 
