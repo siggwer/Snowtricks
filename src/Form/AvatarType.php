@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\User;
+use Symfony\Component\Validator\Constraints\Image;
 
 /**
  * Class AvatarType
@@ -27,7 +28,12 @@ class AvatarType extends AbstractType
             ->add('avatar', PictureType::class, [
               'label' => 'Mon nouvel avatar',
                 'attr' => array(
-                  'placeholder' => 'Votre avatar')
+                  'placeholder' => 'Votre avatar'),
+                'constraints' => [
+                    new Image([
+                        'maxSize' => '0214000K'
+                    ])
+                ]
             ])
         ;
     }
@@ -39,6 +45,7 @@ class AvatarType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'validation_groups' => 'avatar'
         ]);
     }
 }

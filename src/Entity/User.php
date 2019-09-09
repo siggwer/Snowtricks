@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
+use Serializable;
 use Exception;
 
 /**
@@ -20,7 +21,7 @@ use Exception;
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */
-class User implements UserInterface
+class User implements UserInterface, Serializable
 {
     /**
      * @var int|null
@@ -76,7 +77,7 @@ class User implements UserInterface
     /**
      * @var Picture|null
      *
-     * @Assert\Valid
+     * @Assert\Valid(groups={"avatar"})
      *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
@@ -293,9 +294,7 @@ class User implements UserInterface
             $this->id,
             $this->username,
             $this->password,
-            $this->email,
-            $this->avatar,
-            $this->uploadedFile
+            $this->email
             // see section on salt below
             // $this->salt,
         ));
@@ -310,9 +309,7 @@ class User implements UserInterface
             $this->id,
             $this->username,
             $this->password,
-            $this->email,
-            $this->avatar,
-            $this->uploadedFile
+            $this->email
             // see section on salt below
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));

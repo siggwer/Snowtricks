@@ -10,8 +10,12 @@
                 <div class="bg-light update-avatar">
                     <div class="card">
                         <div class="card-body">
-                            <h3>Modifier ton  avatar {{ user.username }}</h3>
-                            <img src="{{ asset(avatar.path) }}" class="img-circle" alt="">
+                            <h3>Modifie ton  avatar {{ app.user.username }}</h3>
+                            {% if app.user.avatar is not null%}
+                                <img src="{{ asset(app.user.avatar.path) }}" class="img-circle" alt="{{ asset(app.user.avatar.alt) }}">
+                            {% else %}
+                                <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
+                            {% endif %}
                             {{ include("user/_form_profile.html.twig", { form: form }) }}
                         </div>
                     </div>

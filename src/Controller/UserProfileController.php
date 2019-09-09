@@ -40,17 +40,6 @@ class UserProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $filename = md5(uniqid("", true)). "." . $user
-                    ->getPictureOnFront()
-                    ->getUploadedFile()
-                    ->getClientOriginalExtension();
-
-            $user->getPictureOnFront()
-                ->getUploadedFile()
-                ->move($uploadDir, $filename);
-
-            $user->getPictureOnFront()
-                ->setPath("uploads/".$filename);
 
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
