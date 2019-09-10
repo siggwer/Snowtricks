@@ -9,21 +9,20 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class RegisterController
+ * Class ConnexionController
  *
  * @package App\Controller
  */
-class RegisterController extends AbstractController
+class ConnexionController extends AbstractController
 {
     /**
-     * @Route("/register", name="register", methods={"GET", "POST"})
+     * @Route("/login", name="login", methods={"GET", "POST"})
      *
      * @param Request $request
-     *
      * @return Response
      */
     public function __invoke(Request $request): Response
     {
-      return $this->render("security/register.html.twig");
+        return $this->render("connexion/login.html.twig");
     }
 }

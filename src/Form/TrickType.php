@@ -29,7 +29,7 @@ class TrickType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
                 'required' => false])
@@ -60,7 +60,6 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-        ;
     }
 
     /**
