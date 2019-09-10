@@ -10,6 +10,8 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -35,6 +37,13 @@ class PictureType extends AbstractType
                 'label' => 'texte alternatif',
                 'required' => false
             ])
+            ->addEventListener(FormEvents::SUBMIT, function(formEvent $event) {
+                $picture = $event->getData();
+
+                if ($picture->getUploadedFile() !== null) {
+                    $picture->setPath(null);
+                }
+            })
         ;
     }
 

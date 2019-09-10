@@ -16,7 +16,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class AddTrickType
+ * Class TrickType
  *
  * @package App\Form
  */
@@ -29,7 +29,7 @@ class TrickType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
                 'required' => false])
@@ -40,10 +40,17 @@ class TrickType extends AbstractType
                 'required' => true])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
-                'required' => true
-            ])
+                'required' => true])
             ->add('pictureOnFront', PictureType::class, [
                 'label' => 'Image principale'
+            ])
+            ->add("pictures", CollectionType::class, [
+                'label' => false,
+                'entry_type' => PictureType::class,
+                'entry_options' => ['label' => false],
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false
             ])
             ->add("videos", CollectionType::class, [
                 'label' => false,
@@ -53,7 +60,6 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-        ;
     }
 
     /**

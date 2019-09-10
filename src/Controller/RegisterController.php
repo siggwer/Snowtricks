@@ -24,6 +24,6 @@ class RegisterController extends AbstractController
      */
     public function __invoke(Request $request): Response
     {
-        return $this->render("connexion/register.html.twig");
+      return $this->render("security/register.html.twig");
     }
 }

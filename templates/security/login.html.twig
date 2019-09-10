@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Snowtrick / Connexion{% endblock %}
+
+{% block body %}
+    <div class="container login-container">
+            <div class="col-md-8 login-form-1">
+                <h3>Connexion</h3>
+                <form method="post">
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                        </div>
+                        <input name="email" class="form-control" placeholder="Votre email" value="{{ last_username }}" type="text">
+                    </div> <!-- form-group// -->
+                    <div class="form-group input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                        </div>
+                        <input name="password" class="form-control" placeholder="Mot de passe" type="password" required>
+                    </div> <!-- form-group// -->
+                    <div class="form-group">
+                        <input type="submit" class="btn btn-primary btnSubmitLogin btn-block" value="Connexion" />
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="ForgetPwd">Mot de passe oublié ?</a>
+                    </div>
+                    <input type="hidden" name="_csrf_token"
+                           value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    {#
+                        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                        See https://symfony.com/doc/current/security/remember_me.html
+
+                        <div class="checkbox mb-3">
+                            <label>
+                                <input type="checkbox" name="_remember_me"> Remember me
+                            </label>
+                        </div>
+                    #}
+                </form>
+            </div>
+    </div>
+{% endblock %}
