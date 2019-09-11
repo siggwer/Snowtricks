@@ -66,11 +66,7 @@ class User implements UserInterface
     private $plainPassword;
 
     /**
-<<<<<<< HEAD
      * @var DateTimeImmutable|null
-=======
-     * @var \DateTimeImmutable|null
->>>>>>> master
      *
      * @ORM\Column(type="datetime_immutable")
      */
@@ -93,11 +89,9 @@ class User implements UserInterface
     /**
      * User constructor.
      *
-<<<<<<< HEAD
      * @throws Exception
-=======
+
      * @throws \Exception
->>>>>>> master
      */
     public function __construct()
     {
@@ -237,11 +231,8 @@ class User implements UserInterface
      * and populated in any number of different ways when the user object
      * is created.
      *
-<<<<<<< HEAD
      * @return array (Role|string)[] The user roles
-=======
      * @return (Role|string)[] The user roles
->>>>>>> master
      */
     public function getRoles()
     {
@@ -270,7 +261,6 @@ class User implements UserInterface
     {
         // TODO: Implement eraseCredentials() method.
     }
-<<<<<<< HEAD
 
     /**
      * @return string
@@ -301,6 +291,4 @@ class User implements UserInterface
             // $this->salt
             ) = unserialize($serialized, array('allowed_classes' => false));
     }
-=======
->>>>>>> master
 }
