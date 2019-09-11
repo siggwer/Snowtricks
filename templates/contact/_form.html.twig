@@ -1,0 +1,37 @@
+{{  form_start(form) }}
+{{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i></span>
+    </div>
+    {{ form_widget(form.name) }}
+</div>
+
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+    </div>
+    {{ form_widget(form.email, {'attr': {'class': 'task_field'}}) }}
+</div>
+
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-indent"></i> </span>
+    </div>
+    {{ form_widget(form.subject, {'attr': {'class': 'task_field'}}) }}
+</div>
+
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-font"></i></span>
+    </div>
+    {{ form_widget(form.message) }}
+</div>
+
+<div class="form-group d-flex justify-content-between">
+    <a href="/" class="btn btn-secondary float-left">Accueil</a>
+    <button type="submit" class="btn btn-success float-right">Envoyer</button>
+</div>
+{{ form_end(form) }}

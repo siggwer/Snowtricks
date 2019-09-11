@@ -14,41 +14,35 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TrickType
+ * Class AddTrickType
  *
  * @package App\Form
  */
-class TrickType extends AbstractType
+class AddTrickType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
      *
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
-         $builder
+        $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
-                'required' => false
-            ])
+                'required' => false])
             ->add('category', EntityType::class,  [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Indiquez la catégorie',
-                'required' => true
-            ])
+                'required' => true])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
                 'required' => true])
             ->add('pictureOnFront', PictureType::class, [
                 'label' => 'Image principale'
             ])
-<<<<<<< HEAD
-            ->add('pictures', CollectionType::class, [
-=======
             ->add("pictures", CollectionType::class, [
->>>>>>> master
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -56,11 +50,7 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-<<<<<<< HEAD
-            ->add('videos', CollectionType::class, [
-=======
             ->add("videos", CollectionType::class, [
->>>>>>> master
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
@@ -68,12 +58,13 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
+        ;
     }
 
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver): void
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefault('data_class', Trick::class);
     }

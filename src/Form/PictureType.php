@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Form;
-
 
 use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
@@ -26,7 +24,8 @@ class PictureType extends AbstractType
      *
      * @param array $options
      */
-    public function buildForm(FormBuilderInterface $builder,array $options){
+    public function buildForm(FormBuilderInterface $builder,array $options): void
+    {
         $builder
             ->add('path', HiddenType::class)
             ->add('uploadedFile', FileType::class, [
@@ -50,7 +49,8 @@ class PictureType extends AbstractType
     /**
      * @param OptionsResolver $resolver
      */
-    public function configureOptions(OptionsResolver $resolver){
-        $resolver->setDefault("data_class", Picture::class);
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefault('data_class', Picture::class);
     }
 }

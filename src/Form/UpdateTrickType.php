@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Form;
 
 use App\Entity\Category;
@@ -14,11 +13,11 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TrickType
+ * Class UpdateTrickType
  *
  * @package App\Form
  */
-class TrickType extends AbstractType
+class UpdateTrickType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -27,7 +26,7 @@ class TrickType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-         $builder
+        $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
                 'required' => false
@@ -40,15 +39,9 @@ class TrickType extends AbstractType
             ])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
-                'required' => true])
-            ->add('pictureOnFront', PictureType::class, [
-                'label' => 'Image principale'
+                'required' => true
             ])
-<<<<<<< HEAD
             ->add('pictures', CollectionType::class, [
-=======
-            ->add("pictures", CollectionType::class, [
->>>>>>> master
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -56,11 +49,7 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-<<<<<<< HEAD
             ->add('videos', CollectionType::class, [
-=======
-            ->add("videos", CollectionType::class, [
->>>>>>> master
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
@@ -68,6 +57,7 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
+        ;
     }
 
     /**

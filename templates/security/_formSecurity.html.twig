@@ -1,0 +1,31 @@
+{{ form_start(registrationForm) }}
+ {{ form_errors(registrationForm) }}
+    {{ form_widget(registrationForm._token) }}
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-user"></i></span>
+    </div>
+    {{ form_widget(registrationForm.username) }}
+</div> <!-- form-group// -->
+<div class="form-group input-group">
+<div class="input-group-prepend">
+    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+</div>
+    {{ form_widget(registrationForm.email) }}
+</div> <!-- form-group// -->
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-key"></i></span>
+    </div>
+    {{ form_widget(registrationForm.plainPassword.first) }}
+</div> <!-- form-group// -->
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-key"></i></span>
+    </div>
+    {{ form_widget(registrationForm.plainPassword.second) }}
+</div> <!-- form-group// -->
+
+<button class="btn btn-primary btn-block btnSubmitRegister">S'enregistrer</button>
+
+{{ form_end(registrationForm)}}

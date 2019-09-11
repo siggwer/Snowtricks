@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
+use DateTimeInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -36,14 +38,22 @@ class Trick
     private $name;
 
     /**
+<<<<<<< HEAD
+     * @var DateTimeInterface|null
+=======
      * @var \DateTimeInterface|null
+>>>>>>> master
      *
      * @ORM\Column(type="datetime_immutable")
      */
     private $publishedAt;
 
     /**
+<<<<<<< HEAD
+     * @var DateTimeInterface|null
+=======
      * @var \DateTimeInterface|null
+>>>>>>> master
      *
      * @ORM\Column(type="datetime_immutable")
      */
@@ -118,8 +128,8 @@ class Trick
      */
     public function __construct()
     {
-        $this->publishedAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->publishedAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
         $this->comments = new ArrayCollection();
         $this->pictures = new ArrayCollection();
         $this->videos = new ArrayCollection();
@@ -150,33 +160,33 @@ class Trick
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getPublishedAt(): ?\DateTimeInterface
+    public function getPublishedAt(): ?DateTimeInterface
     {
         return $this->publishedAt;
     }
 
     /**
-     * @param \DateTimeInterface|null $publishedAt
+     * @param DateTimeInterface|null $publishedAt
      */
-    public function setPublishedAt(?\DateTimeInterface $publishedAt): void
+    public function setPublishedAt(?DateTimeInterface $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getUpdatedAt(): ?\DateTimeInterface
+    public function getUpdatedAt(): ?DateTimeInterface
     {
         return $this->updatedAt;
     }
 
     /**
-     * @param \DateTimeInterface|null $updatedAt
+     * @param DateTimeInterface|null $updatedAt
      */
-    public function setUpdatedAt(?\DateTimeInterface $updatedAt): void
+    public function setUpdatedAt(?DateTimeInterface $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
     }

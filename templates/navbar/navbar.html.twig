@@ -2,12 +2,47 @@
     <nav class="navbar navbar-expand-md navbar-light bg-white fixed">
         <div class="container">
             <a class="navbar-brand nav-link" href="/">Snowtricks</a>
+<<<<<<< HEAD
+            <button class="navbar-toggler" type="button"
+                    data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false"
+=======
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav" aria-controls="nav" aria-expanded="false"
+>>>>>>> master
                     aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav ml-auto">
+<<<<<<< HEAD
+                    {% if is_granted("ROLE_USER") %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="https://www.jeromesauvage.fr"
+                               id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="/uploads/jerome_id_gris2_60x51.png" class="img-circle" alt="">
+                                Jérôme Sauvage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+                                <a class="dropdown-item" href="{{ path('security_logout') }}">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i>
+                                    Se déconnecter
+                                </a>
+                                <a class="dropdown-item" href="{{ path('contact') }}">
+                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                    Contact
+                                </a>
+                            </div>
+                        </li>
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('security_register') }}">S'enregistrer</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+=======
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Accueil</a>
                     </li>
@@ -24,6 +59,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
+>>>>>>> master
                         </li>
                     {% endif %}
                     <!--<li class="nav-item">
@@ -31,9 +67,6 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contact</a>
                     </li>-->
                 </ul>
             </div>

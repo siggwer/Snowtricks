@@ -83,6 +83,19 @@ http://www.github.com/halibegic/merlin GitHub*/
     width: 100%;
     border-bottom-color: transparent;
 }
+
+.navbar-nav .show>.nav-link{
+    color: #ffffff !important;
+}
+
+.img-circle {
+    border-radius: 50% !important;
+    margin-right: 30px;
+}
+
+.dropdown-menu{
+    margin-left: 100px !important;
+}
 /* END NAVBAR */
 
 /* BEGIN JUMBOTRON */
@@ -91,6 +104,13 @@ http://www.github.com/halibegic/merlin GitHub*/
     margin-bottom: unset !important;
 }
 
+<<<<<<< HEAD
+.display-3{
+    font-weight: 500 !important;
+}
+
+=======
+>>>>>>> master
 /* END JUMBOTRON */
 
 /* BEGIN MODAL */
@@ -140,7 +160,11 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 #home {
     /*padding: 0;*/
+<<<<<<< HEAD
+    padding: 20rem 2rem !important;
+=======
     padding: 30rem 1rem 1rem !important;
+>>>>>>> master
     color: #fff;
     background-image: url(../images/Accueil_snowboard_3.jpg);
     background-repeat: no-repeat;
@@ -207,6 +231,66 @@ http://www.github.com/halibegic/merlin GitHub*/
 }
 
 /*END LOGIN */
+
+/* BEGIN REGISTER */
+
+.register-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 21%;
+    padding-bottom: 12.5%;
+}
+
+.register-form-1{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-1 h3{
+    text-align: center;
+    color: #333;
+}
+.register-form-2{
+    padding: 5%;
+    background: #233b6f;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.register-form-2 h3{
+    text-align: center;
+    color: #fff;
+}
+.register-container form{
+    padding: 10%;
+}
+.btnSubmit
+{
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1.5%;
+    border: none;
+    cursor: pointer;
+}
+.register-form-1 .btnSubmit{
+    font-weight: 600;
+    color: #fff;
+    background-color: #233b6f;
+}
+.register-form-2 .btnSubmit{
+    font-weight: 600;
+    color: #233b6f;
+    background-color: #fff;
+}
+.register-form-2 .ForgetPwd{
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+.register-form-1 .ForgetPwd{
+    color: #233b6f;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* END REGISTER */
 
 /* BEGIN REGISTER */
 
@@ -278,6 +362,20 @@ http://www.github.com/halibegic/merlin GitHub*/
     padding-bottom: 30px !important;
 }
 /* END UPDATE TRICK PAGE */
+
+/* BEGIN USER PROFILE PAGE */
+
+.add-container{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+.update-avatar{
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+/* END USER PROFILE PAGE */
 
 /* END BODY */
 
@@ -353,6 +451,72 @@ http://www.github.com/halibegic/merlin GitHub*/
     /* END ADD TRICK PAGE */
 }
 
+<<<<<<< HEAD
+@media (min-width: 993px) and (max-width: 1400px) {
+
+    .login-container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+    .login-form-1{
+        padding: 3%;
+        margin-left: 150px;
+    }
+
+    .register-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .register-form-1 {
+        padding: 3%;
+        margin-top: 43px;
+        margin-left: 250px;
+    }
+    #footer {
+        padding: 4rem 0;
+        color: #ccc;
+        text-align: center;
+        background: #233b6f;
+    }
+}
+
+@media (min-width: 1435px) {
+
+    .login-container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .login-form-1{
+        padding: 3%;
+        margin-left: 130px;
+    }
+
+    .register-container{
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+
+    .register-form-1 {
+        padding: 3%;
+        margin-left: 130px;
+    }
+
+    #footer {
+        padding: 4rem 0;
+        color: #ccc;
+        text-align: center;
+        background: #233b6f;
+=======
 @media (min-width: 1200px) {
 
     #home {
@@ -366,6 +530,7 @@ http://www.github.com/halibegic/merlin GitHub*/
         margin-bottom: 0.1rem;
         margin-left: 50rem;
         padding-left: 8.9rem;
+>>>>>>> master
     }
 }
 

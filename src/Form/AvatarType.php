@@ -1,20 +1,19 @@
 <?php
 
-
 namespace App\Form;
 
-use App\Entity\Video;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
+use Symfony\Component\Form\FormBuilderInterface;
+use App\Entity\User;
 
 /**
- * Class VideoType
+ * Class AvatarType
  *
  * @package App\Form
  */
-class VideoType extends AbstractType
+class AvatarType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -24,7 +23,9 @@ class VideoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url', UrlType::class);
+            ->add('avatar', PictureType::class, [
+              'label' => 'Mon nouvel avatar'
+            ]);
     }
 
     /**
@@ -33,8 +34,7 @@ class VideoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Video::class,
+            'data_class' => User::class,
         ]);
     }
-
 }
