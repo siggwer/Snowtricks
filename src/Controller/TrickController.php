@@ -46,36 +46,25 @@ class TrickController extends AbstractController
     /**
      * @Route("/add", name="trick_add", methods={"GET","POST"})
      *
-<<<<<<< HEAD
      * @param Trick $trick
-=======
->>>>>>> master
      * @param Request $request
      *
      * @return Response
      *
      * @throws \Exception
      */
-<<<<<<< HEAD
-    public function add(string $uploadDir,Request $request): Response
+    public function add(string $uploadDir, Request $request): Response
     {
         $trick = new Trick();
 
-        $trick->setAuthor($this->getUser());
 
-=======
-    public function add(Request $request): Response
-    {
-        $trick = new Trick();
-
->>>>>>> master
         $form = $this->createForm(TrickType::class, $trick, [
             'validation_groups' => ["Default", "add"]
         ])
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-<<<<<<< HEAD
+
             $filename = md5(uniqid("", true)). "." . $trick
                     ->getPictureOnFront()
                     ->getUploadedFile()
@@ -88,8 +77,7 @@ class TrickController extends AbstractController
             $trick->getPictureOnFront()
                   ->setPath("uploads/".$filename);
 
-=======
->>>>>>> master
+
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
@@ -101,11 +89,7 @@ class TrickController extends AbstractController
     }
 
     /**
-<<<<<<< HEAD
-     * @Route("/{id}", name="trick_show", methods={"GET"})
-=======
      * @Route("/{id}", name="trick_show", methods={"GET", "POST"})
->>>>>>> master
      *
      * @param Trick $trick
      * @param CommentRepository $commentRepository
@@ -125,11 +109,8 @@ class TrickController extends AbstractController
         $comment->setTrick($trick);
 
         // ATTENTION CETTE ETAPE SERA A SUPPRIME QUAND ON AURA FAIT LA CONNEXION
-<<<<<<< HEAD
-        $comment->setAuthor($this->getUser());
-=======
-        //$comment->setAuthor($this->getUser());
->>>>>>> master
+        $comment->setAuthor($this->getUser());;
+
 
         $form = $this->createForm(CommentType::class, $comment)->handleRequest($request);
 
@@ -163,25 +144,18 @@ class TrickController extends AbstractController
     /**
      * @Route("/update/{id}", name="trick_update", methods={"GET","POST"})
      *
-<<<<<<< HEAD
      * @param string $uploadDir
-=======
->>>>>>> master
      * @param Trick $trick
      * @param Request $request
      *
      * @return Response
      */
-<<<<<<< HEAD
-    public function update(string $uploadDir,Trick $trick, Request $request): Response
-=======
-    public function update(Trick $trick, Request $request): Response
->>>>>>> master
+    public function update(string $uploadDir, Trick $trick, Request $request): Response
     {
         $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-<<<<<<< HEAD
+
             $filename = md5(uniqid("", true)). "." . $trick
                     ->getPictureOnFront()
                     ->getUploadedFile()
@@ -201,19 +175,8 @@ class TrickController extends AbstractController
         }
 
         return $this->render("trick/update.html.twig", [
-            'trick' => $trick,
-            'form' => $form->createView()
-=======
-            $this->getDoctrine()->getManager()->persist($trick);
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute("trick_show", ["id" => $trick->getId()]);
-        }
-
-        return $this->render("trick/update.html.twig", [
             "trick" => $trick,
             "form" => $form->createView()
->>>>>>> master
 
         ]);
     }
