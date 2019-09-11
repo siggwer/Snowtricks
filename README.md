@@ -1,4 +1,5 @@
 # Snowtricks
+<<<<<<< HEAD
 
 ## To do
 
@@ -47,3 +48,6 @@
 | 1            | 1        | 1                        |
 | 0            | 1        | 0                        |
 "# snow" 
+=======
+# practice developement on symfony
+>>>>>>> master

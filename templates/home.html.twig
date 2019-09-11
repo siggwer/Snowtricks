@@ -4,7 +4,11 @@
 
 {% block body %}
     <div id="home" class="jumbotron text-center">
+<<<<<<< HEAD
             <h1 class="jumbotron-heading display-3">Les meilleurs tricks</h1>
+=======
+            <h1 class="jumbotron-heading">Les meilleurs tricks</h1>
+>>>>>>> master
             <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
     <div class="container-fluid album py-5 bg-light">
@@ -15,7 +19,9 @@
 
         <div class="col-12 text-center">
             <button class="btn btn-info" id="load-more">Load more</button>
-            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% endif %}
         </div>
     </div>
     </div>

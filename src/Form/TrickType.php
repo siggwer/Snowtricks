@@ -27,7 +27,7 @@ class TrickType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
+         $builder
             ->add('name', TextType::class,  [
                 'label' => 'Nom du trick',
                 'required' => false
@@ -40,12 +40,15 @@ class TrickType extends AbstractType
             ])
             ->add('description', TextareaType::class,  [
                 'label' => 'Indiquez une description',
-                'required' => true
-            ])
+                'required' => true])
             ->add('pictureOnFront', PictureType::class, [
                 'label' => 'Image principale'
             ])
+<<<<<<< HEAD
             ->add('pictures', CollectionType::class, [
+=======
+            ->add("pictures", CollectionType::class, [
+>>>>>>> master
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -53,7 +56,11 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
+<<<<<<< HEAD
             ->add('videos', CollectionType::class, [
+=======
+            ->add("videos", CollectionType::class, [
+>>>>>>> master
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
@@ -61,7 +68,6 @@ class TrickType extends AbstractType
                 'allow_delete' => true,
                 'by_reference' => false
             ])
-        ;
     }
 
     /**

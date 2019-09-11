@@ -48,10 +48,17 @@ class PictureListener
      */
     public function preUpdate(Picture $picture, PreUpdateEventArgs $eventArgs)
     {
+<<<<<<< HEAD
         if ($eventArgs->getOldValue("path") !== null && $picture->getUploadedFile() !== null) {
             unlink($this->uploadDir . '/' . $picture->getPath());
         }
         $this->upload($picture);
+=======
+       if ($eventArgs->getOldValue("path") !== null && $picture->getUploadedFile() !== null) {
+           unlink($this->uploadDir . '/' . $picture->getPath());
+       }
+       $this->upload($picture);
+>>>>>>> master
 
     }
 
@@ -63,6 +70,7 @@ class PictureListener
         if ($picture->getUploadedFile() === null) {
             return;
         }
+<<<<<<< HEAD
         $filename = md5(uniqid("", true)). "." . $picture
                 ->getUploadedFile()
                 ->getClientOriginalExtension();
@@ -70,6 +78,15 @@ class PictureListener
         $picture->getUploadedFile()->move($this->uploadDir, $filename);
         $picture->setPath("uploads/".$filename);
 
+=======
+            $filename = md5(uniqid("", true)). "." . $picture
+                    ->getUploadedFile()
+                    ->getClientOriginalExtension();
+
+            $picture->getUploadedFile()->move($this->uploadDir, $filename);
+            $picture->setPath("uploads/".$filename);
+        
+>>>>>>> master
     }
 
     /**

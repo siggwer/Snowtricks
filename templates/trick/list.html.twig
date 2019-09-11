@@ -1,6 +1,10 @@
 
 {% for trick in tricks %}
+<<<<<<< HEAD
     <div class="col-12 col-md-8 col-lg-4 my-4">
+=======
+    <div class="col-12 col-md-4 col-lg-4 my-4">
+>>>>>>> master
     <div class="card-group">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
@@ -11,7 +15,9 @@
             </div>
             <div class="card-footer d-flex justify-content-between">
                 <a href="{{ path("trick_show", { id: trick.id }) }}" class="btn btn-info">PLus d'infos</a>
-                <a href="{{ path("trick_update", { id: trick.id }) }}" class="btn btn-secondary">Modifier</a>
+                {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path("trick_update", { id: trick.id }) }}" class="btn btn-warning">Modifier</a>
+                {% endif %}
             </div>
         </div>
     </div>

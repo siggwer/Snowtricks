@@ -15,6 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
+ * @ORM\EntityListeners({"App\EntityListener\TrickListener"})
  */
 class Trick
 {
@@ -37,14 +38,22 @@ class Trick
     private $name;
 
     /**
+<<<<<<< HEAD
      * @var DateTimeInterface|null
+=======
+     * @var \DateTimeInterface|null
+>>>>>>> master
      *
      * @ORM\Column(type="datetime_immutable")
      */
     private $publishedAt;
 
     /**
+<<<<<<< HEAD
      * @var DateTimeInterface|null
+=======
+     * @var \DateTimeInterface|null
+>>>>>>> master
      *
      * @ORM\Column(type="datetime_immutable")
      */
