@@ -89,12 +89,11 @@ class Trick
      * @var Picture|null
      *
      * @Assert\Valid
+     * @Assert\NotNull
      *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
-    /*a remettre apres
-    @Assert\NotNull
-     */
+
     private $pictureOnFront;
 
     /**

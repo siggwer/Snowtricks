@@ -30,11 +30,17 @@ class PictureType extends AbstractType
             ->add('path', HiddenType::class)
             ->add('uploadedFile', FileType::class, [
                 'label' => false,
-                'required' => false
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'choisissiez votre image'
+                )
             ])
             ->add('alt', TextType::class,  [
-                'label' => 'texte alternatif',
-                'required' => false
+                'label' => false,
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'texte alternatif'
+                )
             ])
             ->addEventListener(FormEvents::SUBMIT, function(formEvent $event) {
                 $picture = $event->getData();

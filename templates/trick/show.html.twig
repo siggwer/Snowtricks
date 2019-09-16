@@ -60,6 +60,9 @@
                     </ul>
                 </nav>
             {% endif %}
+            {% if is_granted("ROLE_USER") %}
+                <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            {% endif %}
         </div>
     </div>
     </div>
