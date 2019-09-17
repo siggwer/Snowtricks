@@ -40,7 +40,7 @@ class PictureFormExtension implements FormTypeExtensionInterface
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        // TODO: Implement buildView() method.
+        $view->vars['attr']['placeholder'] = 'Votre image';
     }
 
     /**

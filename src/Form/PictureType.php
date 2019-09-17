@@ -28,9 +28,10 @@ class PictureType extends AbstractType
     {
         $builder
             ->add('path', HiddenType::class)
-            ->add('uploadedFile', FileType::class, [
+            ->add('uploadedFile', null, [
                 'label' => false,
                 'required' => false,
+
             ])
             ->add('alt', TextType::class,  [
                 'label' => false,
