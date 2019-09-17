@@ -24,8 +24,8 @@ class AvatarType extends AbstractType
         $builder
             ->add('avatar', PictureType::class, [
               'label' => 'Mon nouvel avatar',
-                'attr' => array(
-                  'placeholder' => 'Votre avatar')
+              'attr' => array(
+                    'placeholder' => 'Votre avatar')
             ])
         ;
     }

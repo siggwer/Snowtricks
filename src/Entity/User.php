@@ -87,6 +87,7 @@ class User implements UserInterface, Serializable
      * @var UploadedFile|null
      *
      * @Assert\Image
+     * @Assert\Valid()
      * @Assert\NotNull(groups={"add"})
      */
     private $uploadedFile;

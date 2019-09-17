@@ -31,5 +31,10 @@ services:
         tags:
             - { name: doctrine.orm.entity_listener }
 
+    App\Form\TypeExtension\PictureFormExtension:
+        tags:
+            - { name: form.type_extension,
+                extended_type: Symfony\Component\Form\Extension\Core\Type\FileType }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

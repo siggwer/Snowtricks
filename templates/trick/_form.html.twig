@@ -1,6 +1,7 @@
 {{ form_start(form) }}
     {{ form_errors(form) }}
     {{ form_widget(form._token) }}
+{{ dump(form.pictureOnFront.vars) }}
 
     <div class="form-group input-group">
         <div class="input-group-prepend">
@@ -24,7 +25,7 @@
     </div>
 
     <div class="form-group">
-        {{ form_widget(form.pictureOnFront) }}
+        {{ form_row(form.pictureOnFront) }}
     </div>
 
     <div id="trick_pictures"
