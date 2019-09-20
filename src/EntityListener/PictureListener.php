@@ -43,7 +43,7 @@ class PictureListener
     }
 
     /**
-     * @param Picture $picture
+     * @param Picture            $picture
      *
      * @param PreUpdateEventArgs $eventArgs
      */
@@ -65,11 +65,10 @@ class PictureListener
         }
 
         $filename = md5(uniqid("", true)). "." . $picture
-                ->getUploadedFile()
-                ->getClientOriginalExtension();
+            ->getUploadedFile()
+            ->getClientOriginalExtension();
         $picture->getUploadedFile()->move($this->uploadDir, $filename);
         $picture->setPath("uploads/".$filename);
-
     }
 
     /**

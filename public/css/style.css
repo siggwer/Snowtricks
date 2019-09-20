@@ -291,10 +291,6 @@ http://www.github.com/halibegic/merlin GitHub*/
     text-decoration: none;
 }
 
-/* END REGISTER */
-
-/* BEGIN REGISTER */
-
 .card-register{
     padding-top: 100px !important;
     padding-bottom: 30px !important;
@@ -377,6 +373,14 @@ http://www.github.com/halibegic/merlin GitHub*/
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 /* END USER PROFILE PAGE */
+
+.my-4 {
+    margin-top: 50px !important;
+}
+
+.my-5 {
+    margin-top: 130px !important;
+}
 
 /* END BODY */
 

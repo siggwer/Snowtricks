@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\TrickType;
@@ -29,27 +28,31 @@ class TrickController extends AbstractController
      * @Route("/list", name="trick_list", methods={"GET"})
      *
      * @param TrickRepository $trickRepository
-     * @param Request $request
+     * @param Request         $request
      *
      * @return Response
      */
-    public function list(TrickRepository $trickRepository,
-                         Request $request): Response
-    {
-        return $this->render('trick/list.html.twig', [
+    public function list(
+        TrickRepository $trickRepository,
+        Request $request
+    ): Response {
+        return $this->render(
+            'trick/list.html.twig',
+            [
             'tricks' => $trickRepository->findBy(
                 [],
                 ['publishedAt' => "desc"],
                 6,
                 ($request->query->get('page', 2) - 1) * 6
             )
-        ]);
+            ]
+        );
     }
 
     /**
      * @Route("/add", name="trick_add", methods={"GET","POST"})
      *
-     * @param Trick $trick
+     * @param Trick   $trick
      * @param Request $request
      *
      * @return Response
@@ -62,41 +65,50 @@ class TrickController extends AbstractController
 
         $trick->setAuthor($this->getUser());
 
-        $form = $this->createForm(TrickType::class, $trick, [
+        $form = $this->createForm(
+            TrickType::class,
+            $trick,
+            [
             'validation_groups' => ['Default', "add"]
-        ])
+            ]
+        )
             ->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success',
-                'Le trick a bien été crée.');
+            $this->addFlash(
+                'success',
+                'Le trick a bien été crée.'
+            );
 
-            return $this->redirectToRoute('trick_show',  ['slug' => $trick->getSlug()]);
+            return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
-        return $this->render('trick/add.html.twig', [
+        return $this->render(
+            'trick/add.html.twig',
+            [
             'form' => $form->createView(),
-        ]);
+            ]
+        );
     }
 
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
-     * @param Trick $trick
+     * @param Trick             $trick
      * @param CommentRepository $commentRepository
-     * @param Request $request
+     * @param Request           $request
      *
      * @return Response
      *
      * @throws Exception
      */
-    public function show(Trick $trick,
-                         CommentRepository $commentRepository,
-                         Request $request): Response
-    {
+    public function show(
+        Trick $trick,
+        CommentRepository $commentRepository,
+        Request $request
+    ): Response {
         $totalComments = $commentRepository->count(['trick' => $trick]);
 
         $page = $request->query->get('page', 1);
@@ -112,13 +124,17 @@ class TrickController extends AbstractController
             $this->getDoctrine()->getManager()->persist($comment);
             $this->getDoctrine()->getManager()->flush();
 
-            $this->addFlash('success',
-                'Le trick a bien été modifié.');
+            $this->addFlash(
+                'success',
+                'Le trick a bien été modifié.'
+            );
 
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug(), '_fragment' => 'comments']);
         }
 
-        return $this->render('trick/show.html.twig', [
+        return $this->render(
+            'trick/show.html.twig',
+            [
             'form' => $form->createView(),
             'trick' => $trick,
             'comments' => $commentRepository->findBy(
@@ -135,24 +151,25 @@ class TrickController extends AbstractController
                     min(ceil($totalComments / 10), $page + 3)
                 )
             ]
-        ]);
+            ]
+        );
     }
 
     /**
      * @Route("/update/{slug}", name="trick_update", methods={"GET","POST"})
      *
-     * @param Trick $trick
+     * @param Trick   $trick
      * @param Request $request
      *
      * @return Response
      */
-    public function update(Trick $trick,
-                           Request $request): Response
-    {
+    public function update(
+        Trick $trick,
+        Request $request
+    ): Response {
         $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->getDoctrine()->getManager()->persist($trick);
             $this->getDoctrine()->getManager()->flush();
 
@@ -162,24 +179,28 @@ class TrickController extends AbstractController
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
 
-        return $this->render("trick/update.html.twig", [
+        return $this->render(
+            "trick/update.html.twig",
+            [
             'trick' => $trick,
             'form' => $form->createView()
 
-        ]);
+            ]
+        );
     }
 
     /**
      * @Route("/{slug}", name="trick_delete", methods={"DELETE"})
      *
-     * @param Trick $trick
+     * @param Trick   $trick
      * @param Request $request
      *
      * @return RedirectResponse
      */
-    public function delete(Trick $trick,
-                           Request $request): Response
-    {
+    public function delete(
+        Trick $trick,
+        Request $request
+    ): Response {
         if ($this->isCsrfTokenValid('delete'.$trick->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($trick);

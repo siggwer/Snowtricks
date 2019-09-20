@@ -296,8 +296,8 @@ class Trick
     }
 
     /**
-    * @param Video|null $video
-    */
+     * @param Video|null $video
+     */
     public function setVideos(?Video $videos): void
     {
         $this->videos = $videos;

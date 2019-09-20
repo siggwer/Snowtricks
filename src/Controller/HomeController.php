@@ -25,9 +25,11 @@ class HomeController extends AbstractController
      */
     public function __invoke(TrickRepository $trickRepository): Response
     {
-        return $this->render('home.html.twig', [
+        return $this->render(
+            'home.html.twig',
+            [
                 'tricks' => $trickRepository->findBy([], ["publishedAt" => "desc"], 6, 0),
-            ]);
-
+            ]
+        );
     }
 }

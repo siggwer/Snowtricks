@@ -22,31 +22,41 @@ class PictureType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      *
-     * @param array $options
+     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder,array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('path', HiddenType::class)
-            ->add('uploadedFile', null, [
+            ->add(
+                'uploadedFile',
+                null,
+                [
                 'label' => false,
                 'required' => false,
 
-            ])
-            ->add('alt', TextType::class,  [
+                ]
+            )
+            ->add(
+                'alt',
+                null,
+                [
                 'label' => false,
                 'required' => false,
                 'attr' => array(
                     'placeholder' => 'texte alternatif'
                 )
-            ])
-            ->addEventListener(FormEvents::SUBMIT, function(formEvent $event) {
-                $picture = $event->getData();
-                if ($picture->getUploadedFile() !== null) {
-                    $picture->setPath(null);
+                ]
+            )
+            ->addEventListener(
+                FormEvents::SUBMIT,
+                function (formEvent $event) {
+                    $picture = $event->getData();
+                    if ($picture->getUploadedFile() !== null) {
+                        $picture->setPath(null);
+                    }
                 }
-            })
-        ;
+            );
     }
 
     /**

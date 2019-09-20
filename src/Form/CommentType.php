@@ -21,13 +21,16 @@ class CommentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('content', TextareaType::class, [
+            ->add(
+                'content',
+                TextareaType::class,
+                [
                 'label' => 'Votre commentaire',
                 'attr' => array(
                     'placeholder' => 'Ecrivez un commentaire'
                 )
-            ])
-        ;
+                ]
+            );
     }
 
     /**
@@ -37,6 +40,4 @@ class CommentType extends AbstractType
     {
         $resolver->setDefault('data_class', Comment::class);
     }
-
-
 }

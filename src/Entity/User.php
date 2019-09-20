@@ -291,14 +291,16 @@ class User implements UserInterface, Serializable
      */
     public function serialize()
     {
-        return serialize(array(
+        return serialize(
+            array(
             $this->id,
             $this->username,
             $this->password,
             $this->email
             // see section on salt below
             // $this->salt,
-        ));
+            )
+        );
     }
 
     /**

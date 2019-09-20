@@ -17,17 +17,18 @@ class AvatarType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      *
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('avatar', PictureType::class, [
-              'label' => 'Mon nouvel avatar',
-              'attr' => array(
-                    'placeholder' => 'Votre avatar')
-            ])
-        ;
+            ->add(
+                'avatar',
+                PictureType::class,
+                [
+                'label' => 'Mon nouvel avatar'
+                ]
+            );
     }
 
     /**
@@ -35,9 +36,11 @@ class AvatarType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class,
             'validation_groups' => 'avatar'
-        ]);
+            ]
+        );
     }
 }

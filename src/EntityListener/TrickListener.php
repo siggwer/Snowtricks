@@ -19,6 +19,7 @@ class TrickListener
 
     /**
      * TrickListener constructor.
+     *
      * @param Security $security
      */
     public function __construct(Security $security)

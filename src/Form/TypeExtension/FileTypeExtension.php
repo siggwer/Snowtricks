@@ -10,12 +10,11 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class PictureFormExtension
+ * Class FileTypeExtension
  *
  * @package App\Form\TypeExtension
- *
  */
-class PictureFormExtension implements FormTypeExtensionInterface
+class FileTypeExtension implements FormTypeExtensionInterface
 {
     /**
      * Builds the form.
@@ -78,6 +77,9 @@ class PictureFormExtension implements FormTypeExtensionInterface
         return '';
     }
 
+    /**
+     * @return iterable
+     */
     public static function getExtendedTypes(): iterable
     {
         return [FileType::class];

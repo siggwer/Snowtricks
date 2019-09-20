@@ -21,15 +21,16 @@ class UserProfileController extends AbstractController
      * @Route("/mon-compte/profil", name="mon-compte", methods={"GET","POST"})
      *
      * @param Request $request
-     * @param string $uploadDir
+     * @param string  $uploadDir
      *
      * @return Response
      */
-    public function EditProfile(Request $request,
-                                ObjectManager $manager,
-                                UserRepository $user,
-                                string $uploadDir): Response
-    {
+    public function EditProfile(
+        Request $request,
+        ObjectManager $manager,
+        UserRepository $user,
+        string $uploadDir
+    ): Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         $user = $this->getUser();
@@ -40,18 +41,19 @@ class UserProfileController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->getDoctrine()->getManager()->persist($user);
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('mon-compte');
         }
 
-        return $this->render('user/profile.html.twig', [
+        return $this->render(
+            'user/profile.html.twig',
+            [
             'user'=> $user,
             'avatar'=> $currentAvatar,
             'form'=> $form->createView()
-        ]);
-
+            ]
+        );
     }
 }

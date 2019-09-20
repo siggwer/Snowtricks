@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 /**
  * Class RegistrationFormType
  *
@@ -20,22 +21,33 @@ class RegistrationFormType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      *
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('username', TextType::class, [
+            ->add(
+                'username',
+                TextType::class,
+                [
                 'attr' => array(
                     'placeholder' => 'Votre pseudo'
                 )
-            ])
-            ->add('email', EmailType::class, [
+                ]
+            )
+            ->add(
+                'email',
+                EmailType::class,
+                [
                 'attr' => array(
                     'placeholder' => 'Votre email'
                 )
-            ])
-            ->add('plainPassword', RepeatedType::class, [
+                ]
+            )
+            ->add(
+                'plainPassword',
+                RepeatedType::class,
+                [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Mot de passe',
                     'attr' => array(
@@ -47,8 +59,8 @@ class RegistrationFormType extends AbstractType
                 )]
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
-            ])
-        ;
+                ]
+            );
     }
 
     /**
@@ -56,8 +68,10 @@ class RegistrationFormType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => User::class,
-        ]);
+            ]
+        );
     }
 }

@@ -11,11 +11,17 @@
                     <div class="card">
                         <div class="card-body">
                             <h3>Modifie ton  avatar {{ app.user.username }}</h3>
-                            {% if app.user.avatar is not null%}
-                                <img src="{{ asset(app.user.avatar.path) }}" class="img-circle" alt="{{ asset(app.user.avatar.alt) }}">
-                            {% else %}
-                                <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
-                            {% endif %}
+                            <div class="card-title">
+                                <div class="col-md-3">
+                                    {% if app.user.avatar is not null%}
+                                        <p class="card-title">Votre avatar actuel</p>
+                                        <img src="{{ asset(app.user.avatar.path) }}" class="img-circle" alt="{{ asset(app.user.avatar.alt) }}">
+                                    {% else %}
+                                        <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
+                                    {% endif %}
+
+                                </div>
+                            </div>
                             {{ include("user/_form_profile.html.twig", { form: form }) }}
                         </div>
                     </div>
@@ -23,5 +29,12 @@
             </div>
         </div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="{{ asset('js/input_custom_file.js') }}"></script>
 
 {% endblock %}

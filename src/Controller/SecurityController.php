@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     /**
      * @Route("/login", name="security_login")
      *
-     * @param AuthenticationUtils $authenticationUtils
+     * @param AuthenticationUtils      $authenticationUtils
      * @param EventDispatcherInterface $eventDispatcher
      * @param $user
      *
@@ -39,6 +39,5 @@ class SecurityController extends AbstractController
      */
     public function logout()
     {
-
     }
 }
