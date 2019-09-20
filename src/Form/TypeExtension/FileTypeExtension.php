@@ -39,7 +39,7 @@ class FileTypeExtension implements FormTypeExtensionInterface
      */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
-        $view->vars['attr']['placeholder'] = 'Votre image';
+        $view->vars['attr']['placeholder'] = 'Ajouter une nouvelle image';
     }
 
     /**
