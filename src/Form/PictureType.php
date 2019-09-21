@@ -6,11 +6,11 @@ use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Validator\Constraints\Image;
 
 /**
  * Class PictureType
@@ -27,14 +27,19 @@ class PictureType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('path', HiddenType::class)
+
             ->add(
                 'uploadedFile',
-                null,
+                FileType::class,
                 [
                 'label' => false,
                 'required' => false,
-
+                'constraints' => [
+                    new Image([
+                        'maxWidth' => $options['width'],
+                        'maxHeight' => $options['height'],
+                    ])
+                ]
                 ]
             )
             ->add(
@@ -43,9 +48,6 @@ class PictureType extends AbstractType
                 [
                 'label' => false,
                 'required' => false,
-                'attr' => array(
-                    'placeholder' => 'texte alternatif'
-                )
                 ]
             )
             ->addEventListener(
@@ -53,6 +55,7 @@ class PictureType extends AbstractType
                 function (formEvent $event) {
                     $picture = $event->getData();
                     if ($picture->getUploadedFile() !== null) {
+                        dump($picture);
                         $picture->setPath(null);
                     }
                 }
@@ -64,6 +67,10 @@ class PictureType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefault('data_class', Picture::class);
+        $resolver->setDefaults([
+            'data_class' => Picture::class,
+            'width' => 400,
+            'height' => 400
+        ]);
     }
 }

@@ -52,7 +52,6 @@ class Picture
     /**
      * @var UploadedFile|null
      *
-     * @Assert\Image
      * @Assert\NotNull(groups={"add"})
      */
     private $uploadedFile;

@@ -26,7 +26,9 @@ class AvatarType extends AbstractType
                 'avatar',
                 PictureType::class,
                 [
-                'label' => 'Mon nouvel avatar'
+                    'label' => 'Mon nouvel avatar',
+                    'width' => 61,
+                    'height' => 50
                 ]
             );
     }
@@ -39,7 +41,7 @@ class AvatarType extends AbstractType
         $resolver->setDefaults(
             [
             'data_class' => User::class,
-            'validation_groups' => 'avatar'
+            'validation_groups' => ['avatar', 'Default']
             ]
         );
     }
