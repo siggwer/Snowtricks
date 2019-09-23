@@ -55,7 +55,6 @@ class PictureType extends AbstractType
                 function (formEvent $event) {
                     $picture = $event->getData();
                     if ($picture->getUploadedFile() !== null) {
-                        dump($picture);
                         $picture->setPath(null);
                     }
                 }

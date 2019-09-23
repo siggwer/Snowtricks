@@ -126,6 +126,14 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 /*END MODAL */
 
+/* BEGIN PAGINATION */
+
+.page-item.active .page-link {
+    background-color: #233b6f !important;
+    border-color: #233b6f !important;
+}
+/* END PAGINATION */
+
 .page {
     position: relative;
     overflow: hidden;
