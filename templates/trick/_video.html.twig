@@ -3,7 +3,7 @@
         <div class="input-group-prepend">
             <span class="input-group-text"> <i class="fa fa-file-video-o"></i> </span>
         </div>
-        {{ form_widget(form.url)}}
+        {{ form_widget(form.url, {'attr': {'placeholder': 'Ajouter une video'}})}}
         <div class="input-group-append">
             <button type="button"
                     class="btn btn-outline-danger remove-video"

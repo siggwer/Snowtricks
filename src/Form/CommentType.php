@@ -30,7 +30,8 @@ class CommentType extends AbstractType
                     'placeholder' => 'Ecrivez un commentaire'
                 )
                 ]
-            );
+            )
+        ;
     }
 
     /**

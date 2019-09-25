@@ -8,8 +8,8 @@
         <h1 class="jumbotron-heading display-3">Les meilleurs tricks</h1>
         <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
-    <div class="container-fluid album py-5 bg-light">
-        <div class="row" id="tricks">
+    <div class="container py-5">
+        <div class="row py-5" id="tricks">
             {{ include("trick/list.html.twig", { tricks: tricks }) }}
         </div>
         <div class="row mt-4">
@@ -33,5 +33,5 @@
     <script src="{{ asset('js/load_more.js') }}"></script>
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="{{ asset('js/input_custom_file.js') }}"></script>
-
+    
 {% endblock %}

@@ -42,22 +42,31 @@
                 </div>
             {% endfor %}
         </div>
+        {% if is_granted("ROLE_USER") %}
         {{ form_start(form) }}
         {{ form_widget(form._token) }}
         {{ form_rest(form) }}
+
         <button class="btn btn-success">Envoyer</button>
         {{ form_end(form) }}
+        {% endif %}
         <div class="card card-outline-secondary my-4"  id="comments">
             <div class="card-header">
                 Toutes les commentaires
             </div>
             {% for comment in comments %}
                 <div class="card-body">
-                    <p>{{ comment.content|nl2br }}</p>
-                    <small class="text-muted">Posté le
+                    <small class="text-muted">
+                        {% if comment.author.avatar is not null%}
+                            <img src="{{ asset(comment.author.avatar.path) }}" class="img-circle" alt="{{ asset(comment.author.avatar.alt) }}">
+                        {% else %}
+                            <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
+                        {% endif %}
+                        {{ comment.author.username }}
                         {{ comment.publishedAt|date("d/m/Y H:i") }}
-                        par {{ comment.author.username }}
                     </small>
+                    <br/>
+                    <p>{{ comment.content|nl2br }}</p>
                     <hr>
                 </div>
             {% endfor %}

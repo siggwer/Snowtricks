@@ -3,10 +3,37 @@
         <div class="card mb-4">
             <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
             <div class="card-body">
-                <h2 class="card-title">{{ trick.name }}</h2>
+                <h2 class="card-title">{{ trick.name }}
+                    {% if is_granted("ROLE_USER") %}
+                        <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-secondary"><i class="fa fa-pencil"></i></a>
+                        <!-- Button HTML (to Trigger Modal) -->
+                        <a href="#myModal" class="btn btn-warning" data-toggle="modal"><i class="fa fa-trash"></i></a>
+                    {% endif %}
+                </h2>
                 <a href="{{ path("trick_show", { 'slug': trick.slug}) }}" class="btn btn-primary">PLus d'infos →</a>
                 {% if is_granted("ROLE_USER") %}
-                    <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-warning">Modifier -></a>
+                    <!-- Modal HTML -->
+                    <div id="myModal" class="modal fade">
+                        <div class="modal-dialog modal-confirm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Confirmation</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Êtes-vous sûr de vouloir supprimer ce trick? Cette action ne peut pas être annulée et vous ne pourrez récupérer aucune donnée.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <form method="post" action="{{ path("trick_delete", { 'slug': trick.slug }) }}">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.slug) }}">
+                                        <a href="#" class="btn btn-info" data-dismiss="modal">Annuler</a>
+                                        <button class="btn btn-danger float-right">Supprimer</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 {% endif %}
             </div>
             <div class="card-footer text-muted">
