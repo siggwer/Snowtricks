@@ -6,13 +6,14 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Class Category
- * @package App\Entity
+ *
+ * @package                                                         App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
 {
     /**
-     * @var int|null
+     * @var                        int|null
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -20,7 +21,7 @@ class Category
     private $id;
 
     /**
-     * @var string|null
+     * @var                       string|null
      * @ORM\Column(type="string")
      */
     private $name;

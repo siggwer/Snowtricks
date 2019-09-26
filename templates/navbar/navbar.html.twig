@@ -1,5 +1,5 @@
 <div id="navbar-top">
-    <nav class="navbar navbar-expand-md navbar-light bg-white fixed">
+    <nav class="navbar navbar-expand-md navbar-light bg-white fixed" {{ app.session.flashbag.peek('success')|length > 0 ? '' : 'mb-5' }}>
         <div class="container">
             <a class="navbar-brand nav-link" href="/">Snowtricks</a>
             <button class="navbar-toggler" type="button"
@@ -9,26 +9,30 @@
             </button>
             <div class="collapse navbar-collapse" id="nav">
                 <ul class="navbar-nav ml-auto">
-                    {% if is_granted("ROLE_USER") %}
+                    {% if is_granted("ROLE_USER")%}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="https://www.jeromesauvage.fr"
                                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img src="/uploads/jerome_id_gris2_60x51.png" class="img-circle" alt="">
-                                Jérôme Sauvage
+                                {% if app.user.avatar is not null%}
+                                    <img src="{{ asset(app.user.avatar.path) }}" class="img-circle" alt="{{ asset(app.user.avatar.alt) }}">
+                                {% else %}
+                                    <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
+                                {% endif %}
+                                {{ app.user.username }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="/"><i class="fa fa-home" aria-hidden="true"></i> Accueil</a>
+                                <a class="dropdown-item" href="{{ path('mon-compte') }}">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    Mon compte
+                                </a>
+								 <a class="dropdown-item" href="{{ path('contact') }}">
+                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
+                                    Contact
+                                </a>
                                 <a class="dropdown-item" href="{{ path('security_logout') }}">
                                     <i class="fa fa-sign-out" aria-hidden="true"></i>
                                     Se déconnecter
-                                </a>
-                                <a class="dropdown-item" href="{{ path('trick_add') }}">
-                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
-                                    Ajouter un trick
-                                </a>
-                                <a class="dropdown-item" href="{{ path('contact') }}">
-                                    <i class="fa fa-envelope-open" aria-hidden="true"></i>
-                                    Contact
                                 </a>
                             </div>
                         </li>
@@ -39,14 +43,18 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path('security_login') }}">Se connecter</a>
                         </li>
-                        <li class="nav-item">
+						 <li class="nav-item">
                             <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+                        </li>
                     {% endif %}
                     <!--<li class="nav-item">
                         <a class="nav-link" href="#clients">Clients</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
                     </li>-->
                 </ul>
             </div>

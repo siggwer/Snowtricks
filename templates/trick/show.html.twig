@@ -4,64 +4,105 @@
 
 {% block body %}
     <div class="container py-5">
-    <div class="row">
-        <div class="col-12">
-            <h1 class="my-4">{{ trick.name }}</h1>
-            <div class="my-4 d-flex justify-content-between">
-                <span>{{ trick.author.username }}</span>
-                <span>{{ trick.category.name }}</span>
-                <span>{{ trick.publishedAt|date("d/m/Y") }}</span>
-            </div>
-            <p class="my-4">
-                {{ trick.description|nl2br }}
+        <div class="jumbotron my-4">
+            <h1 class="my-4">{{ trick.name }} / {{ trick.category.name }}</h1>
+            <p class="lead">{{ trick.description|nl2br }}</p>
+            <p>Posté le
+                {{ trick.publishedAt|date("d/m/Y") }}
+                par
+                {{ trick.author.username }}
             </p>
-            <div class="row align-item-stretch my-4">
-                {% for picture in trick.pictures %}
-                    <div class="col-6 col-md-4 col-lg-3 my-3">
-                        <img src="{{ asset(picture.path) }}" alt="{{ picture.alt }}" class="w-100"/>
-                    </div>
-                {% endfor %}
-                {% for video in trick.videos %}
-                    <div class="col-6 col-md-4 col-lg-3 my-3">
-                        <iframe width="100%" height="100%" src="{{ video.url }}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                    </div>
-                {% endfor %}
-            </div>
-            {{ form_start(form) }}
-            {{ form_widget(form._token) }}
-            {{ form_rest(form) }}
-            <button class="btn btn-success">Envoyer</button>
-            {{ form_end(form) }}
-            <div class="list-group my-4" id="comments">
-                {% for comment in comments %}
-                    <div class="list-group-item">
-
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ comment.author.username }}</h5>
-                            <small>{{ comment.publishedAt|date("d/m/Y H:i") }}</small>
-                        </div>
-                        <p class="mb-1">{{ comment.content|nl2br }}</small></p>
-                    </div>
-                {% endfor %}
-            </div>
-            {% if pagination.pages > 1 %}
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        {% if pagination.page > 1 %}
-                            <li class="page-item"><a class="page-link" href="{{ path("trick_show", { id: trick.id, page: pagination.page - 1 }) }}">Previous</a></li>
-                        {% endif %}
-                        {% for page in pagination.range %}
-                            <li class="page-item {{ pagination.page == page ? "active" : "" }}">
-                                <a class="page-link" href="{{ path("trick_show", { id: trick.id, page: page }) }}">{{ page }}</a>
-                            </li>
-                        {% endfor %}
-                        {% if pagination.page < pagination.pages %}
-                            <li class="page-item"><a class="page-link" href="{{ path("trick_show", { id: trick.id, page: pagination.page + 1 }) }}">Next</a></li>
-                        {% endif %}
-                    </ul>
-                </nav>
-            {% endif %}
         </div>
+        <div class="row py-5">
+            {% for picture in trick.pictures %}
+            <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <img class="card-img-top" src="{{ asset(picture.path) }}" alt="{{ picture.alt }}">
+                        <div class="card-body">
+                            <h4 class="card-title"></h4>
+                            <p class="card-text">{{ picture.alt }}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ asset(picture.path) }}" class="btn btn-primary">Voir l'image</a>
+                        </div>
+                    </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="row py-5">
+            {% for video in trick.videos %}
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100">
+                        <iframe width="100%" height="100%" src="{{ video.url }}"
+                                frameborder="0"
+                                allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if is_granted("ROLE_USER") %}
+        {{ form_start(form) }}
+        {{ form_widget(form._token) }}
+        {{ form_rest(form) }}
+
+        <button class="btn btn-success">Envoyer</button>
+        {{ form_end(form) }}
+        {% endif %}
+        <div class="card card-outline-secondary my-4"  id="comments">
+            <div class="card-header">
+                Toutes les commentaires
+            </div>
+            {% for comment in comments %}
+                <div class="card-body">
+                    <small class="text-muted">
+                        {% if comment.author.avatar is not null%}
+                            <img src="{{ asset(comment.author.avatar.path) }}" class="img-circle" alt="{{ asset(comment.author.avatar.alt) }}">
+                        {% else %}
+                            <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
+                        {% endif %}
+                        {{ comment.author.username }}
+                        {{ comment.publishedAt|date("d/m/Y H:i") }}
+                    </small>
+                    <br/>
+                    <p>{{ comment.content|nl2br }}</p>
+                    <hr>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if pagination.pages > 1 %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    {% if pagination.page > 1 %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path("trick_show", { 'slug': trick.slug, page: pagination.page - 1 }) }}">
+                                Previous
+                            </a>
+                        </li>
+                    {% endif %}
+                    {% for page in pagination.range %}
+                        <li class="page-item {{ pagination.page == page ? "active" : "" }}">
+                            <a class="page-link" href="{{ path("trick_show", { 'slug': trick.slug, page: page }) }}">
+                                {{ page }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    {% if pagination.page < pagination.pages %}
+                        <li class="page-item">
+                            <a class="page-link" href="{{ path("trick_show", { 'slug': trick.slug, page: pagination.page + 1 }) }}">
+                                Next
+                            </a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
+        {% if is_granted("ROLE_USER") %}
+            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+            <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-warning float-right">Modifier</a>
+        {% endif %}
     </div>
-    </div>
+
 {% endblock %}

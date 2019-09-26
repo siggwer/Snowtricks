@@ -53,9 +53,9 @@ class UserListener
             return;
         }
 
-        $user->setPassword($this->userPasswordEncoder
-            ->encodePassword($user, $user->getPlainPassword())
+        $user->setPassword(
+            $this->userPasswordEncoder
+                ->encodePassword($user, $user->getPlainPassword())
         );
     }
-
 }

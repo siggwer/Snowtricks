@@ -19,37 +19,52 @@ class ContactType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-       $builder
-           ->add('name', TextType::class, [
-               'label' => 'votre nom :',
-               'attr' => array(
+        $builder
+            ->add(
+                'name',
+                TextType::class,
+                [
+                'label' => 'votre nom :',
+                'attr' => array(
                    'placeholder' => 'Votre nom '
-               )
-           ])
-           ->add('email', EmailType::class, [
-               'label' => 'votre email :',
-               'attr' => array(
+                )
+                ]
+            )
+            ->add(
+                'email',
+                EmailType::class,
+                [
+                'label' => 'votre email :',
+                'attr' => array(
                    'placeholder' => 'Votre email '
-               )
+                )
 
-           ])
-           ->add('subject', TextType::class, [
-              'label' => 'Sujet :',
-               'attr' => array(
+                ]
+            )
+            ->add(
+                'subject',
+                TextType::class,
+                [
+                'label' => 'Sujet :',
+                'attr' => array(
                    'placeholder' => 'Indiquez un sujet '
-               )
-           ])
-           ->add('message', TextareaType::class, [
-            'label' => 'votre message :',
-               'attr' => array(
+                )
+                ]
+            )
+            ->add(
+                'message',
+                TextareaType::class,
+                [
+                'label' => 'votre message :',
+                'attr' => array(
                    'placeholder' => 'Ecrivez votre message'
-               )
-           ])
-       ;
+                )
+                ]
+            );
     }
 
     /**
@@ -59,5 +74,4 @@ class ContactType extends AbstractType
     {
         $resolver->setDefault('data_class', Contact::class);
     }
-
 }

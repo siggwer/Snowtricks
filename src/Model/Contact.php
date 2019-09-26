@@ -9,7 +9,7 @@ class Contact
     /**
      * @var string|null
      *
-     * @Assert\Notblank
+     * @Assert\NotBlank
      */
     private $name;
 

@@ -1,0 +1,23 @@
+<div id="picture-{{ form.vars.name }}" class="">
+    <div class="form-group input-group">
+        <div class="input-group-prepend">
+		<span class="input-group-text">
+			<i class="fa fa-file-image-o"></i>
+		</span>
+        </div>
+        {{ form_widget(form.uploadedFile, {'attr': {'placeholder': 'Modifier l\'image secondaire'}}) }}
+        <span class="input-group-text">
+            <i class="fa fa-font"></i>
+        </span>
+        {{ form_widget(form.alt, {'attr': {'placeholder': 'Modifier le texte alternatif'}}) }}
+        <div class="input-group-append">
+            <button type="button"
+                    class="btn btn-outline-danger remove-picture"
+                    data-target="#picture-{{ form.vars.name }}">
+                supprimer
+            </button>
+        </div>
+    </div>
+</div>
+
+<script src="{{ asset('js/input_custom_file.js') }}"></script>

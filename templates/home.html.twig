@@ -3,23 +3,23 @@
 {% block title %}Snowtrick / Accueil{% endblock %}
 
 {% block body %}
+
     <div id="home" class="jumbotron text-center">
         <h1 class="jumbotron-heading display-3">Les meilleurs tricks</h1>
         <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
     </div>
-    <div class="container-fluid album py-5 bg-light">
-    <div class="row" id="tricks">
-        {{ include("trick/list.html.twig", { tricks: tricks }) }}
-    </div>
-    <div class="row mt-4">
-
-        <div class="col-12 text-center">
-            <button class="btn btn-info" id="load-more">Load more</button>
-            {% if is_granted("ROLE_USER") %}
-                    <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
-            {% endif %}
+    <div class="container py-5">
+        <div class="row py-5" id="tricks">
+            {{ include("trick/list.html.twig", { tricks: tricks }) }}
         </div>
-    </div>
+        <div class="row mt-4">
+            <div class="col-12 text-center">
+                <button class="btn btn-info" id="load-more">Load more</button>
+                {% if is_granted("ROLE_USER") %}
+                    <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+                {% endif %}
+            </div>
+        </div>
     </div>
     <div id="scrollUp">
         <a href="#top"><img src="images/to_top.png"/></a>
@@ -29,35 +29,9 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-        $(function() {
-            var page = 1;
 
-            $("#load-more").on("click", function () {
-                page++;
-
-                $.ajax({
-                    url: "/trick/list",
-                    data: { page: page },
-                    success: function (html) {
-                        $("#tricks").append(html);
-                    }
-                });
-            })
-        })
-    </script>
-    <script>
-        jQuery(function(){
-            $(function () {
-                $(window).scroll(function () {
-                    if ($(this).scrollTop() > 200 ) {
-                        $('#scrollUp').css('right','10px');
-                    } else {
-                        $('#scrollUp').removeAttr( 'style' );
-                    }
-
-                });
-            });
-        });
-    </script>
+    <script src="{{ asset('js/load_more.js') }}"></script>
+    <script src="{{ asset('js/scroll.js') }}"></script>
+    <script src="{{ asset('js/input_custom_file.js') }}"></script>
+    
 {% endblock %}

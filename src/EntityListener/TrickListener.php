@@ -3,7 +3,6 @@
 namespace App\EntityListener;
 
 use App\Entity\Trick;
-use App\Entity\User;
 use Symfony\Component\Security\Core\Security;
 
 /**
@@ -20,6 +19,7 @@ class TrickListener
 
     /**
      * TrickListener constructor.
+     *
      * @param Security $security
      */
     public function __construct(Security $security)

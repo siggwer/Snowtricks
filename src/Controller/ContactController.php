@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -22,15 +21,16 @@ class ContactController extends AbstractController
      * @Route("/contact", name="contact")
      *
      * @param FormFactoryInterface $formFactory
-     * @param Request $request
-     * @param \Swift_Mailer $mailer
+     * @param Request              $request
+     * @param \Swift_Mailer        $mailer
      *
      * @return Response
      */
-    public function __invoke(FormFactoryInterface $formFactory,
-                             Request $request,
-                             \Swift_Mailer $mailer): Response
-    {
+    public function __invoke(
+        FormFactoryInterface $formFactory,
+        Request $request,
+        \Swift_Mailer $mailer
+    ): Response {
         $contact = new Contact();
 
         $form = $formFactory->create(ContactType::class, $contact)->HandleRequest($request);
@@ -42,22 +42,32 @@ class ContactController extends AbstractController
                 ->setTo('admin.snowtrick@yopmail.com', 'Contact snowtricks')
                 ->setFrom('admin.snowtrick@yopmail.com', 'Contact snowtricks')
                 ->setReplyTo($contact->getEmail(), $contact->getName())
-                ->setBody($this->renderView('contact/contact_email.html.twig', [
-                    'contact' => $contact
-                ]), 'text/html')
-            ;
+                ->setBody(
+                    $this->renderView(
+                        'contact/contact_email.html.twig',
+                        [
+                        'contact' => $contact
+                        ]
+                    ),
+                    'text/html'
+                );
 
             $mailer->send($message);
 
-            $this->addFlash('success',
+            $this->addFlash(
+                'success',
                 'Votre message a bien été envoyé.
-                 Nous répondrons dans un délais de 48 heures.');
+                 Nous répondrons dans un délais de 48 heures.'
+            );
 
             return $this->redirectToRoute('contact');
         }
 
-        return $this->render('contact/contact.html.twig', [
+        return $this->render(
+            'contact/contact.html.twig',
+            [
             'form' => $form->createView()
-        ]);
+            ]
+        );
     }
 }

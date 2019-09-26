@@ -29,7 +29,7 @@ class Picture
      * @var Trick|null
      *
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="pictures")
-     * @ORM\JoinColumn(name="picture_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
+     * @ORM\JoinColumn(name="picture_id",   referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la supression
      */
     private $trick;
 
@@ -52,7 +52,6 @@ class Picture
     /**
      * @var UploadedFile|null
      *
-     * @Assert\Image
      * @Assert\NotNull(groups={"add"})
      */
     private $uploadedFile;

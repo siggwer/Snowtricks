@@ -3,5 +3,4 @@ App\Entity\User:
     username: 'username-<current()>'
     email: 'email+<current()>\@email.com'
     plainPassword: 'password'
-    avatar: '@avatar<current()>'
-
+    avatar: '@avatar_<current()>'

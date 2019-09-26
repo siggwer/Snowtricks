@@ -1,14 +1,18 @@
 {{ form_start(form) }}
-    {{ form_errors(form) }}
-    {{ form_widget(form._token) }}
-    {{ dump(form) }}
-<div class="form-group input-group">
-    <div class="input-group-prepend">
-        <span class="input-group-text"> <i class="fa fa-font"></i></span>
-    </div>
-    {{ form_widget(form.avatar) }}
-</div>
-
+{{ form_errors(form) }}
+{{ form_widget(form._token) }}
+{{ form_row(form.avatar.uploadedFile, {
+    attr: {
+        'class': 'custom-file-input',
+        'placeholder': 'Choisissez votre avatar'
+    }
+}) }}
+{{ form_row(form.avatar.alt, {
+    attr: {
+        'class': 'input-group-text"',
+        'placeholder': 'Texte alternatif'
+    }
+}) }}
 <div class="form-group d-flex justify-content-between">
     <a href="/" class="btn btn-secondary float-left">Accueil</a>
     <button type="submit" class="btn btn-success float-right">Modifier</button>

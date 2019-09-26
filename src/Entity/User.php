@@ -2,11 +2,13 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
+use Serializable;
 use Exception;
 
 /**
@@ -19,7 +21,7 @@ use Exception;
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */
-class User implements UserInterface
+class User implements UserInterface, Serializable
 {
     /**
      * @var int|null
@@ -75,11 +77,20 @@ class User implements UserInterface
     /**
      * @var Picture|null
      *
-     * @Assert\Valid
+     * @Assert\Valid(groups={"avatar"})
      *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
     private $avatar;
+
+    /**
+     * @var UploadedFile|null
+     *
+     * @Assert\Image
+     * @Assert\Valid()
+     * @Assert\NotNull(groups={"add"})
+     */
+    private $uploadedFile;
 
     /**
      * @var string|null
@@ -90,8 +101,6 @@ class User implements UserInterface
      * User constructor.
      *
      * @throws Exception
-
-     * @throws \Exception
      */
     public function __construct()
     {
@@ -112,6 +121,14 @@ class User implements UserInterface
     public function getUsername(): ?string
     {
         return $this->username;
+    }
+
+    /**
+     * @return UploadedFile|null
+     */
+    public function getUploadedFile(): ?UploadedFile
+    {
+        return $this->uploadedFile;
     }
 
     /**
@@ -220,6 +237,14 @@ class User implements UserInterface
     }
 
     /**
+     * @param UploadedFile|null $uploadedFile
+     */
+    public function setUploadedFile(?UploadedFile $uploadedFile): void
+    {
+        $this->uploadedFile = $uploadedFile;
+    }
+
+    /**
      * Returns the roles granted to the user.
      *
      *     public function getRoles()
@@ -232,7 +257,6 @@ class User implements UserInterface
      * is created.
      *
      * @return array (Role|string)[] The user roles
-     * @return (Role|string)[] The user roles
      */
     public function getRoles()
     {
@@ -267,14 +291,16 @@ class User implements UserInterface
      */
     public function serialize()
     {
-        return serialize(array(
+        return serialize(
+            array(
             $this->id,
             $this->username,
             $this->password,
             $this->email
             // see section on salt below
             // $this->salt,
-        ));
+            )
+        );
     }
 
     /**

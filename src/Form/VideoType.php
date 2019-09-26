@@ -19,12 +19,20 @@ class VideoType extends AbstractType
     /**
      * @param FormBuilderInterface $builder
      *
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('url', UrlType::class);
+            ->add(
+                'url',
+                UrlType::class,
+                [
+                'attr' => array(
+                    'placeholder' => 'Insérer le lien'
+                )
+                ]
+            );
     }
 
     /**
@@ -32,9 +40,10 @@ class VideoType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Video::class,
-        ]);
+            ]
+        );
     }
-
 }

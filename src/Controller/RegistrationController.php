@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Exception;
 
 /**
@@ -22,15 +21,17 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="security_register")
      *
-     * @param Request $request
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder
      *
      * @return Response
      *
      * @throws Exception
      */
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
-    {
+    public function register(
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder
+    ): Response {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
@@ -54,8 +55,11 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('security/register.html.twig', [
+        return $this->render(
+            'security/register.html.twig',
+            [
             'registrationForm' => $form->createView(),
-        ]);
+            ]
+        );
     }
 }

@@ -1,4 +1,10 @@
 {
+    "behat/transliterator": {
+        "version": "v1.2.0"
+    },
+    "composer/ca-bundle": {
+        "version": "1.2.4"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {
@@ -102,6 +108,9 @@
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
+    "gedmo/doctrine-extensions": {
+        "version": "v2.4.37"
+    },
     "hautelook/alice-bundle": {
         "version": "2.1",
         "recipe": {
@@ -147,6 +156,12 @@
     "ocramius/proxy-manager": {
         "version": "2.2.2"
     },
+    "padraic/humbug_get_contents": {
+        "version": "1.1.2"
+    },
+    "padraic/phar-updater": {
+        "version": "v1.0.6"
+    },
     "phpdocumentor/reflection-common": {
         "version": "1.0.1"
     },
@@ -155,6 +170,9 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
+    },
+    "phuml/phuml": {
+        "version": "1.7.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -190,6 +208,18 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
+        ]
+    },
+    "stof/doctrine-extensions-bundle": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.2",
+            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
+        },
+        "files": [
+            "./config/packages/stof_doctrine_extensions.yaml"
         ]
     },
     "swiftmailer/swiftmailer": {

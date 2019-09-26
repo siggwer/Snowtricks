@@ -1,5 +1,6 @@
 <?php
 
+
 namespace App\EntityListener;
 
 use App\Entity\Comment;
@@ -7,7 +8,7 @@ use App\Entity\User;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class TrickListener
+ * Class CommentListener
  *
  * @package App\EntityListener
  */

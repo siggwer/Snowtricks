@@ -21,20 +21,8 @@
 {% block javascripts %}
     {{ parent() }}
 
-    <script>
-        //function button picture on front
-        $(function() {
+    <script src="{{ asset('js/picture_button.js') }}"></script>
+    <script src="{{ asset('js/video_button.js') }}"></script>
+    <script src="{{ asset('js/input_custom_file.js') }}"></script>
 
-            $(".trick-video").on("click", function() {
-                $("#trick_videos").append(($("#trick_videos").data("prototype")).replace(/__name__/g, $("#trick_videos").data("index")));
-
-                $("#trick_videos").data("index", parseInt($("#trick_videos").data("index")) + 1);
-            });
-
-            $("body").on("click", ".remove-video", function() {
-                $($(this).data("target")).remove();
-            });
-
-        })
-    </script>
 {% endblock %}
