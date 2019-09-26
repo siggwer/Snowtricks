@@ -34,3 +34,5 @@ Start the server
 ```
 bin/console server:run
 ```
+
+Enjoy!
