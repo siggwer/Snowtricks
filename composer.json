@@ -67,6 +67,12 @@
             "php ./bin/console d:s:u -f --env=test",
             "php ./bin/console h:f:l -n --env=test"
         ],
+		"prepare-prod": [
+            "php ./bin/console d:d:d --force --if-exists",
+            "php ./bin/console d:d:c --env=prod",
+            "php ./bin/console d:s:u -f --env=prod",
+            "php ./bin/console h:f:l -n --env=prod"
+        ],
         "prepare": [
             "php ./bin/console d:d:d --force --if-exists",
             "php ./bin/console d:d:c",
