@@ -2,17 +2,13 @@
 
 namespace App\Handler;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\Security\Core\Security;
 
-/**
- * Class RegistrationHandler
- *
- * @package App\Handler
- */
-class RegistrationHandler extends AbstractHandler
+class ShowTrickHandler extends AbstractHandler
 {
     /**
      * @var EntityManagerInterface
@@ -25,15 +21,22 @@ class RegistrationHandler extends AbstractHandler
     private $flashBag;
 
     /**
-     * RegistrationHandler constructor.
+     * @var Security
+     */
+    private $security;
+
+    /**
+     * ShowTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface      $flashBag
+     * @param FlashBagInterface $flashBag
+     * @param Security $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
+    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
     {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
+        $this->security = $security;
     }
 
     /**
@@ -41,21 +44,22 @@ class RegistrationHandler extends AbstractHandler
      */
     public function getFormType(): string
     {
-        return RegistrationFormType::class;
+        return CommentType::class;
     }
 
     /**
-     * @param User $data
+     * @param Comment $data
      */
     public function process($data = null): void
     {
+        $data->setAuthor($this->security->getUser());
+
         $this->entityManager->persist($data);
         $this->entityManager->flush();
 
         $this->flashBag->add(
             'success',
-            'Votre compte a bien été créé.'
+            'Le trick a bien été modifié.'
         );
-
     }
 }

@@ -5,29 +5,16 @@ namespace App\Handler;
 use App\Entity\Trick;
 use App\Form\TrickType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\Security\Core\Security;
 
 /**
  * Class AddTrickHandler
  *
  * @package App\Handler
  */
-class AddTrickHandler
+class AddTrickHandler extends AbstractHandler
 {
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
-     * @var FormInterface
-     */
-    private $form;
-
     /**
      * @var EntityManagerInterface
      */
@@ -39,64 +26,44 @@ class AddTrickHandler
     private $flashBag;
 
     /**
-     * @var Trick
-     */
-    private $Trick;
-
-    /**
      * AddTrickHandler constructor.
      *
-     * @param FormFactoryInterface   $formFactory
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface      $flashBag
+     * @param FlashBagInterface $flashBag
+     * @param Security $security
      */
-    public function __construct(FormFactoryInterface $formFactory, EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
+    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
     {
-        $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
-    }
-
-    public function handle(Request $request, Trick $trick) : bool
-    {
-        $this->form = $this->formFactory->create(
-            TrickType::class,
-            $trick,
-            [
-                'validation_groups' => ['Default', "add"]
-            ]
-        )->handleRequest($request);
-
-        if ($this->form->isSubmitted() && $this->form->isValid()) {
-            $this->entityManager->persist($trick);
-            $this->entityManager->flush();
-
-            $this->flashBag->add(
-                'success',
-                'Le trick a bien été crée.'
-            );
-
-            return true;
-        }
-
-        return false;
+        $this->security = $security;
     }
 
     /**
-     * @param Trick $trick
-     *
      * @return string
      */
-    public function getSlug(Trick $trick): string
+    public function getFormType(): string
     {
-        return $trick->getSlug();
+        return TrickType::class;
     }
 
     /**
-     * @return FormView
+     * @param Trick $data
      */
-    public function createView(): FormView
+    public function process($data = null): void
     {
-        return  $this->form->createView();
+        $data->setAuthor($this->security->getUser());
+        dd($data);
+
+        $this->entityManager->persist($data);
+        $this->entityManager->flush();
+
+        $this->flashBag->add(
+                'success',
+                'Le trick a bien été crée.'
+        );
+
     }
 }
+
+
