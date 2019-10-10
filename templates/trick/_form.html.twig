@@ -83,6 +83,36 @@
         </label>
     </div>
     <!-- end add picture// -->
+    {% if trick.videos %}
+        <div class="card-deck">
+            {% for video in trick.videos %}
+                <div id="videoPicture-{{ form.vars.name }}">
+                    <div class="col-lg-8 col-md-6 mb-4">
+                        <div class="card h-100">
+                            <iframe width="100%" height="100%" src="{{ video.url }}"
+                                    frameborder="0"
+                                    allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen>
+                            </iframe>
+                            <div class="card-body">
+                                <h4 class="card-title"></h4>
+                                <p class="card-text"></p>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button"
+                                        class="btn btn-outline-danger remove-picture"
+                                        data-target="#videoPicture-{{ form.vars.name }}">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+
     <div id="trick_videos"
          class="row mb-4"
          data-index="{{ form.videos|length > 0 ? form.videos|last.vars.name + 1 : 0 }}"

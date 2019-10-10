@@ -26,7 +26,7 @@ class ContactController extends AbstractController
      */
     public function __invoke(Request $request, ContactHandler $handler): Response
     {
-        if ($handler->handle(new Contact(), $request)) {
+        if ($handler->handle($request, new Contact())) {
             return $this->redirectToRoute('contact');
         }
 
