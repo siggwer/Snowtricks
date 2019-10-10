@@ -3,12 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Form\RegistrationFormType;
+use App\Handler\RegistrationHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Exception;
 
 /**
@@ -21,44 +20,23 @@ class RegistrationController extends AbstractController
     /**
      * @Route("/register", name="security_register")
      *
-     * @param Request                      $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param Request             $request
+     * @param RegistrationHandler $handler
      *
      * @return Response
      *
      * @throws Exception
      */
-    public function register(
-        Request $request,
-        UserPasswordEncoderInterface $passwordEncoder
-    ): Response {
-        $user = new User();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            // && $form->isValid() probleme de validation
-            // encode the plain password
-            $user->setPassword(
-                $passwordEncoder->encodePassword(
-                    $user,
-                    $user->getPlainPassword()
-                )
-            );
-
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);
-            $entityManager->flush();
-
-            // do anything else you need here, like send an email
-
-            return $this->redirectToRoute('home');
+    public function register(Request $request, RegistrationHandler $handler): Response
+    {
+        if ($handler->handle(new User(), $request)) {
+            return $this->redirectToRoute('mon-compte');
         }
 
         return $this->render(
             'security/register.html.twig',
             [
-            'registrationForm' => $form->createView(),
+            'registrationForm' => $handler->createView(),
             ]
         );
     }

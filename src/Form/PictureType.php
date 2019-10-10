@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
@@ -35,10 +34,12 @@ class PictureType extends AbstractType
                 'label' => false,
                 'required' => false,
                 'constraints' => [
-                    new Image([
+                    new Image(
+                        [
                         'maxWidth' => $options['width'],
                         'maxHeight' => $options['height'],
-                    ])
+                        ]
+                    )
                 ]
                 ]
             )
@@ -66,10 +67,12 @@ class PictureType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver): void
     {
-        $resolver->setDefaults([
+        $resolver->setDefaults(
+            [
             'data_class' => Picture::class,
             'width' => 400,
             'height' => 400
-        ]);
+            ]
+        );
     }
 }

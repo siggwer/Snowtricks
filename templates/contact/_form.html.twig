@@ -6,28 +6,28 @@
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-user"></i></span>
     </div>
-    {{ form_widget(form.name) }}
+    {{ form_widget(form.name, {'attr': {'placeholder': 'Votre nom'}}) }}
 </div>
 
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
     </div>
-    {{ form_widget(form.email, {'attr': {'class': 'task_field'}}) }}
+    {{ form_widget(form.email, {'attr': {'placeholder': 'Votre email'}}) }}
 </div>
 
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-indent"></i> </span>
     </div>
-    {{ form_widget(form.subject, {'attr': {'class': 'task_field'}}) }}
+    {{ form_widget(form.subject, {'attr': {'placeholder': 'Indiquez un sujet'}}) }}
 </div>
 
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-font"></i></span>
     </div>
-    {{ form_widget(form.message) }}
+    {{ form_widget(form.message, {'attr': {'placeholder': 'Ecrivez votre message'}}) }}
 </div>
 
 <div class="form-group d-flex justify-content-between">

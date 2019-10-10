@@ -27,8 +27,8 @@ class AvatarType extends AbstractType
                 PictureType::class,
                 [
                     'label' => 'Mon nouvel avatar',
-                    'width' => 61,
-                    'height' => 50
+                    'width' => 60,
+                    'height' => 51
                 ]
             );
     }

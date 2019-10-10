@@ -6,10 +6,12 @@ use App\Entity\Comment;
 use App\Entity\Trick;
 use App\Form\TrickType;
 use App\Form\CommentType;
+use App\Handler\AddTrickHandler;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -52,43 +54,22 @@ class TrickController extends AbstractController
     /**
      * @Route("/add", name="trick_add", methods={"GET","POST"})
      *
-     * @param Trick   $trick
-     * @param Request $request
+     * @param Request         $request
+     * @param AddTrickHandler $handler
      *
      * @return Response
      *
      * @throws Exception
      */
-    public function add(Request $request): Response
+    public function add(Request $request, AddTrickHandler $handler): Response
     {
-        $trick = new Trick();
-
-        $trick->setAuthor($this->getUser());
-
-        $form = $this->createForm(
-            TrickType::class,
-            $trick,
-            [
-            'validation_groups' => ['Default', "add"]
-            ]
-        )
-            ->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->persist($trick);
-            $this->getDoctrine()->getManager()->flush();
-
-            $this->addFlash(
-                'success',
-                'Le trick a bien été crée.'
-            );
-
-            return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
+        if ($handler->handle($request, new Trick())) {
+            return $this->redirectToRoute('trick_show', ['slug' => $handler->getSlug()]);
         }
         return $this->render(
             'trick/add.html.twig',
             [
-            'form' => $form->createView(),
+            'form' => $handler->createView(),
             ]
         );
     }
@@ -96,9 +77,9 @@ class TrickController extends AbstractController
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
-     * @param Trick $trick
+     * @param Trick             $trick
      * @param CommentRepository $commentRepository
-     * @param Request $request
+     * @param Request           $request
      *
      * @return Response
      *
