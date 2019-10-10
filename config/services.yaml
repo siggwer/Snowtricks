@@ -41,5 +41,9 @@ services:
             - { name: form.type_extension,
                 extended_type: Symfony\Component\Form\Extension\Core\Type\TextType}
 
+    email_service:
+        class: App\Handler\ContactHandler
+        arguments: ['@form.factory', '@session.flash_bag']
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
