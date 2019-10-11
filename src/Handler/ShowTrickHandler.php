@@ -8,6 +8,11 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
+/**
+ * Class ShowTrickHandler
+ *
+ * @package App\Handler
+ */
 class ShowTrickHandler extends AbstractHandler
 {
     /**
@@ -59,7 +64,7 @@ class ShowTrickHandler extends AbstractHandler
 
         $this->flashBag->add(
             'success',
-            'Le trick a bien été modifié.'
+            'Le commentaire a bien été modifié.'
         );
     }
 }

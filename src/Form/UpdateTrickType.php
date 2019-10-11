@@ -41,6 +41,15 @@ class UpdateTrickType extends AbstractType
                 'label' => 'Indiquez une description',
                 'required' => true
             ])
+            ->add(
+                'pictureOnFront',
+                PictureType::class,
+                [
+                    'label' => false,
+                    'attr' => array(
+                        'placeholder' => 'Image principale'
+                    )
+                ])
             ->add('pictures', CollectionType::class, [
                 'label' => false,
                 'entry_type' => PictureType::class,

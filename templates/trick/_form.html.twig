@@ -45,30 +45,30 @@
             </div>
         </div>
     </div>
-    {% if trick.pictures %}
-        <div class="card-deck">
-            {% for picture in trick.pictures %}
-                <div id="trickPicture-{{ form.vars.name }}">
-                    <div class="col-lg-8 col-md-6 mb-4">
-                        <div class="card h-100">
-                            <img class="card-img-top" src="{{ asset(picture.path) }}" alt="{{ picture.alt }}">
-                            <div class="card-body">
-                                <h4 class="card-title"></h4>
-                                <p class="card-text">{{ picture.alt }}</p>
-                            </div>
-                            <div class="card-footer">
-                                <button type="button"
-                                        class="btn btn-outline-danger remove-picture"
-                                        data-target="#trickPicture-{{ form.vars.name }}">
-                                    <i class="fa fa-remove"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
-    {% endif %}
+    {#    {% if trick.pictures %}#}
+    {#        <div class="card-deck">#}
+    {#            {% for picture in trick.pictures %}#}
+    {#                <div id="trickPicture-{{ form.vars.name }}">#}
+    {#                    <div class="col-lg-8 col-md-6 mb-4">#}
+    {#                        <div class="card h-100">#}
+    {#                            <img class="card-img-top" src="{{ asset(picture.path) }}" alt="{{ picture.alt }}">#}
+    {#                            <div class="card-body">#}
+    {#                                <h4 class="card-title"></h4>#}
+    {#                                <p class="card-text">{{ picture.alt }}</p>#}
+    {#                            </div>#}
+    {#                            <div class="card-footer">#}
+    {#                                <button type="button"#}
+    {#                                        class="btn btn-outline-danger remove-picture"#}
+    {#                                        data-target="#trickPicture-{{ form.vars.name }}">#}
+    {#                                    <i class="fa fa-remove"></i>#}
+    {#                                </button>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            {% endfor %}#}
+    {#        </div>#}
+    {#    {% endif %}#}
     <div id="trick_pictures"
          class="form-group"
          data-index="{{ form.pictures|length > 0 ? form.pictures|last.vars.name + 1 : 0 }}"
@@ -111,7 +111,6 @@
             {% endfor %}
         </div>
     {% endif %}
-
 
     <div id="trick_videos"
          class="row mb-4"

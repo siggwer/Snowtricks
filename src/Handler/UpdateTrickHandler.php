@@ -3,17 +3,17 @@
 namespace App\Handler;
 
 use App\Entity\Trick;
-use App\Form\TrickType;
+use App\Form\UpdateTrickType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class AddTrickHandler
+ * Class UpdateTrickHandler
  *
  * @package App\Handler
  */
-class AddTrickHandler extends AbstractHandler
+class UpdateTrickHandler extends AbstractHandler
 {
     /**
      * @var EntityManagerInterface
@@ -31,7 +31,7 @@ class AddTrickHandler extends AbstractHandler
     private $security;
 
     /**
-     * AddTrickHandler constructor.
+     * UpdateTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param FlashBagInterface $flashBag
@@ -49,7 +49,7 @@ class AddTrickHandler extends AbstractHandler
      */
     public function getFormType(): string
     {
-        return TrickType::class;
+        return UpdateTrickType::class;
     }
 
     /**
@@ -63,11 +63,8 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->flush();
 
         $this->flashBag->add(
-                'success',
-                'Le trick a bien été crée.'
+            'success',
+            'Le trick a bien été modifié.'
         );
-
     }
 }
-
-

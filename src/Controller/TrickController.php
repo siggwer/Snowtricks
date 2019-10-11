@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
-use App\Entity\Trick;
-use App\Form\TrickType;
-use App\Handler\AddTrickHandler;
-use App\Handler\ShowTrickHandler;
-use App\Repository\CommentRepository;
-use App\Repository\TrickRepository;
-use Exception;
+use App\Handler\UpdateTrickHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Comment;
+use App\Entity\Trick;
+use App\Handler\AddTrickHandler;
+use App\Handler\ShowTrickHandler;
+use App\Repository\CommentRepository;
+use App\Repository\TrickRepository;
+use Exception;
 
 /**
  * Class TrickController
@@ -64,7 +64,7 @@ class TrickController extends AbstractController
     {
         $trick = new Trick();
         if ($handler->handle($request, $trick)) {
-            dd($handler);
+
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
         return $this->render(
@@ -126,23 +126,19 @@ class TrickController extends AbstractController
     /**
      * @Route("/update/{slug}", name="trick_update", methods={"GET","POST"})
      *
-     * @param Trick   $trick
      * @param Request $request
+     * @param Trick $trick
+     * @param UpdateTrickHandler $handler
      *
      * @return Response
      */
     public function update(
+        Request $request,
         Trick $trick,
-        Request $request
+        UpdateTrickHandler $handler
     ): Response {
-        $form = $this->createForm(TrickType::class, $trick)->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->persist($trick);
-            $this->getDoctrine()->getManager()->flush();
-
-            //$this->addFlash('success', 'L\'article a été modifié avec succes');
-            $this->get('session')->getFlashBag()->set('success', 'L\'article a été modifié avec succes');
+        if ($handler->handle($request, $trick)) {
 
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
@@ -151,7 +147,7 @@ class TrickController extends AbstractController
             "trick/update.html.twig",
             [
             'trick' => $trick,
-            'form' => $form->createView()
+            'form' => $handler->createView()
 
             ]
         );
