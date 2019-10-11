@@ -6,7 +6,7 @@
 
 Clone this repository.
 ```
-git clone https://github.com/siggwer/Snowtricks.git
+git clone https://github.com/siggwer/snow.git
 ```
 
 Install dependencies
