@@ -39,9 +39,20 @@
                 </div>
                 {{ form_widget(form.description, {'attr': {'class': 'task_field'}}) }}
             </div>
-            <div class="form-group">
-                {{ form_row(form.pictureOnFront.uploadedFile, {'attr': {'placeholder': 'Modifier l\'image principale'}}) }}
-                {{ form_row(form.pictureOnFront.alt, {'attr': {'placeholder': 'Texte alternatif'}}) }}
+            <div id="picture-on-front-0" class="card">
+                <div id="pictures_on_front-{{ form.vars.name }}" class='card-body d-block mx-auto p-0 picture-preview' data-input="trick_pictureOnFront_uploadedFile"></div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Ajouter une image principale :</label>
+                        {{ form_widget(form.pictureOnFront.alt, {'attr': {'placeholder': 'Texte alternatif'}}) }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {{ form_widget(form.pictureOnFront.uploadedFile, {'attr': {'placeholder': 'Modifier l\'image principale', 'class': 'img-upload'}}) }}
+                    <label for="trick_pictureOnFront_uploadedFile"  class="btn btn-primary m-0">
+                        <span class="fa fa-upload"></span>
+                    </label>
+                </div>
             </div>
         </div>
     </div>
@@ -94,10 +105,6 @@
                                     allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
                                     allowfullscreen>
                             </iframe>
-                            <div class="card-body">
-                                <h4 class="card-title"></h4>
-                                <p class="card-text"></p>
-                            </div>
                             <div class="card-footer">
                                 <button type="button"
                                         class="btn btn-outline-danger remove-picture"
