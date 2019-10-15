@@ -1,7 +1,9 @@
 # Snowtricks
 
-# practice developement on symfony
-
+# Openclassrooms project 6
+```
+Development of a community site based on symfony 4.
+```
 ## Installation
 
 Clone this repository.
