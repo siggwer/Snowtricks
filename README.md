@@ -9,7 +9,7 @@ Development of a community site based on symfony 4.
 
 Clone this repository.
 ```
-git clone https://github.com/siggwer/snow.git
+git clone https://github.com/siggwer/Snowtricks.git
 ```
 
 Install dependencies
