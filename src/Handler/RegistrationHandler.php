@@ -5,10 +5,6 @@ namespace App\Handler;
 use App\Entity\User;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\Form\FormFactoryInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
@@ -16,18 +12,8 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
  *
  * @package App\Handler
  */
-class RegistrationHandler
+class RegistrationHandler extends AbstractHandler
 {
-    /**
-     * @var FormFactoryInterface
-     */
-    private $formFactory;
-
-    /**
-     * @var FormInterface
-     */
-    private $form;
-
     /**
      * @var EntityManagerInterface
      */
@@ -41,47 +27,35 @@ class RegistrationHandler
     /**
      * RegistrationHandler constructor.
      *
-     * @param FormFactoryInterface   $formFactory
      * @param EntityManagerInterface $entityManager
      * @param FlashBagInterface      $flashBag
      */
-    public function __construct(FormFactoryInterface $formFactory, EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
+    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
     {
-        $this->formFactory = $formFactory;
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
     }
 
     /**
-     * @param User    $user
-     * @param Request $request
-     *
-     * @return bool
+     * @return string
      */
-    public function handle(User $user, Request $request) : bool
+    public function getFormType(): string
     {
-        $this->form = $this->formFactory->create(RegistrationFormType::class, $user)->handleRequest($request);
-
-        if ($this->form->isSubmitted() &&  $this->form->isValid()) {
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
-
-            $this->flashBag->add(
-                'success',
-                'Votre compte a bien été créé.'
-            );
-
-            return true;
-        }
-
-        return false;
+        return RegistrationFormType::class;
     }
 
     /**
-     * @return FormView
+     * @param User $data
      */
-    public function createView() : FormView
+    public function process($data = null): void
     {
-        return  $this->form->createView();
+        $this->entityManager->persist($data);
+        $this->entityManager->flush();
+
+        $this->flashBag->add(
+            'success',
+            'Votre compte a bien été créé.'
+        );
+
     }
 }

@@ -29,7 +29,7 @@ class ProfileController extends AbstractController
     ): Response {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($handler->handle($this->getUser(), $request)) {
+        if ($handler->handle($request, $this->getUser())) {
             return $this->redirectToRoute('mon-compte');
         }
 

@@ -1,5 +1,5 @@
 //Load more
-$(function() {
+$(function () {
     var page = 1;
 
     $("#load-more").on("click", function () {
@@ -7,7 +7,9 @@ $(function() {
 
         $.ajax({
             url: "/trick/list",
-            data: { page: page },
+            data: {
+                page: page
+            },
             success: function (html) {
                 $("#tricks").append(html);
             }

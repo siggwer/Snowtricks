@@ -43,7 +43,7 @@ services:
 
     email_service:
         class: App\Handler\ContactHandler
-        arguments: ['@form.factory', '@session.flash_bag']
+        arguments: ['@session.flash_bag', '@Swift_Mailer']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

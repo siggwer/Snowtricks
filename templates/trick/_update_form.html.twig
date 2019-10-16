@@ -1,0 +1,103 @@
+{% if trick %}
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_widget(form._token) }}
+    <div class="row">
+        <div class="col-lg-8 col-md-8 d-block mx-auto">
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+            <span class="input-group-text">
+            <!--<i class="fa fa-font"></i>-->
+                Titre
+            </span>
+                </div>
+                {{ form_widget(form.name, {'attr': {'placeholder': 'Titre du trick'}}) }}
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+            <span class="input-group-text">
+            <!--<i class="fa fa-th-list"></i>-->
+                Catégorie
+            </span>
+                </div>
+                {{ form_widget(form.category, {'attr': {'placeholder': 'Choississez la catégorie'}}) }}
+            </div>
+            <div class="form-group input-group">
+                <div class="input-group-prepend">
+            <span class="input-group-text">
+            <!--<i class="fa fa-file-text"></i>-->
+                Description
+            </span>
+                </div>
+                {{ form_widget(form.description, {'attr': {'placeholder': 'Description du trick'}}) }}
+            </div>
+            <div id="picture-on-front-0" class="card">
+                {% if trick.pictureOnFront is not null %}
+                    <img src="{{ asset(trick.pictureOnFront.path) }}">
+                {% endif %}
+                <div id="pictures_on_front-{{ form.vars.name }}" class='card-body d-block mx-auto p-0 picture-preview' data-input="trick_pictureOnFront_uploadedFile"></div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label>Modifier l'image principale :</label>
+                        {{ form_widget(form.pictureOnFront.alt, {'attr': {'placeholder': 'Texte alternatif'}}) }}
+                    </div>
+                </div>
+                <div class="card-footer">
+                    {{ form_widget(form.pictureOnFront.uploadedFile, {'attr': {'placeholder': 'Modifier l\'image principale', 'class': 'img-upload'}}) }}
+                    <label for="trick_pictureOnFront_uploadedFile"  class="btn btn-primary m-0">
+                        <span class="fa fa-upload"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-lg-8 col-md-8 d-block mx-auto">
+            <div id="trick_pictures"
+                 class="form-group"
+                 data-index="{{ form.pictures|length > 0 ? form.pictures|last.vars.name + 1 : 0 }}"
+                 data-prototype="{{ include('trick/_picture.html.twig', { form: form.pictures.vars.prototype })|e('html_attr') }}">
+                {% for picture in form.pictures %}
+                    {{ include('trick/_picture.html.twig', { form: picture }) }}
+                {% endfor %}
+            </div>
+            <div>
+                <label for="trick_picture" class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary float-right trick-picture">Ajouter une image</button>
+                </label>
+            </div>
+            <!-- end add picture// -->
+            <br>
+            <div id="trick_videos"
+                 class="row mb-4"
+                 data-index="{{ form.videos|length > 0 ? form.videos|last.vars.name + 1 : 0 }}"
+                 data-prototype="{{ include('trick/_video.html.twig', { form: form.videos.vars.prototype })|e('html_attr') }}">
+                {% for video in form.videos %}
+                    {{ include('trick/_video.html.twig', { form: video }) }}
+                {% endfor %}
+            </div>
+            <div>
+                <label for="trick_video" class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-primary float-right trick-video">Ajouter une video</button>
+                </label>
+            </div>
+            <!-- end add video// -->
+        </div>
+    </div>
+    <!-- end add video// -->
+    <div class="form-group d-flex justify-content-between">
+        <a href="/" class="btn btn-secondary float-left">Accueil</a>
+        {% if form.vars.data.id is not null %}
+            <a href="{{ path("trick_show", { 'slug': trick.slug }) }}" class="btn btn-info">Voir le trick</a>
+        {% endif %}
+        <button type="submit" class="btn btn-success float-right">
+            {% if form.vars.data.id is null %}
+                Ajouter
+            {% else %}
+                Modifier
+            {% endif %}
+        </button>
+    </div>
+    {{ form_end(form, { render_rest: false }) }}
+{% endif %}

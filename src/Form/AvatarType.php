@@ -41,7 +41,7 @@ class AvatarType extends AbstractType
         $resolver->setDefaults(
             [
             'data_class' => User::class,
-            'validation_groups' => ['avatar', 'Default']
+            'validation_groups' => ['avatar']
             ]
         );
     }

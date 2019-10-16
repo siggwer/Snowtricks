@@ -3,7 +3,8 @@
         <div class="card mb-4">
             <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
             <div class="card-body">
-                <h2 class="card-title">{{ trick.name }}
+                <h2 class="card-title">
+                    {{ trick.name }}
                     {% if is_granted("ROLE_USER") %}
                         <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-secondary"><i class="fa fa-pencil"></i></a>
                         <!-- Button HTML (to Trigger Modal) -->
@@ -38,9 +39,9 @@
             </div>
             <div class="card-footer text-muted">
                 <p>Posté le
-                {{ trick.publishedAt|date("d/m/Y") }}
-                par
-                {{ trick.author.username }}
+                    {{ trick.publishedAt|date("d/m/Y") }}
+                    par
+                    {{ trick.author.username }}
                 </p>
             </div>
         </div>

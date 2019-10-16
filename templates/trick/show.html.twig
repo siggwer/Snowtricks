@@ -1,7 +1,5 @@
 {% extends "base.html.twig" %}
-
 {% block title %}Détail{% endblock %}
-
 {% block body %}
     <div class="container py-5">
         <div class="jumbotron my-4">
@@ -15,7 +13,7 @@
         </div>
         <div class="row py-5">
             {% for picture in trick.pictures %}
-            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <img class="card-img-top" src="{{ asset(picture.path) }}" alt="{{ picture.alt }}">
                         <div class="card-body">
@@ -26,7 +24,7 @@
                             <a href="{{ asset(picture.path) }}" class="btn btn-primary">Voir l'image</a>
                         </div>
                     </div>
-            </div>
+                </div>
             {% endfor %}
         </div>
         <div class="row py-5">
@@ -43,12 +41,11 @@
             {% endfor %}
         </div>
         {% if is_granted("ROLE_USER") %}
-        {{ form_start(form) }}
-        {{ form_widget(form._token) }}
-        {{ form_rest(form) }}
-
-        <button class="btn btn-success">Envoyer</button>
-        {{ form_end(form) }}
+            {{ form_start(form) }}
+            {{ form_widget(form._token) }}
+            {{ form_rest(form) }}
+            <button class="btn btn-success">Envoyer</button>
+            {{ form_end(form) }}
         {% endif %}
         <div class="card card-outline-secondary my-4"  id="comments">
             <div class="card-header">
@@ -71,7 +68,6 @@
                 </div>
             {% endfor %}
         </div>
-
         {% if pagination.pages > 1 %}
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
@@ -99,10 +95,12 @@
                 </ul>
             </nav>
         {% endif %}
-        {% if is_granted("ROLE_USER") %}
-            <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
-            <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-warning float-right">Modifier</a>
-        {% endif %}
+        <div class="form-group d-flex justify-content-between">
+            <a href="{{ path("home") }}" class="btn btn-primary float-left">Accueil</a>
+            {% if is_granted("ROLE_USER") %}
+                <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+                <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-warning float-right">Modifier</a>
+            {% endif %}
+        </div>
     </div>
-
 {% endblock %}

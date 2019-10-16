@@ -2,18 +2,18 @@
 
 namespace App\Handler;
 
-use App\Entity\Trick;
-use App\Form\TrickType;
+use App\Entity\Comment;
+use App\Form\CommentType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class AddTrickHandler
+ * Class ShowTrickHandler
  *
  * @package App\Handler
  */
-class AddTrickHandler extends AbstractHandler
+class ShowTrickHandler extends AbstractHandler
 {
     /**
      * @var EntityManagerInterface
@@ -31,7 +31,7 @@ class AddTrickHandler extends AbstractHandler
     private $security;
 
     /**
-     * AddTrickHandler constructor.
+     * ShowTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
      * @param FlashBagInterface $flashBag
@@ -49,11 +49,11 @@ class AddTrickHandler extends AbstractHandler
      */
     public function getFormType(): string
     {
-        return TrickType::class;
+        return CommentType::class;
     }
 
     /**
-     * @param Trick $data
+     * @param Comment $data
      */
     public function process($data = null): void
     {
@@ -63,11 +63,8 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->flush();
 
         $this->flashBag->add(
-                'success',
-                'Le trick a bien été crée.'
+            'success',
+            'Le commentaire a bien été modifié.'
         );
-
     }
 }
-
-

@@ -29,7 +29,8 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, RegistrationHandler $handler): Response
     {
-        if ($handler->handle(new User(), $request)) {
+        if ($handler->handle($request, new User())) {
+
             return $this->redirectToRoute('mon-compte');
         }
 

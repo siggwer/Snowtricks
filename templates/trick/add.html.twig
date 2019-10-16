@@ -1,5 +1,4 @@
 {% extends "base.html.twig" %}
-
 {% block body %}
     <div class="container my-5">
         <div class="row">
@@ -8,21 +7,18 @@
                     <div class="card">
                         <div class="card-body">
                             <h3>Créer un trick</h3>
-                            {{ include("trick/_addForm.html.twig", { form: form }) }}
+                            {{ include("trick/_add_form.html.twig", { form: form }) }}
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/picture_button.js') }}"></script>
     <script src="{{ asset('js/video_button.js') }}"></script>
     <script src="{{ asset('js/input_custom_file.js') }}"></script>
-
+    <script src="{{ asset('js/picture_add_button.js') }}"></script>
 {% endblock %}
