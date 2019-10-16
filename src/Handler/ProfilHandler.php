@@ -30,6 +30,7 @@ class ProfilHandler extends AbstractHandler
      *
      * @param EntityManagerInterface $entityManager
      * @param FlashBagInterface $flashBag
+     * @param Security $security
      */
     public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
     {

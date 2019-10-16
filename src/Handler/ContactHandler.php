@@ -6,7 +6,6 @@ use App\Form\ContactType;
 use App\Model\Contact;
 use Swift_Mailer;
 use Swift_Message;
-use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -20,11 +19,6 @@ use Twig\Error\SyntaxError;
  */
 class ContactHandler extends AbstractHandler
 {
-    /**
-     * @var FormInterface
-     */
-    private $form;
-
     /**
      * @var Environment
      */
@@ -45,6 +39,7 @@ class ContactHandler extends AbstractHandler
      *
      * @param FlashBagInterface $flashBag
      * @param Swift_Mailer $mailer
+     * @param Environment $templating
      */
     public function __construct(FlashBagInterface $flashBag, Swift_Mailer $mailer, Environment $templating)
     {
