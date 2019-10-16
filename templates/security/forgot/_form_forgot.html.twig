@@ -1,0 +1,11 @@
+{{ form_start(form) }}
+{{ form_errors(form) }}
+{{ form_widget(form._token) }}
+<div class="form-group input-group">
+    <div class="input-group-prepend">
+        <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+    </div>
+    {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Votre email'}}) }}
+</div>
+<button class="btn btn-primary btn-block btnSubmitRegister">S'enregistrer</button>
+{{ form_end(form, { render_rest: false }) }}

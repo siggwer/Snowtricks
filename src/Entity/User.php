@@ -309,7 +309,7 @@ class User implements UserInterface, Serializable
     /**
      * @return string
      */
-    public function serialize(): string 
+    public function serialize(): string
     {
         return serialize(
             array(
