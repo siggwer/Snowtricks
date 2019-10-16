@@ -1,9 +1,6 @@
 {% extends "base.html.twig" %}
-
 {% block title %}Snowtrick / Accueil{% endblock %}
-
 {% block body %}
-
     <div id="home" class="jumbotron text-center">
         <h1 class="jumbotron-heading display-3">Les meilleurs tricks</h1>
         <p><a class="btn btn-primary btn-lg" href="#tricks" role="button">Voir les tricks &raquo;</a></p>
@@ -24,14 +21,10 @@
     <div id="scrollUp">
         <a href="#top"><img src="images/to_top.png"/></a>
     </div>
-
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/load_more.js') }}"></script>
     <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="{{ asset('js/input_custom_file.js') }}"></script>
-    
 {% endblock %}

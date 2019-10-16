@@ -1,15 +1,21 @@
 /* BEGIN LICENCE AND CREDIT */
+
+
 /*Created by http://www.twitter.com/halibegic @halibegic
 Code licensed under the ttp://www.apache.org/licenses/LICENSE-2.0 Apache License v2.0
 Based on http://getbootstrap.com Bootstrap v4
 Icons by http://fontawesome.io/
 http://www.github.com/halibegic/merlin GitHub*/
 
+
 /* END LICENCE */
+
 
 /* BEGIN HTML */
 
+
 /* BEGIN BODY */
+
 
 /* BEGIN BUTTON */
 
@@ -37,7 +43,9 @@ http://www.github.com/halibegic/merlin GitHub*/
     background: #233b6f;
 }
 
+
 /* END BUTTON */
+
 
 /* BEGIN NAVBAR */
 
@@ -61,14 +69,14 @@ http://www.github.com/halibegic/merlin GitHub*/
     color: #ffffff;
 }
 
-.navbar-light .navbar-nav .active > .nav-link,
-.navbar-light .navbar-nav .active > .nav-link:hover,
-.navbar-light .navbar-nav .active > .nav-link:focus {
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .active>.nav-link:hover,
+.navbar-light .navbar-nav .active>.nav-link:focus {
     color: #ffffff;
     background: transparent;
 }
 
-.nav-link:hover{
+.nav-link:hover {
     color: #007bff !important;
 }
 
@@ -84,7 +92,7 @@ http://www.github.com/halibegic/merlin GitHub*/
     border-bottom-color: transparent;
 }
 
-.navbar-nav .show>.nav-link{
+.navbar-nav .show>.nav-link {
     color: #ffffff !important;
 }
 
@@ -93,22 +101,27 @@ http://www.github.com/halibegic/merlin GitHub*/
     margin-right: 30px;
 }
 
-.dropdown-menu{
+.dropdown-menu {
     margin-left: 100px !important;
 }
+
+
 /* END NAVBAR */
+
 
 /* BEGIN JUMBOTRON */
 
-.jumbotron{
+.jumbotron {
     margin-bottom: unset !important;
 }
 
-.display-3{
+.display-3 {
     font-weight: 500 !important;
 }
 
+
 /* END JUMBOTRON */
+
 
 /* BEGIN MODAL */
 
@@ -116,15 +129,19 @@ http://www.github.com/halibegic/merlin GitHub*/
     max-width: 750px !important;
 }
 
+
 /* BEGIN FLASHBAG */
 
-.alert{
+.alert {
     margin-top: 5rem !important;
 }
 
+
 /* END FLASHBAG */
 
+
 /*END MODAL */
+
 
 /* BEGIN PAGINATION */
 
@@ -132,6 +149,8 @@ http://www.github.com/halibegic/merlin GitHub*/
     background-color: #233b6f !important;
     border-color: #233b6f !important;
 }
+
+
 /* END PAGINATION */
 
 .page {
@@ -187,139 +206,161 @@ http://www.github.com/halibegic/merlin GitHub*/
     height: 0;
 }
 
+
 /* BEGIN LOGIN */
 
-.login-container{
+.login-container {
     margin-top: 5%;
     margin-bottom: 5%;
     padding-left: 21%;
 }
 
-.login-form-1{
+.login-form-1 {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.login-form-1 h3{
+
+.login-form-1 h3 {
     text-align: center;
     color: #333;
 }
-.login-form-2{
+
+.login-form-2 {
     padding: 5%;
     background: #233b6f;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.login-form-2 h3{
+
+.login-form-2 h3 {
     text-align: center;
     color: #fff;
 }
-.login-container form{
+
+.login-container form {
     padding: 10%;
 }
-.btnSubmit
-{
+
+.btnSubmit {
     width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
     border: none;
     cursor: pointer;
 }
-.login-form-1 .btnSubmit{
+
+.login-form-1 .btnSubmit {
     font-weight: 600;
     color: #fff;
     background-color: #233b6f;
 }
-.login-form-2 .btnSubmit{
+
+.login-form-2 .btnSubmit {
     font-weight: 600;
     color: #233b6f;
     background-color: #fff;
 }
-.login-form-2 .ForgetPwd{
+
+.login-form-2 .ForgetPwd {
     color: #fff;
     font-weight: 600;
     text-decoration: none;
 }
-.login-form-1 .ForgetPwd{
+
+.login-form-1 .ForgetPwd {
     color: #233b6f;
     font-weight: 600;
     text-decoration: none;
 }
 
+
 /*END LOGIN */
+
 
 /* BEGIN REGISTER */
 
-.register-container{
+.register-container {
     margin-top: 5%;
     margin-bottom: 5%;
     padding-left: 21%;
     padding-bottom: 12.5%;
 }
 
-.register-form-1{
+.register-form-1 {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.register-form-1 h3{
+
+.register-form-1 h3 {
     text-align: center;
     color: #333;
 }
-.register-form-2{
+
+.register-form-2 {
     padding: 5%;
     background: #233b6f;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
-.register-form-2 h3{
+
+.register-form-2 h3 {
     text-align: center;
     color: #fff;
 }
-.register-container form{
+
+.register-container form {
     padding: 10%;
 }
-.btnSubmit
-{
+
+.btnSubmit {
     width: 50%;
     border-radius: 1rem;
     padding: 1.5%;
     border: none;
     cursor: pointer;
 }
-.register-form-1 .btnSubmit{
+
+.register-form-1 .btnSubmit {
     font-weight: 600;
     color: #fff;
     background-color: #233b6f;
 }
-.register-form-2 .btnSubmit{
+
+.register-form-2 .btnSubmit {
     font-weight: 600;
     color: #233b6f;
     background-color: #fff;
 }
-.register-form-2 .ForgetPwd{
+
+.register-form-2 .ForgetPwd {
     color: #fff;
     font-weight: 600;
     text-decoration: none;
 }
-.register-form-1 .ForgetPwd{
+
+.register-form-1 .ForgetPwd {
     color: #233b6f;
     font-weight: 600;
     text-decoration: none;
 }
 
-.card-register{
+.card-register {
     padding-top: 100px !important;
     padding-bottom: 30px !important;
 }
+
 .divider-text {
     position: relative;
     text-align: center;
     margin-top: 15px;
     margin-bottom: 15px;
 }
+
 .divider-text span {
     padding: 7px;
     font-size: 12px;
     position: relative;
     z-index: 2;
 }
+
 .divider-text:after {
     content: "";
     position: absolute;
@@ -346,49 +387,61 @@ http://www.github.com/halibegic/merlin GitHub*/
     background-color: #405D9D;
     color: #fff;
 }
+
 .btn-twitter {
     background-color: #42AEEC;
     color: #fff;
 }
 
+
 /* END REGISTER */
+
 
 /* BEGIN ADD TRICK PAGE */
 
-.add-container{
+.add-container {
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: 10%;
 }
 
-.addtrick{
+.addtrick {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
+
+
 /* END ADD TRICK PAGE */
 
+
 /* BEGIN UPDATE TRICK PAGE */
-.card-register-form{
+
+.card-register-form {
     padding-bottom: 30px !important;
 }
+
+
 /* END UPDATE TRICK PAGE */
+
 
 /* BEGIN USER PROFILE PAGE */
 
-.add-container{
+.add-container {
     margin-top: 5%;
     margin-bottom: 5%;
     margin-left: 10%;
 }
 
-.update-avatar{
+.update-avatar {
     padding: 5%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
 }
 
-.picture-avatar-preview img{
+.picture-avatar-preview img {
     width: 100%;
 }
+
+
 /* END USER PROFILE PAGE */
 
 .my-4 {
@@ -399,7 +452,9 @@ http://www.github.com/halibegic/merlin GitHub*/
     margin-top: 130px !important;
 }
 
+
 /* END BODY */
+
 
 /* BEGIN FOOTER */
 
@@ -444,19 +499,25 @@ http://www.github.com/halibegic/merlin GitHub*/
     margin-bottom: 0;
 }
 
+
 /* END FOOTER */
 
+
 /* BEGIN SCROLL UP */
-#scrollUp
-{
+
+#scrollUp {
     position: fixed;
-    bottom : 30px;
+    bottom: 30px;
     right: -100px;
     opacity: 0.5;
 }
+
+
 /* END SCROLL UP */
 
+
 /* BEGIN RESPONSIVE */
+
 @media (min-width: 576px) {
     .modal-dialog {
         max-width: 750px !important;
@@ -465,34 +526,29 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 @media (min-width: 500px) and (max-width: 572px) {
     /* BEGIN ADD TRICK PAGE */
-
-    .add-container{
+    .add-container {
         margin-left: 0px;
     }
-
     /* END ADD TRICK PAGE */
 }
 
 @media (min-width: 993px) and (max-width: 1400px) {
-
     .login-container {
         margin-top: 5%;
         margin-bottom: 5%;
         padding-left: 21%;
         padding-bottom: 12.5%;
     }
-    .login-form-1{
+    .login-form-1 {
         padding: 3%;
         margin-left: 150px;
     }
-
-    .register-container{
+    .register-container {
         margin-top: 5%;
         margin-bottom: 5%;
         padding-left: 21%;
         padding-bottom: 12.5%;
     }
-
     .register-form-1 {
         padding: 3%;
         margin-top: 43px;
@@ -507,31 +563,26 @@ http://www.github.com/halibegic/merlin GitHub*/
 }
 
 @media (min-width: 1435px) {
-
     .login-container {
         margin-top: 5%;
         margin-bottom: 5%;
         padding-left: 21%;
         padding-bottom: 12.5%;
     }
-
-    .login-form-1{
+    .login-form-1 {
         padding: 3%;
         margin-left: 130px;
     }
-
-    .register-container{
+    .register-container {
         margin-top: 5%;
         margin-bottom: 5%;
         padding-left: 21%;
         padding-bottom: 12.5%;
     }
-
     .register-form-1 {
         padding: 3%;
         margin-left: 130px;
     }
-
     #footer {
         padding: 4rem 0;
         color: #ccc;
@@ -540,6 +591,8 @@ http://www.github.com/halibegic/merlin GitHub*/
     }
 }
 
+
 /* END RESPONSIVE */
+
 
 /* END HTML */

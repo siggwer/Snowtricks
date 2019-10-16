@@ -1,18 +1,18 @@
 <div class="col-lg-12 col-md-12 d-block mx-auto">
-        <div id="video-{{ form.vars.name }}" class="card">
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text"> <i class="fa fa-file-video-o"></i> </span>
-        </div>
-        {{ form_widget(form.url, {'attr': {'placeholder': 'Ajouter une video'}})}}
-        <div class="input-group-append">
-            <button type="button"
-                    class="btn btn-outline-danger remove-video"
-                    data-target="#video-{{ form.vars.name }}">
-                <i class="fa fa-remove"></i>
-            </button>
+    <div id="video-{{ form.vars.name }}" class="card">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text"> <i class="fa fa-file-video-o"></i> </span>
+            </div>
+            {{ form_widget(form.url, {'attr': {'placeholder': 'Ajouter une video'}})}}
+            <div class="input-group-append">
+                <button type="button"
+                        class="btn btn-outline-danger remove-video"
+                        data-target="#video-{{ form.vars.name }}">
+                    <i class="fa fa-remove"></i>
+                </button>
+            </div>
         </div>
     </div>
-</div>
 </div>
 <br>

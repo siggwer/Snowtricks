@@ -1,9 +1,6 @@
 {% extends "base.html.twig" %}
-
 {% block title %}Snowtrick / Mon profil{% endblock %}
-
 {% block body %}
-
     <div class="container my-5">
         <div class="row">
             <div class="col-12">
@@ -19,7 +16,6 @@
                                     {% else %}
                                         <img src="{{ asset('images/avatar.png') }}" class="img-circle" alt="">
                                     {% endif %}
-
                                 </div>
                             </div>
                             {{ include("user/_form_profile.html.twig", { form: form }) }}
@@ -29,13 +25,9 @@
             </div>
         </div>
     </div>
-
 {% endblock %}
-
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/input_custom_file.js') }}"></script>
     <script src="{{ asset('js/avatar_add_button.js') }}"></script>
-
 {% endblock %}
