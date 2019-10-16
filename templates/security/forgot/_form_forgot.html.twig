@@ -5,7 +5,7 @@
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
     </div>
-    {{ form_widget(registrationForm.email, {'attr': {'placeholder': 'Votre email'}}) }}
+    {{ form_widget(form.email, {'attr': {'placeholder': 'Votre email'}}) }}
 </div>
-<button class="btn btn-primary btn-block btnSubmitRegister">S'enregistrer</button>
+<button class="btn btn-primary btn-block btnSubmitRegister">Envoyer</button>
 {{ form_end(form, { render_rest: false }) }}

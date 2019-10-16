@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="bg-light addtrick">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Mot de passe oublié</h3>
+                            {{ include("security/forgot/_form_forgot.html.twig") }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
