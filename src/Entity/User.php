@@ -68,6 +68,11 @@ class User implements UserInterface, Serializable
     private $plainPassword;
 
     /**
+     * @var string|null
+     */
+    private $passwordToken;
+
+    /**
      * @var DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable")
@@ -124,35 +129,11 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return UploadedFile|null
-     */
-    public function getUploadedFile(): ?UploadedFile
-    {
-        return $this->uploadedFile;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setUsername(?string $username): void
-    {
-        $this->username = $username;
-    }
-
-    /**
      * @return string|null
      */
     public function getEmail(): ?string
     {
         return $this->email;
-    }
-
-    /**
-     * @param string|null $email
-     */
-    public function setEmail(?string $email): void
-    {
-        $this->email = $email;
     }
 
     /**
@@ -164,14 +145,6 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string|null $password
-     */
-    public function setPassword(?string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
      * @return string|null
      */
     public function getPlainPassword(): ?string
@@ -180,11 +153,19 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string|null $plainPassword
+     * @return string|null
      */
-    public function setPlainPassword(?string $plainPassword): void
+    public function getPasswordToken(): ?string
     {
-        $this->plainPassword = $plainPassword;
+        return $this->passwordToken;
+    }
+
+    /**
+     * @return UploadedFile|null
+     */
+    public function getUploadedFile(): ?UploadedFile
+    {
+        return $this->uploadedFile;
     }
 
     /**
@@ -203,6 +184,53 @@ class User implements UserInterface, Serializable
         return $this->avatar;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string|null $username
+     */
+    public function setUsername(?string $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param string|null $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @param string|null $passwordToken
+     */
+    public function setPasswordToken(?string $passwordToken): void
+    {
+        $this->passwordToken = $passwordToken;
+    }
 
     /**
      * @param DateTimeImmutable|null $registeredAt
@@ -218,14 +246,6 @@ class User implements UserInterface, Serializable
     public function setAvatar(?Picture $avatar): void
     {
         $this->avatar = $avatar;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getRole(): ?string
-    {
-        return $this->role;
     }
 
     /**
@@ -258,7 +278,7 @@ class User implements UserInterface, Serializable
      *
      * @return array (Role|string)[] The user roles
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_USER'];
     }
@@ -270,7 +290,7 @@ class User implements UserInterface, Serializable
      *
      * @return string|null The salt
      */
-    public function getSalt()
+    public function getSalt(): string
     {
         // TODO: Implement getSalt() method.
     }
@@ -281,7 +301,7 @@ class User implements UserInterface, Serializable
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // TODO: Implement eraseCredentials() method.
     }
@@ -289,7 +309,7 @@ class User implements UserInterface, Serializable
     /**
      * @return string
      */
-    public function serialize()
+    public function serialize(): string 
     {
         return serialize(
             array(
@@ -306,7 +326,7 @@ class User implements UserInterface, Serializable
     /**
      * @param $serialized
      */
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
         list(
             $this->id,
