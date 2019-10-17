@@ -1,16 +1,10 @@
 {% extends "base.html.twig" %}
 {% block body %}
-    <div class="container my-5">
+    <div class="container-fluid forgot-container album pb-6 bg">
         <div class="row">
-            <div class="col-12">
-                <div class="bg-light addtrick">
-                    <div class="card">
-                        <div class="card-body">
-                            <h3>Mot de passe oublié</h3>
-                            {{ include("security/forgot/_form_forgot.html.twig") }}
-                        </div>
-                    </div>
-                </div>
+            <div class="col-lg-6 col-md-8 forgot-form-1">
+                <h3>Récupère ton mot de passe</h3>
+                {{ include("security/forgot/_form_forgot.html.twig") }}
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -17,6 +18,40 @@ class UserRepository extends ServiceEntityRepository
     public function __construct(RegistryInterface $registry)
     {
         parent::__construct($registry, User::class);
+    }
+
+    /**
+     * @param $email
+     *
+     * @return mixed
+     *
+     * @throws NonUniqueResultException
+     */
+    public function checkEmail($email)
+    {
+        return $this->createQueryBuilder('user')
+            ->where('user.email = :email')
+            ->setParameter('email', $email)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param $email
+     *
+     * @param $token
+     */
+    public function saveResetToken($email, $token)
+    {
+        dd($email,$token);
+        $qb = $this->createQueryBuilder('user');
+        $qb->update(User::class, 'u')
+            ->set('u.passwordToken', '?1')
+            ->where('u.email = ?2')
+            ->setParameter(1, $token)
+            ->setParameter(2, $email);
+        $q= $qb->getQuery();
+        $q->execute();
     }
 
     // /**

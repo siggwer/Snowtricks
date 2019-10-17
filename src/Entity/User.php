@@ -69,6 +69,8 @@ class User implements UserInterface, Serializable
 
     /**
      * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
      */
     private $passwordToken;
 
@@ -290,7 +292,7 @@ class User implements UserInterface, Serializable
      *
      * @return string|null The salt
      */
-    public function getSalt(): string
+    public function getSalt()
     {
         // TODO: Implement getSalt() method.
     }

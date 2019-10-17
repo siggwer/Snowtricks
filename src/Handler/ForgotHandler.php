@@ -2,10 +2,12 @@
 
 namespace App\Handler;
 
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Repository\UserRepository;
+use App\Services\Token;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -23,19 +25,19 @@ use App\Model\Forgot;
 class ForgotHandler extends AbstractHandler
 {
     /**
-     * @var EntityManagerInterface
+     * @var
      */
-    private $entityManager;
-
-    /**
-     * @var Security
-     */
-    private $security;
+    private $userRepository;
 
     /**
      * @var Environment
      */
     private $templating;
+
+    /**
+     * @var Token
+     */
+    private $tokenService;
 
     /**
      * @var Swift_Mailer
@@ -50,14 +52,17 @@ class ForgotHandler extends AbstractHandler
     /**
      * ForgotHandler constructor.
      *
+     * @param UserRepository $userRepository
+     * @param Token $tokenService
      * @param Environment $templating
      * @param Swift_Mailer $mailer
      * @param FlashBagInterface $flashBag
      */
-    public function __construct(EntityManagerInterface $entityManager, Security $security, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
+    public function __construct(UserRepository $userRepository, Token $tokenService, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
     {
-        $this->entityManager = $entityManager;
-        $this->security = $security;
+
+        $this->userRepository = $userRepository;
+        $this->tokenService = $tokenService;
         $this->templating = $templating;
         $this->mailer = $mailer;
         $this->flashBag = $flashBag;
@@ -73,11 +78,19 @@ class ForgotHandler extends AbstractHandler
 
     /**
      * @param Forgot $data
+     *
+     * @throws NonUniqueResultException
      */
     public function process($data = null): void
     {
-        $user = $this->entityManager->getPartialReference(User::class, $data->getEmail());
-        if ($data->getEmail() === $user) {
+        $user = $this->userRepository->checkEmail($data->getEmail());
+
+        if ($data->getEmail() === $user->getEmail()) {
+
+            $token = $this->tokenService::generateToken();
+
+            $user = $this->userRepository->saveResetToken($data->getEmail(), $token);
+            dd($user);
             $message = new Swift_Message();
 
             try {

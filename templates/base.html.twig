@@ -21,8 +21,16 @@
             </div>
         {% endfor %}
     {% endfor %}
+    {% for label, messages in app.flashes(['error', 'warning']) %}
+        {% for message in messages %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
 {% endif %}
 {% block body %}
+
 {% endblock %}
 {% include("footer/footer.html.twig") %}
 {% block javascripts %}
