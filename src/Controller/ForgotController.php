@@ -17,11 +17,6 @@ use App\Model\Forgot;
 class ForgotController extends AbstractController
 {
     /**
-     * @var
-     */
-    private $userRepository;
-
-    /**
      * @Route("/forgot", name="forgot", methods={"GET", "POST"})
      *
      * @param Request $request
@@ -33,7 +28,7 @@ class ForgotController extends AbstractController
     {
         if($handler->handle($request, new Forgot())) {
 
-            return $this->redirectToRoute('forgot');
+            return $this->redirectToRoute('reset_password');
         }
         return $this->render(
             'security/forgot/forgot.html.twig',

@@ -16,16 +16,12 @@
 {% if app.request.hasPreviousSession %}
     {% for label, messages in app.flashes(['success', 'warning']) %}
         {% for message in messages %}
-            <div class="alert alert-success" role="alert">
-                {{ message }}
-            </div>
+            {% include("flash_message/_success_flash.html.twig") %}
         {% endfor %}
     {% endfor %}
     {% for label, messages in app.flashes(['error', 'warning']) %}
         {% for message in messages %}
-            <div class="alert alert-danger" role="alert">
-                {{ message }}
-            </div>
+            {% include("flash_message/_error_flash.html.twig") %}
         {% endfor %}
     {% endfor %}
 {% endif %}

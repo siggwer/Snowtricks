@@ -104,7 +104,7 @@ class TrickController extends AbstractController
             'trick/show.html.twig',
             [
             'form' => $handler->createView(),
-            'trick' =>$trick,
+            'trick' => $trick,
             'comments' => $commentRepository->findBy(
                 ['trick' => $trick],
                 ['publishedAt' => 'desc'],

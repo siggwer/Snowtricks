@@ -3,17 +3,16 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
-use App\Services\Token;
+use Doctrine\ORM\ORMException;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Environment;
 use Swift_Message;
 use Swift_Mailer;
+use App\Services\Token;
 use App\Form\ForgotType;
 use App\Model\Forgot;
 
@@ -60,7 +59,6 @@ class ForgotHandler extends AbstractHandler
      */
     public function __construct(UserRepository $userRepository, Token $tokenService, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
     {
-
         $this->userRepository = $userRepository;
         $this->tokenService = $tokenService;
         $this->templating = $templating;
@@ -80,17 +78,19 @@ class ForgotHandler extends AbstractHandler
      * @param Forgot $data
      *
      * @throws NonUniqueResultException
+     * @throws ORMException
      */
     public function process($data = null): void
     {
         $user = $this->userRepository->checkEmail($data->getEmail());
 
         if ($data->getEmail() === $user->getEmail()) {
-
             $token = $this->tokenService::generateToken();
 
-            $user = $this->userRepository->saveResetToken($data->getEmail(), $token);
-            dd($user);
+            $this->userRepository->saveResetToken($data->getEmail(), $token);
+
+            $passwordToken = $token;
+
             $message = new Swift_Message();
 
             try {
@@ -98,11 +98,13 @@ class ForgotHandler extends AbstractHandler
                     ->setTo($data->getEmail(), 'Administrateur')
                     ->setFrom('admin.snowtrick@yopmail.com', 'Administrateur')
                     ->setReplyTo($data->getEmail())
+                    ->setSubject('Reinitialisation de votre compte')
                     ->setBody(
                         $this->templating->render(
                             'security/forgot/forgot_email.html.twig',
                             [
-                                'forgot' => $data
+                                'forgot' => $data,
+                                'passwordToken' => $passwordToken
                             ]
                         ),
                         'text/html'
@@ -124,6 +126,4 @@ class ForgotHandler extends AbstractHandler
             'Votre email n\'est pas reconnu'
         );
     }
-
-
 }

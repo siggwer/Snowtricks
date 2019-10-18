@@ -43,7 +43,7 @@ class UserRepository extends ServiceEntityRepository
      */
     public function saveResetToken($email, $token)
     {
-        dd($email,$token);
+        //dd($email,$token);
         $qb = $this->createQueryBuilder('user');
         $qb->update(User::class, 'u')
             ->set('u.passwordToken', '?1')
