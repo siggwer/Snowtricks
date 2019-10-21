@@ -1,20 +1,20 @@
-{{ form_start(Form) }}
-{{ form_errors(Form) }}
-{{ form_widget(Form._token) }}
+{{ form_start(form) }}
+{{ form_errors(form) }}
+{{ form_widget(form._token) }}
 <!-- form-group// -->
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-key"></i></span>
     </div>
-    {{ form_widget(Form.plainPassword.first, {'attr': {'placeholder': 'Votre mot de passe'}}) }}
+    {{ form_widget(form.plainPassword.first, {'attr': {'placeholder': 'Votre mot de passe'}}) }}
 </div>
 <!-- form-group// -->
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-key"></i></span>
     </div>
-    {{ form_widget(Form.plainPassword.second, {'attr': {'placeholder': 'Répétez votre mot de passe'}}) }}
+    {{ form_widget(form.plainPassword.second, {'attr': {'placeholder': 'Répétez votre mot de passe'}}) }}
 </div>
 <!-- form-group// -->
 <button class="btn btn-primary btn-block btnSubmitRegister">Valider</button>
-{{ form_end(Form)}}
+{{ form_end(form)}}

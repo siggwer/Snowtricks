@@ -82,48 +82,47 @@ class ForgotHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        $user = $this->userRepository->checkEmail($data->getEmail());
+       $user = $this->userRepository->checkEmail($data->getEmail());
 
-        if ($data->getEmail() === $user->getEmail()) {
-            $token = $this->tokenService::generateToken();
+            if ($data->getEmail() === $user->getEmail()) {
+                $token = $this->tokenService::generateToken();
 
-            $this->userRepository->saveResetToken($data->getEmail(), $token);
+                $this->userRepository->saveResetToken($data->getEmail(), $token);
 
-            $passwordToken = $token;
+                $passwordToken = $token;
 
-            $message = new Swift_Message();
+                $message = new Swift_Message();
 
-            try {
-                $message
-                    ->setTo($data->getEmail(), 'Administrateur')
-                    ->setFrom('admin.snowtrick@yopmail.com', 'Administrateur')
-                    ->setReplyTo($data->getEmail())
-                    ->setSubject('Reinitialisation de votre compte')
-                    ->setBody(
-                        $this->templating->render(
-                            'security/forgot/forgot_email.html.twig',
-                            [
-                                'forgot' => $data,
-                                'passwordToken' => $passwordToken
-                            ]
-                        ),
-                        'text/html'
-                    );
-            } catch (LoaderError $e) {
-            } catch (RuntimeError $e) {
-            } catch (SyntaxError $e) {
+                try {
+                    $message
+                        ->setTo($data->getEmail(), 'Administrateur')
+                        ->setFrom('admin.snowtrick@yopmail.com', 'Administrateur')
+                        ->setReplyTo($data->getEmail())
+                        ->setSubject('Reinitialisation de votre compte')
+                        ->setBody(
+                            $this->templating->render(
+                                'security/forgot/forgot_email.html.twig',
+                                [
+                                    'forgot' => $data,
+                                    'passwordToken' => $passwordToken
+                                ]
+                            ),
+                            'text/html'
+                        );
+                } catch (LoaderError $e) {
+                } catch (RuntimeError $e) {
+                } catch (SyntaxError $e) {
+                }
+
+                $this->mailer->send($message);
+                $this->flashBag->add(
+                    'success',
+                    'Un email t\'a été envoyé pour récupérer ton mot de passe.'
+                );
             }
-
-            $this->mailer->send($message);
-
             $this->flashBag->add(
-                'success',
-                'Votre message a bien été envoyé.'
+                'error',
+                'Votre email n\'est pas reconnu'
             );
-       }
-        $this->flashBag->add(
-            'error',
-            'Votre email n\'est pas reconnu'
-        );
     }
 }

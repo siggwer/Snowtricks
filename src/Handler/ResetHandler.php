@@ -74,6 +74,10 @@ class ResetHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
+        dd($data);
+        //if($request->attributes->get('token'))
+            //if(){
 
+            //}
     }
 }

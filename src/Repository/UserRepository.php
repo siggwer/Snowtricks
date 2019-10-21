@@ -54,6 +54,22 @@ class UserRepository extends ServiceEntityRepository
         $q->execute();
     }
 
+    /**
+     * @param $token
+     *
+     * @return mixed
+     *
+     * @throws NonUniqueResultException
+     */
+    public function checkResetToken($token)
+    {
+        return $this->createQueryBuilder('user')
+            ->where('user.passwordToken = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */
