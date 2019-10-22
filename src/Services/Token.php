@@ -12,7 +12,7 @@ class Token
     /**
      * @return string
      */
-    static public function generateToken(): string
+    public function generate(): string
     {
         return md5(uniqid('', true));
     }

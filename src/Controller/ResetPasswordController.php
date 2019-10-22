@@ -14,7 +14,7 @@ use Exception;
 class ResetPasswordController extends AbstractController
 {
     /**
-     * @Route("/reset/{token}", name="reset_password", methods={"GET", "POST"})
+     * @Route("/reset/{passwordToken}", name="reset_password", methods={"GET", "POST"})
      *
      * @param Request $request
      * @param UserRepository $userRepository
@@ -24,18 +24,14 @@ class ResetPasswordController extends AbstractController
      *
      * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function resetPassword(Request $request,UserRepository $userRepository, ResetHandler $handler): Response
+    public function resetPassword(Request $request,User $user, ResetHandler $handler): Response
     {
-        $token = $request->attributes->get('token');
-        dd($token);
-        if($user = $userRepository->checkResetToken($request->attributes->get('token'))){
 
-            if($handler->handle($request, new User())) {
+            if($handler->handle($request, $user)) {
 
                 return $this->redirectToRoute('security_login');
             }
 
-        }
         return $this->render(
             'security/reset/reset.html.twig',
             [

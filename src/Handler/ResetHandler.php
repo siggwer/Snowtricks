@@ -3,6 +3,7 @@
 
 namespace App\Handler;
 
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
@@ -19,9 +20,9 @@ use Swift_Mailer;
 class ResetHandler extends AbstractHandler
 {
     /**
-     * @var
+     * @var EntityManagerInterface
      */
-    private $userRepository;
+    private $entityMananger;
 
     /**
      * @var Environment
@@ -41,14 +42,14 @@ class ResetHandler extends AbstractHandler
     /**
      * ResetHandler constructor.
      *
-     * @param UserRepository $userRepository
+     * @param EntityManagerInterface $entityManager
      * @param Environment $templating
      * @param Swift_Mailer $mailer
      * @param FlashBagInterface $flashBag
      */
-    public function __construct(UserRepository $userRepository, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
+    public function __construct(EntityManagerInterface $entityManager, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
     {
-        $this->userRepository = $userRepository;
+        $this->entityMananger= $entityManager;
         $this->templating = $templating;
         $this->mailer = $mailer;
         $this->flashBag = $flashBag;
@@ -67,9 +68,11 @@ class ResetHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        $user =
-        dd($data);
-        $this->userRepository->resetPassword($data->getPassword(), $data->getPasswordToken());
-
+        $data->setPasswordToken(null);
+        $this->entityMananger->flush();
+        $this->flashBag->add(
+            'success',
+            'Votre mot de passe a bien été changé.'
+        );
     }
 }

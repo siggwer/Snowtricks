@@ -26,7 +26,7 @@ use App\Model\Forgot;
 class ForgotHandler extends AbstractHandler
 {
     /**
-     * @var
+     * @var UserRepository
      */
     private $userRepository;
 
@@ -94,7 +94,7 @@ class ForgotHandler extends AbstractHandler
         $user = $this->userRepository->checkEmail($data->getEmail());
 
             if ($data->getEmail() === $user->getEmail()) {
-                $token = $this->tokenService::generateToken();
+                $token = $this->tokenService::generate();
 
                 $this->userRepository->saveResetToken($data->getEmail(), $token);
 
@@ -131,6 +131,7 @@ class ForgotHandler extends AbstractHandler
                     'success',
                     'Un email t\'a été envoyé pour récupérer ton mot de passe.'
                 );
+                return;
             }
             $this->flashBag->add(
                 'error',

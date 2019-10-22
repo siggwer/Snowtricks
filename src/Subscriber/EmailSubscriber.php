@@ -64,5 +64,20 @@ class EmailSubscriber implements EventSubscriberInterface
             [ 'admin.snowtrick@yopmail.com' => 'Récupération de mot passe'],
             $event->getEmail(),
             'Changer votre mot de passe en cliquant sur ce lien : "http://st/forgotPasswordValidation/'.$event->getToken());
+        $message
+            ->setTo($envent->getEmail(), 'Administrateur')
+            ->setFrom('admin.snowtrick@yopmail.com', 'Administrateur')
+            ->setReplyTo($data->getEmail())
+            ->setSubject('Reinitialisation de votre compte')
+            ->setBody(
+                $this->templating->render(
+                    'security/forgot/forgot_email.html.twig',
+                    [
+                        'forgot' => $data,
+                        'passwordToken' => $passwordToken
+                    ]
+                ),
+                'text/html'
+            );
     }
 }
