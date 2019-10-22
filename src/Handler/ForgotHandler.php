@@ -2,6 +2,8 @@
 
 namespace App\Handler;
 
+use App\Event\ForgotPasswordEmailEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use App\Repository\UserRepository;
@@ -44,6 +46,11 @@ class ForgotHandler extends AbstractHandler
     private $mailer;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
      * @var FlashBagInterface
      */
     private $flashBag;
@@ -55,14 +62,16 @@ class ForgotHandler extends AbstractHandler
      * @param Token $tokenService
      * @param Environment $templating
      * @param Swift_Mailer $mailer
+     * @param EventDispatcherInterface $eventDispatcher
      * @param FlashBagInterface $flashBag
      */
-    public function __construct(UserRepository $userRepository, Token $tokenService, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
+    public function __construct(UserRepository $userRepository, Token $tokenService, Environment $templating, Swift_Mailer $mailer,EventDispatcherInterface $eventDispatcher, FlashBagInterface $flashBag)
     {
         $this->userRepository = $userRepository;
         $this->tokenService = $tokenService;
         $this->templating = $templating;
         $this->mailer = $mailer;
+        $this->eventDispatcher = $eventDispatcher;
         $this->flashBag = $flashBag;
     }
 
@@ -82,7 +91,7 @@ class ForgotHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-       $user = $this->userRepository->checkEmail($data->getEmail());
+        $user = $this->userRepository->checkEmail($data->getEmail());
 
             if ($data->getEmail() === $user->getEmail()) {
                 $token = $this->tokenService::generateToken();
@@ -90,6 +99,9 @@ class ForgotHandler extends AbstractHandler
                 $this->userRepository->saveResetToken($data->getEmail(), $token);
 
                 $passwordToken = $token;
+
+                $this->eventDispatcher->dispatch(ForgotPasswordEmailEvent::NAME,
+                    new ForgotPasswordEmailEvent($data->getEmail(), $token));
 
                 $message = new Swift_Message();
 

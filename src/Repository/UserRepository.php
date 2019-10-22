@@ -70,6 +70,23 @@ class UserRepository extends ServiceEntityRepository
             ->getOneOrNullResult();
     }
 
+    /**
+     * @param $token
+     * @param $password
+     */
+    public function resetPassword($token, $password)
+    {
+        $qb = $this->createQueryBuilder('user');
+        $qb->update(User::class, 'u')
+            ->set('u.password', '?1')
+            ->set('u.passwordToken', 'null')
+            ->where('u.passwordToken = ?2')
+            ->setParameter(1, $password)
+            ->setParameter(2, $token);
+        $q= $qb->getQuery();
+        $q->execute();
+    }
+
     // /**
     //  * @return User[] Returns an array of User objects
     //  */

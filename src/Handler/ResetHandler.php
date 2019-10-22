@@ -4,10 +4,10 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\UserRepository;
 use App\Form\ResetType;
-use App\Services\Token;
+use App\Entity\User;
 use Twig\Environment;
 use Swift_Mailer;
 
@@ -29,11 +29,6 @@ class ResetHandler extends AbstractHandler
     private $templating;
 
     /**
-     * @var Token
-     */
-    private $tokenService;
-
-    /**
      * @var Swift_Mailer
      */
     private $mailer;
@@ -47,15 +42,13 @@ class ResetHandler extends AbstractHandler
      * ResetHandler constructor.
      *
      * @param UserRepository $userRepository
-     * @param Token $tokenService
      * @param Environment $templating
      * @param Swift_Mailer $mailer
      * @param FlashBagInterface $flashBag
      */
-    public function __construct(UserRepository $userRepository, Token $tokenService, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
+    public function __construct(UserRepository $userRepository, Environment $templating, Swift_Mailer $mailer, FlashBagInterface $flashBag)
     {
         $this->userRepository = $userRepository;
-        $this->tokenService = $tokenService;
         $this->templating = $templating;
         $this->mailer = $mailer;
         $this->flashBag = $flashBag;
@@ -74,10 +67,9 @@ class ResetHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
+        $user =
         dd($data);
-        //if($request->attributes->get('token'))
-            //if(){
+        $this->userRepository->resetPassword($data->getPassword(), $data->getPasswordToken());
 
-            //}
     }
 }
