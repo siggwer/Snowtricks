@@ -1,17 +1,23 @@
 <?php
 
-
 namespace App\Model;
 
+use App\Validator\Constraints AS AcmeAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
+/**
+ * Class Forgot
+ *
+ * @package App\Model
+ */
 class Forgot
 {
     /**
      * @var string|null
      *
      * @Assert\NotBlank
-     * @Assert\Email
+     *
+     * @AcmeAssert\ConstainsEmail
      */
     private $email;
 

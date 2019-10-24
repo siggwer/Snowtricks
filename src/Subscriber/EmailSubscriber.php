@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Subscriber;
 
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -21,6 +20,7 @@ class EmailSubscriber implements EventSubscriberInterface
 
     /**
      * EmailSubscriber constructor.
+     *
      * @param EmailHelper $emailer
      */
     public function __construct(EmailHelper $emailer)
@@ -56,28 +56,28 @@ class EmailSubscriber implements EventSubscriberInterface
     }
 
     /**
-     * @param ForgotPasswordEmailEvent $event
+     * ForgotPasswordEmailEvent $event
      */
-    public function onForgotPassword(ForgotPasswordEmailEvent $event)
+    public function onForgotPassword(ForgotPasswordEmailEvent $event): void
     {
-        $this->emailer->mail('Récupération de votre compte Snow Tricks',
-            [ 'admin.snowtrick@yopmail.com' => 'Récupération de mot passe'],
-            $event->getEmail(),
-            'Changer votre mot de passe en cliquant sur ce lien : "http://st/forgotPasswordValidation/'.$event->getToken());
-        $message
-            ->setTo($envent->getEmail(), 'Administrateur')
-            ->setFrom('admin.snowtrick@yopmail.com', 'Administrateur')
-            ->setReplyTo($data->getEmail())
-            ->setSubject('Reinitialisation de votre compte')
-            ->setBody(
-                $this->templating->render(
-                    'security/forgot/forgot_email.html.twig',
-                    [
-                        'forgot' => $data,
-                        'passwordToken' => $passwordToken
-                    ]
-                ),
-                'text/html'
-            );
+        $from = [
+            'email' => 'admin.snowtrick@yopmail.com\'',
+            'name' => 'Administrateur',
+        ];
+        $to = [
+            'email' => $event->getEmail(),
+            'name' =>  explode('@', $event->getEmail() )[0],
+        ];
+
+        $result = $this->emailer->mail(
+            'Confirmation de votre compte',
+            $from,
+            $to,
+            'security/forgot/forgot_email.html.twig',
+            [
+                'forgot' => $event,
+                'passwordToken' => $event->getToken()
+            ]
+        );
     }
 }
