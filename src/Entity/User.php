@@ -71,8 +71,6 @@ class User implements UserInterface, Serializable
      * @var string|null
      *
      * @ORM\Column(type="string", nullable=true)
-     *
-     * @Assert\Valid(groups={"reset"})
      */
     private $passwordToken;
 

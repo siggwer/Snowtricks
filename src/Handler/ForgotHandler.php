@@ -74,14 +74,12 @@ class ForgotHandler extends AbstractHandler
         $user = $this->userRepository->checkEmail($data->getEmail());
 
             if ($data->getEmail() === $user->getEmail()) {
-                $token = $this->tokenService->generate();
+                $passwordToken = $this->tokenService->generate();
 
-                $this->userRepository->saveResetToken($data->getEmail(), $token);
-
-                $passwordToken = $token;
+                $this->userRepository->saveResetToken($data->getEmail(), $passwordToken);
 
                 $this->eventDispatcher->dispatch(ForgotPasswordEmailEvent::NAME,
-                    new ForgotPasswordEmailEvent($data->getEmail(), $token));
+                    new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken));
 
                 $this->flashBag->add(
                     'success',
