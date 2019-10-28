@@ -16,6 +16,7 @@ class Forgot
      * @var string|null
      *
      * @Assert\NotBlank
+     * @Assert\Email
      *
      * @AcmeAssert\ConstainsEmail
      */

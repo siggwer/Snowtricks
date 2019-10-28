@@ -29,7 +29,7 @@ class ForgotController extends AbstractController
     {
         if($handler->handle($request, new Forgot())) {
 
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('forgot');
         }
         return $this->render(
             'security/forgot/forgot.html.twig',

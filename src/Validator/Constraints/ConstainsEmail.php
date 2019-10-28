@@ -16,5 +16,5 @@ class ConstainsEmail extends Constraint
     /**
      * @var string
      */
-    public $message = 'Cet email "{{ string }}" contient des caractères illégaux: il ne doit contenir que des lettres, desz chiffres et un @mon-domain.fr';
+    public $message = 'Cet email "{{ email }}" n\'existe pas !';
 }

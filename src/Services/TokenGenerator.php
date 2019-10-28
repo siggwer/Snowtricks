@@ -3,11 +3,11 @@
 namespace App\Services;
 
 /**
- * Class Token
+ * Class TokenGenerator
  *
  * @package App\Services
  */
-class Token
+class TokenGenerator
 {
     /**
      * @return string
