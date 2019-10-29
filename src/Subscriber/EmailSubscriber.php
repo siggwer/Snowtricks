@@ -2,14 +2,12 @@
 
 namespace App\Subscriber;
 
-use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Event\ForgotPasswordEmailEvent;
 use App\Services\EmailHelper;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class EmailSubscriber
- *
- * @package App\Subscriber
+ * Class EmailSubscriber.
  */
 class EmailSubscriber implements EventSubscriberInterface
 {
@@ -27,7 +25,6 @@ class EmailSubscriber implements EventSubscriberInterface
     {
         $this->emailer = $emailer;
     }
-
 
     /**
      * Returns an array of event names this subscriber wants to listen to.
@@ -50,13 +47,12 @@ class EmailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-
-            ForgotPasswordEmailEvent::NAME => 'onforgotPassword'
+            ForgotPasswordEmailEvent::NAME => 'onforgotPassword',
         ];
     }
 
     /**
-     * ForgotPasswordEmailEvent $event
+     * ForgotPasswordEmailEvent $event.
      */
     public function onForgotPassword(ForgotPasswordEmailEvent $event): void
     {
@@ -66,7 +62,7 @@ class EmailSubscriber implements EventSubscriberInterface
         ];
         $to = [
             'email' => $event->getEmail(),
-            'name' =>  explode('@', $event->getEmail() )[0],
+            'name' => explode('@', $event->getEmail())[0],
         ];
 
         $result = $this->emailer->mail(
@@ -76,7 +72,7 @@ class EmailSubscriber implements EventSubscriberInterface
             'security/forgot/forgot_email.html.twig',
             [
                 'forgot' => $event,
-                'passwordToken' => $event->getToken()
+                'passwordToken' => $event->getToken(),
             ]
         );
     }

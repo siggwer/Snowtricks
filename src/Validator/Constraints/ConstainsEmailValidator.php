@@ -7,9 +7,7 @@ use Symfony\Component\Validator\Constraint;
 use Symfony\Component\Validator\ConstraintValidator;
 
 /**
- * Class ConstainsEmailValidator
- *
- * @package App\Validator\Constraints
+ * Class ConstainsEmailValidator.
  */
 class ConstainsEmailValidator extends ConstraintValidator
 {
@@ -29,21 +27,20 @@ class ConstainsEmailValidator extends ConstraintValidator
     }
 
     /**
-     * @param mixed $value
-     *
+     * @param mixed      $value
      * @param Constraint $constraint
      */
     public function validate($value, Constraint $constraint): void
     {
         $existingUser = $this->userRepository->findOneBy([
-            'email' => $value
+            'email' => $value,
         ]);
 
-       if (!$existingUser) {
-        /* @var $constraint ConstainsEmail */
-       $this->context->buildViolation($constraint->message)
-           ->setParameter('{{ email }}', $value)
+        if (!$existingUser) {
+            /* @var $constraint ConstainsEmail */
+            $this->context->buildViolation($constraint->message)
+            ->setParameter('{{ email }}', $value)
             ->addViolation();
-       }
+        }
     }
 }

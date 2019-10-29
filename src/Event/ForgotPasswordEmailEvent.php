@@ -1,20 +1,14 @@
 <?php
 
-
 namespace App\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class ForgotPasswordEmailEvent
- *
- * @package App
+ * Class ForgotPasswordEmailEvent.
  */
 class ForgotPasswordEmailEvent extends Event
 {
-    /**
-     *
-     */
     public const NAME = 'forgotPassword.event';
 
     /**

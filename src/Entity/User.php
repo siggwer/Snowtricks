@@ -2,19 +2,18 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable;
-use Serializable;
-use Exception;
 
 /**
- * Class User
+ * Class User.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\EntityListeners({"App\EntityListener\UserListener"})
@@ -318,7 +317,7 @@ class User implements UserInterface, Serializable
             $this->id,
             $this->username,
             $this->password,
-            $this->email
+            $this->email,
             // see section on salt below
             // $this->salt,
             )

@@ -1,15 +1,12 @@
 <?php
 
-
 namespace App\EntityListener;
 
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class UserListener
- *
- * @package App\Entity\EntityListener
+ * Class UserListener.
  */
 class UserListener
 {
@@ -49,7 +46,7 @@ class UserListener
      */
     private function encodePassword(User $user)
     {
-        if ($user->getPlainPassword() === null) {
+        if (null === $user->getPlainPassword()) {
             return;
         }
 

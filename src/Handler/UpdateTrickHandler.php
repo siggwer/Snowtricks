@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class UpdateTrickHandler
- *
- * @package App\Handler
+ * Class UpdateTrickHandler.
  */
 class UpdateTrickHandler extends AbstractHandler
 {
@@ -34,8 +32,8 @@ class UpdateTrickHandler extends AbstractHandler
      * UpdateTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface $flashBag
-     * @param Security $security
+     * @param FlashBagInterface      $flashBag
+     * @param Security               $security
      */
     public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
     {

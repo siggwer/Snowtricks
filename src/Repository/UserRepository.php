@@ -38,7 +38,6 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * @param $email
-     *
      * @param $token
      */
     public function saveResetToken($email, $token)
@@ -50,7 +49,7 @@ class UserRepository extends ServiceEntityRepository
             ->where('u.email = ?2')
             ->setParameter(1, $token)
             ->setParameter(2, $email);
-        $q= $qb->getQuery();
+        $q = $qb->getQuery();
         $q->execute();
     }
 
@@ -83,7 +82,7 @@ class UserRepository extends ServiceEntityRepository
             ->where('u.passwordToken = ?2')
             ->setParameter(1, $password)
             ->setParameter(2, $token);
-        $q= $qb->getQuery();
+        $q = $qb->getQuery();
         $q->execute();
     }
 

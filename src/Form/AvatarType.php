@@ -2,21 +2,18 @@
 
 namespace App\Form;
 
-use Symfony\Component\Form\AbstractType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\FormBuilderInterface;
 use App\Entity\User;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class AvatarType
- *
- * @package App\Form
+ * Class AvatarType.
  */
 class AvatarType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     *
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -28,7 +25,7 @@ class AvatarType extends AbstractType
                 [
                     'label' => 'Mon nouvel avatar',
                     'width' => 60,
-                    'height' => 51
+                    'height' => 51,
                 ]
             );
     }
@@ -41,7 +38,7 @@ class AvatarType extends AbstractType
         $resolver->setDefaults(
             [
             'data_class' => User::class,
-            'validation_groups' => ['avatar']
+            'validation_groups' => ['avatar'],
             ]
         );
     }

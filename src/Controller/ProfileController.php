@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class ProfileController
- *
- * @package App\Controller
+ * Class ProfileController.
  */
 class ProfileController extends AbstractController
 {
@@ -36,9 +34,9 @@ class ProfileController extends AbstractController
         return $this->render(
             'user/profile.html.twig',
             [
-            'user'=> $this->getUser(),
-            'avatar'=> $this->getUser()->getAvatar(),
-            'form'=> $handler->createView()
+            'user' => $this->getUser(),
+            'avatar' => $this->getUser()->getAvatar(),
+            'form' => $handler->createView(),
             ]
         );
     }

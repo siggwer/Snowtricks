@@ -3,9 +3,7 @@
 namespace App\Services;
 
 /**
- * Class TokenGenerator
- *
- * @package App\Services
+ * Class TokenGenerator.
  */
 class TokenGenerator
 {

@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Comment
+ * Class Comment.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * @ORM\EntityListeners({"App\EntityListener\CommentListener"})

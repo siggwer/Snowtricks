@@ -1,17 +1,14 @@
 <?php
 
-
 namespace App\Handler;
 
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Form\ResetType;
 use App\Entity\User;
+use App\Form\ResetType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Class ResetHandler
- *
- * @package App\Handler
+ * Class ResetHandler.
  */
 class ResetHandler extends AbstractHandler
 {
@@ -29,11 +26,11 @@ class ResetHandler extends AbstractHandler
      * ResetHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface $flashBag
+     * @param FlashBagInterface      $flashBag
      */
     public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
     {
-        $this->entityMananger= $entityManager;
+        $this->entityMananger = $entityManager;
         $this->flashBag = $flashBag;
     }
 

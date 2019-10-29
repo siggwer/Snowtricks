@@ -5,9 +5,8 @@ namespace App\Validator\Constraints;
 use Symfony\Component\Validator\Constraint;
 
 /**
- * Class ConstainsEmail
+ * Class ConstainsEmail.
  *
- * @package App\Validator\Constraints
  *
  * @Annotation
  */

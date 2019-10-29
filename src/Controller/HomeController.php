@@ -8,9 +8,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class HomeController
+ * Class HomeController.
  *
- * @package App\Controller
  *
  * @method getRequest()
  */
@@ -20,15 +19,16 @@ class HomeController extends AbstractController
      * @Route("/", name="home")
      *
      * @param TrickRepository $trickRepository
-
+     *
      * @return Response
      */
-    public function __invoke(TrickRepository $trickRepository): Response
-    {
+    public function __invoke(
+        TrickRepository $trickRepository
+    ): Response {
         return $this->render(
             'home.html.twig',
             [
-                'tricks' => $trickRepository->findBy([], ["publishedAt" => "desc"], 6, 0),
+                'tricks' => $trickRepository->findBy([], ['publishedAt' => 'desc'], 6, 0),
             ]
         );
     }

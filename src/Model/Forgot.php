@@ -2,13 +2,11 @@
 
 namespace App\Model;
 
-use App\Validator\Constraints AS AcmeAssert;
+use App\Validator\Constraints as AcmeAssert;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Forgot
- *
- * @package App\Model
+ * Class Forgot.
  */
 class Forgot
 {
@@ -37,5 +35,4 @@ class Forgot
     {
         $this->email = $email;
     }
-
 }

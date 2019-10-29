@@ -13,9 +13,7 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
- * Class ContactHandler
- *
- * @package App\Handler
+ * Class ContactHandler.
  */
 class ContactHandler extends AbstractHandler
 {
@@ -38,8 +36,8 @@ class ContactHandler extends AbstractHandler
      * ContactHandler constructor.
      *
      * @param FlashBagInterface $flashBag
-     * @param Swift_Mailer $mailer
-     * @param Environment $templating
+     * @param Swift_Mailer      $mailer
+     * @param Environment       $templating
      */
     public function __construct(FlashBagInterface $flashBag, Swift_Mailer $mailer, Environment $templating)
     {
@@ -61,7 +59,6 @@ class ContactHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-
         $message = new Swift_Message();
 
         try {
@@ -73,7 +70,7 @@ class ContactHandler extends AbstractHandler
                     $this->templating->render(
                         'contact/contact_email.html.twig',
                         [
-                            'contact' => $data
+                            'contact' => $data,
                         ]
                     ),
                     'text/html'
@@ -92,4 +89,3 @@ class ContactHandler extends AbstractHandler
         );
     }
 }
-

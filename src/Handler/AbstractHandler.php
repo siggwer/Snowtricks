@@ -8,11 +8,9 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class AbstractHandler
- *
- * @package App\Handler
+ * Class AbstractHandler.
  */
-Abstract class AbstractHandler
+abstract class AbstractHandler
 {
     /**
      * @var FormFactoryInterface
@@ -27,9 +25,9 @@ Abstract class AbstractHandler
     /**
      * @Required
      *
-     * @param FormFactoryInterface   $formFactory
+     * @param FormFactoryInterface $formFactory
      */
-    public function setFormFactory(FormFactoryInterface $formFactory) : void
+    public function setFormFactory(FormFactoryInterface $formFactory): void
     {
         $this->formFactory = $formFactory;
     }
@@ -37,25 +35,25 @@ Abstract class AbstractHandler
     /**
      * @param null $data
      */
-    abstract public function process($data = null) : void ;
+    abstract public function process($data = null): void;
 
     /**
      * @return string
      */
-    abstract public function getFormType() : string ;
+    abstract public function getFormType(): string;
 
     /**
-     * @param Request $request
+     * @param Request    $request
      * @param mixed|null $data
      *
      * @return bool
      */
-    public function handle(Request $request, $data = null) : bool
+    public function handle(Request $request, $data = null): bool
     {
         $this->form = $this->formFactory->create($this->getFormType(), $data)->handleRequest($request);
 
         if ($this->form->isSubmitted() && $this->form->isValid()) {
-                $this->process($data);
+            $this->process($data);
 
             return true;
         }
@@ -66,7 +64,7 @@ Abstract class AbstractHandler
     /**
      * @return FormView
      */
-    public function createView() : FormView
+    public function createView(): FormView
     {
         return  $this->form->createView();
     }

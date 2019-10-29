@@ -7,9 +7,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Picture
+ * Class Picture.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
  * @ORM\EntityListeners({"App\EntityListener\PictureListener"})

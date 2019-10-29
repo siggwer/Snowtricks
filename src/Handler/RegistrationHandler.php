@@ -8,9 +8,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Class RegistrationHandler
- *
- * @package App\Handler
+ * Class RegistrationHandler.
  */
 class RegistrationHandler extends AbstractHandler
 {
@@ -56,6 +54,5 @@ class RegistrationHandler extends AbstractHandler
             'success',
             'Votre compte a bien été créé.'
         );
-
     }
 }

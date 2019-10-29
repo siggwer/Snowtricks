@@ -5,9 +5,7 @@ namespace App\Model;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Contact
- *
- * @package App\Model
+ * Class Contact.
  */
 class Contact
 {

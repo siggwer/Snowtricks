@@ -2,18 +2,16 @@
 
 namespace App\Controller;
 
-use App\Entity\User;
-use App\Handler\RegistrationHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Handler\RegistrationHandler;
+use App\Entity\User;
 use Exception;
 
 /**
- * Class RegistrationController
- *
- * @package App\Controller
+ * Class RegistrationController.
  */
 class RegistrationController extends AbstractController
 {
@@ -27,10 +25,11 @@ class RegistrationController extends AbstractController
      *
      * @throws Exception
      */
-    public function register(Request $request, RegistrationHandler $handler): Response
-    {
+    public function register(
+        Request $request,
+        RegistrationHandler $handler
+    ): Response {
         if ($handler->handle($request, new User())) {
-
             return $this->redirectToRoute('mon-compte');
         }
 

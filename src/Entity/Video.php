@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Video
+ * Class Video.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
  */

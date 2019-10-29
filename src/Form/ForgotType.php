@@ -9,16 +9,15 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ForgotType
- * @package App\Form
+ * Class ForgotType.
  */
 class ForgotType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
-    public function buildForm(FormBuilderInterface $builder,array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add(
@@ -26,12 +25,13 @@ class ForgotType extends AbstractType
                 EmailType::class,
                 [
                     'attr' => array(
-                        'placeholder' => 'Indiquez votre email'
-                    )
+                        'placeholder' => 'Indiquez votre email',
+                    ),
                 ]
             )
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults(

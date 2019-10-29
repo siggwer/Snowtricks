@@ -9,9 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class ProfilHandler
- *
- * @package App\Handler
+ * Class ProfilHandler.
  */
 class ProfilHandler extends AbstractHandler
 {
@@ -29,11 +27,14 @@ class ProfilHandler extends AbstractHandler
      * ProfilHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface $flashBag
-     * @param Security $security
+     * @param FlashBagInterface      $flashBag
+     * @param Security               $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag,
+        Security $security
+    ) {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->security = $security;

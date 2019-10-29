@@ -6,9 +6,7 @@ use App\Entity\Trick;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class TrickListener
- *
- * @package App\EntityListener
+ * Class TrickListener.
  */
 class TrickListener
 {

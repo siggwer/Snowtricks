@@ -3,19 +3,17 @@
 namespace App\Handler;
 
 use App\Event\ForgotPasswordEmailEvent;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Doctrine\ORM\NonUniqueResultException;
-use App\Repository\UserRepository;
-use Doctrine\ORM\ORMException;
-use App\Services\TokenGenerator;
 use App\Form\ForgotType;
 use App\Model\Forgot;
+use App\Repository\UserRepository;
+use App\Services\TokenGenerator;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\ORMException;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Class ForgotHandler
- *
- * @package App\Handler
+ * Class ForgotHandler.
  */
 class ForgotHandler extends AbstractHandler
 {
@@ -42,13 +40,17 @@ class ForgotHandler extends AbstractHandler
     /**
      * ForgotHandler constructor.
      *
-     * @param UserRepository $userRepository
-     * @param TokenGenerator $tokenService
+     * @param UserRepository           $userRepository
+     * @param TokenGenerator           $tokenService
      * @param EventDispatcherInterface $eventDispatcher
-     * @param FlashBagInterface $flashBag
+     * @param FlashBagInterface        $flashBag
      */
-    public function __construct(UserRepository $userRepository, TokenGenerator $tokenService, EventDispatcherInterface $eventDispatcher, FlashBagInterface $flashBag)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        TokenGenerator $tokenService,
+        EventDispatcherInterface $eventDispatcher,
+        FlashBagInterface $flashBag
+    ) {
         $this->userRepository = $userRepository;
         $this->tokenService = $tokenService;
         $this->eventDispatcher = $eventDispatcher;
@@ -71,19 +73,21 @@ class ForgotHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-       $this->userRepository->checkEmail($data->getEmail());
+        $this->userRepository->checkEmail($data->getEmail());
 
         $passwordToken = $this->tokenService->generate();
 
-        if($this->userRepository->saveResetToken($data->getEmail(), $passwordToken)) {
-
-            $this->eventDispatcher->dispatch(ForgotPasswordEmailEvent::NAME,
-                new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken));
+        if ($this->userRepository->saveResetToken($data->getEmail(), $passwordToken)) {
+            $this->eventDispatcher->dispatch(
+                ForgotPasswordEmailEvent::NAME,
+                new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken)
+            );
 
             $this->flashBag->add(
                 'success',
                 'Un email t\'a été envoyé pour récupérer ton mot de passe.'
             );
+
             return;
         }
 

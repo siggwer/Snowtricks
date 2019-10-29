@@ -10,16 +10,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ResetType
- *
- * @package App\Form
+ * Class ResetType.
  */
 class ResetType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     *
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -31,12 +28,12 @@ class ResetType extends AbstractType
                     'type' => PasswordType::class,
                     'first_options' => ['label' => 'Mot de passe',
                         'attr' => array(
-                            'placeholder' => 'Votre mot de passe'
-                        )],
+                            'placeholder' => 'Votre mot de passe',
+                        ), ],
                     'second_options' => ['label' => 'Répéter votre mot de passe',
                         'attr' => array(
-                            'placeholder' => 'Répetez votre mot de passe'
-                        )]
+                            'placeholder' => 'Répetez votre mot de passe',
+                        ), ],
                     // instead of being set onto the object directly,
                     // this is read and encoded in the controller
                 ]
@@ -51,6 +48,4 @@ class ResetType extends AbstractType
             ]
         );
     }
-
-
 }
