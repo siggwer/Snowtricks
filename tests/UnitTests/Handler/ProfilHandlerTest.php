@@ -25,7 +25,7 @@ class ProfilHandlerTest extends TestCase
     public function testHandle(
 
     ) {
-        $handler = new ProfilHandler($this->createMock(EntityManagerInterface::class, FlashBagInterface::class, Security::class));
+        $handler = new ProfilHandler($this->createMock(EntityManagerInterface::class), $this->createMock(FlashBagInterface::class), $this->createMock(Security::class));
 
         $formFactory = $this->createMock(FormFactoryInterface::class);
 
