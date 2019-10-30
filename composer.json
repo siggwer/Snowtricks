@@ -6,7 +6,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.1",
-        "stof/doctrine-extensions-bundle": "^1.3",
         "symfony/asset": "4.3.*",
         "symfony/console": "4.3.*",
         "symfony/dotenv": "4.3.*",
@@ -32,7 +31,6 @@
         "hautelook/alice-bundle": "^2.5",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
-        "symfony/phpunit-bridge": "^4.3",
         "symfony/profiler-pack": "*",
         "symfony/test-pack": "*",
         "symfony/web-server-bundle": "4.3.*"
@@ -68,7 +66,7 @@
             "php ./bin/console d:s:u -f --env=test",
             "php ./bin/console h:f:l -n --env=test"
         ],
-		"prepare-prod": [
+        "prepare-prod": [
             "php ./bin/console d:d:d --force --if-exists",
             "php ./bin/console d:d:c --env=prod",
             "php ./bin/console d:s:u -f --env=prod",
