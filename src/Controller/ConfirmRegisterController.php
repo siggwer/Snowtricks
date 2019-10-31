@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use http\Message;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -21,7 +20,7 @@ use App\Repository\UserRepository;
 class ConfirmRegisterController extends AbstractController
 {
     /**
-     * @Route("/register", name="security_register")
+     * @Route("/confirmregister", name="confirm_register")
      *
      * @param Request $request
      * @param UrlGeneratorInterface $urlGenerator

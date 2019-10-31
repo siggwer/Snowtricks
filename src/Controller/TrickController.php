@@ -2,19 +2,19 @@
 
 namespace App\Controller;
 
-use App\Entity\Comment;
-use App\Entity\Trick;
-use App\Handler\AddTrickHandler;
-use App\Handler\ShowTrickHandler;
-use App\Handler\UpdateTrickHandler;
-use App\Repository\CommentRepository;
-use App\Repository\TrickRepository;
-use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Repository\CommentRepository;
+use App\Repository\TrickRepository;
+use App\Handler\UpdateTrickHandler;
+use App\Handler\AddTrickHandler;
+use App\Handler\ShowTrickHandler;
+use App\Entity\Comment;
+use App\Entity\Trick;
+use Exception;
 
 /**
  * Class TrickController.
@@ -79,10 +79,11 @@ class TrickController extends AbstractController
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
-     * @param Trick             $trick
-     * @param CommentRepository $commentRepository
-     * @param Request           $request
+     * @param Request $request
      *
+     * @param CommentRepository $commentRepository
+     * @param Trick $trick
+     * @param ShowTrickHandler $handler
      * @return Response
      *
      * @throws Exception

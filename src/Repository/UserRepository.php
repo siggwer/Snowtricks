@@ -2,12 +2,12 @@
 
 namespace App\Repository;
 
-use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Entity\User;
 
 /**
  * @method User|null find($id, $lockMode = null, $lockVersion = null)
@@ -72,11 +72,11 @@ class UserRepository extends ServiceEntityRepository
 
     /**
      * @param $email
+     *
      * @param $token
      */
     public function saveResetToken($email, $token)
     {
-        //dd($email,$token);
         $qb = $this->createQueryBuilder('user');
         $qb->update(User::class, 'u')
             ->set('u.passwordToken', '?1')

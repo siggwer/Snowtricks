@@ -2,6 +2,7 @@
 
 namespace App\Subscriber;
 
+use App\Event\RegisterEmailEvent;
 use App\Event\UpdateTrickEmailEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Event\ForgotPasswordEmailEvent;
@@ -49,6 +50,7 @@ class EmailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
+            RegisterEmailEvent::NAME => 'onRegister',
             ForgotPasswordEmailEvent::NAME => 'onForgotPassword',
             AddTrickEmailEvent::NAME => 'onAddTrick',
             UpdateTrickEmailEvent::NAME => 'onUpdateTrick'
@@ -129,6 +131,29 @@ class EmailSubscriber implements EventSubscriberInterface
             [
                 'email' => $event,
                 'slug' => $event->getSlug()
+            ]
+        );
+    }
+
+    public function onRegister(RegisterEmailEvent $event): void
+    {
+        $from = [
+            'email' => 'admin.snowtrick@yopmail.com\'',
+            'name' => 'Administrateur',
+        ];
+        $to = [
+            'email' => $event->getEmail(),
+            'name' => explode('@', $event->getEmail())[0],
+        ];
+
+        $this->emailer->mail(
+            'Ton trick a été crée',
+            $from,
+            $to,
+            'security/register/confirm_email.html.twig',
+            [
+                'email' => $event,
+                'token' => $event->getToken()
             ]
         );
     }

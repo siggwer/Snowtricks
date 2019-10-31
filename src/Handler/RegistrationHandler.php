@@ -3,8 +3,11 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RegistrationFormType;
+use App\Event\RegisterEmailEvent;
+use App\Services\TokenGenerator;
 use App\Entity\User;
 
 /**
@@ -20,6 +23,16 @@ class RegistrationHandler extends AbstractHandler
     private $entityManager;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
+
+    /**
+     * @var TokenGenerator
+     */
+    private $tokenService;
+
+    /**
      * @var FlashBagInterface
      */
     private $flashBag;
@@ -27,14 +40,20 @@ class RegistrationHandler extends AbstractHandler
     /**
      * RegistrationHandler constructor.
      *
-     * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface      $flashBag
+     * @param EntityManagerInterface $entityMananger
+     * @param EventDispatcherInterface $eventDispatcher
+     * @param TokenGenerator $tokenService
+     * @param FlashBagInterface $flashBag
      */
     public function __construct(
         EntityManagerInterface $entityManager,
+        EventDispatcherInterface $eventDispatcher,
+        TokenGenerator $tokenService,
         FlashBagInterface $flashBag
     ) {
         $this->entityManager = $entityManager;
+        $this->eventDispatcher = $eventDispatcher;
+        $this->tokenService = $tokenService;
         $this->flashBag = $flashBag;
     }
 
@@ -51,12 +70,23 @@ class RegistrationHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        $this->entityManager->persist($data);
-        $this->entityManager->flush();
+        $data->setToken($this->tokenService->generate());
+
+        if ($this->entityManager->persist($data) && $this->entityManager->flush()) {
+            $this->eventDispatcher->dispatch(
+                RegisterEmailEvent::NAME,
+                new RegisterEmailEvent($data->getEmail(), $data->getToken())
+            );
+            $this->flashBag->add(
+                'success',
+                'Ton compte a bien été créé, un email t\'a été envoyé pour la valider.'
+            );
+            return;
+        }
 
         $this->flashBag->add(
-            'success',
-            'Votre compte a bien été créé.'
+            'error',
+            'Une erreur s\'est produite, merci de réessayer ultérieurement.'
         );
     }
 }

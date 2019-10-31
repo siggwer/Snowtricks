@@ -100,6 +100,13 @@ class User implements UserInterface, Serializable
 
     /**
      * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $token;
+
+    /**
+     * @var string|null
      */
     private $role = 'ROLE_USER';
 
@@ -188,6 +195,14 @@ class User implements UserInterface, Serializable
     /**
      * @return string|null
      */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getRole(): ?string
     {
         return $this->role;
@@ -250,19 +265,27 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string|null $role
-     */
-    public function setRole(?string $role): void
-    {
-        $this->role = $role;
-    }
-
-    /**
      * @param UploadedFile|null $uploadedFile
      */
     public function setUploadedFile(?UploadedFile $uploadedFile): void
     {
         $this->uploadedFile = $uploadedFile;
+    }
+
+    /**
+     * @param string|null $token
+     */
+    public function setToken(?string $token): void
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @param string|null $role
+     */
+    public function setRole(?string $role): void
+    {
+        $this->role = $role;
     }
 
     /**
