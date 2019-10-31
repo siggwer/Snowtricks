@@ -5,6 +5,8 @@ namespace App\Repository;
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\OptimisticLockException;
+use Doctrine\ORM\ORMException;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
@@ -34,6 +36,38 @@ class UserRepository extends ServiceEntityRepository
             ->setParameter('email', $email)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    /**
+     * @param $token
+     *
+     * @return User|null
+     *
+     * @throws NonUniqueResultException
+     */
+    public Function checkRegistrationToken($token):? User
+    {
+        return  $this->createQueryBuilder('user')
+            ->where('user.token = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+    /**
+     * @param $user
+     */
+    public function save($user)
+    {
+        try {
+            $this->_em->persist($user);
+        } catch (ORMException $e) {
+        }
+        try {
+            $this->_em->flush();
+        } catch (OptimisticLockException $e) {
+        } catch (ORMException $e) {
+        }
     }
 
     /**

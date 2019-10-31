@@ -5,13 +5,13 @@ namespace App\Event;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class ForgotPasswordEmailEvent
+ * Class UpdateTrickEmailEvent
  *
  * @package App\Event
  */
-class ForgotPasswordEmailEvent extends Event
+class UpdateTrickEmailEvent extends Event
 {
-    public const NAME = 'forgotPassword.event';
+    public const NAME = 'updateTrick.event';
 
     /**
      * @var string
@@ -21,20 +21,20 @@ class ForgotPasswordEmailEvent extends Event
     /**
      * @var string
      */
-    private $token;
+    private $slug;
 
     /**
      * ForgotPasswordEmailEvent constructor.
      *
      * @param string $email
-     * @param string $token
+     * @param string $slug
      */
     public function __construct(
         string $email,
-        string $token
+        string $slug
     ) {
         $this->email = $email;
-        $this->token = $token;
+        $this->slug = $slug;
     }
 
     /**
@@ -46,10 +46,10 @@ class ForgotPasswordEmailEvent extends Event
     }
 
     /**
-     * @return mixed|string
+     * @return string
      */
-    public function getToken(): string
+    public function getSlug(): string
     {
-        return $this->token;
+        return $this->slug;
     }
 }

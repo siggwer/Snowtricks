@@ -2,9 +2,11 @@
 
 namespace App\Subscriber;
 
-use App\Event\ForgotPasswordEmailEvent;
-use App\Services\EmailHelper;
+use App\Event\UpdateTrickEmailEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use App\Event\ForgotPasswordEmailEvent;
+use App\Event\AddTrickEmailEvent;
+use App\Services\EmailHelper;
 
 /**
  * Class EmailSubscriber.
@@ -47,7 +49,9 @@ class EmailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            ForgotPasswordEmailEvent::NAME => 'onforgotPassword',
+            ForgotPasswordEmailEvent::NAME => 'onForgotPassword',
+            AddTrickEmailEvent::NAME => 'onAddTrick',
+            UpdateTrickEmailEvent::NAME => 'onUpdateTrick'
         ];
     }
 
@@ -65,7 +69,7 @@ class EmailSubscriber implements EventSubscriberInterface
             'name' => explode('@', $event->getEmail())[0],
         ];
 
-        $result = $this->emailer->mail(
+        $this->emailer->mail(
             'Confirmation de votre compte',
             $from,
             $to,
@@ -73,6 +77,58 @@ class EmailSubscriber implements EventSubscriberInterface
             [
                 'forgot' => $event,
                 'passwordToken' => $event->getToken(),
+            ]
+        );
+    }
+
+    /**
+     * @param AddTrickEmailEvent $event
+     */
+    public function onAddTrick(AddTrickEmailEvent $event): void
+    {
+        $from = [
+            'email' => 'admin.snowtrick@yopmail.com\'',
+            'name' => 'Administrateur',
+        ];
+        $to = [
+            'email' => $event->getEmail(),
+            'name' => explode('@', $event->getEmail())[0],
+        ];
+
+        $this->emailer->mail(
+            'Ton trick a été crée',
+            $from,
+            $to,
+            'trick/add_trick_email.html.twig',
+            [
+                'email' => $event,
+                'slug' => $event->getSlug()
+            ]
+        );
+    }
+
+    /**
+     * @param UpdateTrickEmailEvent $event
+     */
+    public function onUpdateTrick(UpdateTrickEmailEvent $event): void
+    {
+        $from = [
+            'email' => 'admin.snowtrick@yopmail.com\'',
+            'name' => 'Administrateur',
+        ];
+        $to = [
+            'email' => $event->getEmail(),
+            'name' => explode('@', $event->getEmail())[0],
+        ];
+
+        $this->emailer->mail(
+            'Ton trick a été crée',
+            $from,
+            $to,
+            'trick/update_trick_email.html.twig',
+            [
+                'email' => $event,
+                'slug' => $event->getSlug()
             ]
         );
     }

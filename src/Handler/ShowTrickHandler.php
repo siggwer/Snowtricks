@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class ShowTrickHandler.
+ * Class ShowTrickHandler
+ *
+ * @package App\Handler
  */
 class ShowTrickHandler extends AbstractHandler
 {
@@ -35,8 +37,11 @@ class ShowTrickHandler extends AbstractHandler
      * @param FlashBagInterface      $flashBag
      * @param Security               $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag,
+        Security $security
+    ) {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->security = $security;

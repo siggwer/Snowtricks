@@ -3,12 +3,14 @@
 namespace App\Handler;
 
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class AbstractHandler.
+ * Class AbstractHandler
+ *
+ * @package App\Handler
  */
 abstract class AbstractHandler
 {

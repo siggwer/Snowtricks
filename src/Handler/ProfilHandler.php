@@ -9,7 +9,9 @@ use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 
 /**
- * Class ProfilHandler.
+ * Class ProfilHandler
+ *
+ * @package App\Handler
  */
 class ProfilHandler extends AbstractHandler
 {

@@ -13,7 +13,9 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Class ForgotHandler.
+ * Class ForgotHandler
+ *
+ * @package App\Handler
  */
 class ForgotHandler extends AbstractHandler
 {

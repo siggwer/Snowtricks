@@ -2,14 +2,16 @@
 
 namespace App\Controller;
 
-use App\Handler\ProfilHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use App\Handler\ProfilHandler;
 
 /**
- * Class ProfileController.
+ * Class ProfileController
+ *
+ * @package App\Controller
  */
 class ProfileController extends AbstractController
 {

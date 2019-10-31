@@ -2,13 +2,15 @@
 
 namespace App\Handler;
 
-use App\Entity\User;
-use App\Form\RegistrationFormType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\RegistrationFormType;
+use App\Entity\User;
 
 /**
- * Class RegistrationHandler.
+ * Class RegistrationHandler
+ *
+ * @package App\Handler
  */
 class RegistrationHandler extends AbstractHandler
 {
@@ -28,8 +30,10 @@ class RegistrationHandler extends AbstractHandler
      * @param EntityManagerInterface $entityManager
      * @param FlashBagInterface      $flashBag
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag
+    ) {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
     }
