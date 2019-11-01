@@ -2,15 +2,15 @@
 
 namespace App\Handler;
 
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Doctrine\ORM\NonUniqueResultException;
 use App\Event\ForgotPasswordEmailEvent;
-use App\Form\ForgotType;
-use App\Model\Forgot;
 use App\Repository\UserRepository;
 use App\Services\TokenGenerator;
-use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\ORMException;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use App\Form\ForgotType;
+use App\Model\Forgot;
 
 /**
  * Class ForgotHandler

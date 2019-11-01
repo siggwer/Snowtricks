@@ -2,11 +2,11 @@
 
 namespace App\Handler;
 
-use App\Entity\User;
-use App\Form\AvatarType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\AvatarType;
+use App\Entity\User;
 
 /**
  * Class ProfilHandler
