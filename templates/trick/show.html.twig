@@ -2,14 +2,8 @@
 {% block title %}Détail{% endblock %}
 {% block body %}
     <div class="container py-5">
-        <div class="jumbotron my-4">
-            <h1 class="my-4">{{ trick.name }} / {{ trick.category.name }}</h1>
-            <p class="lead">{{ trick.description|nl2br }}</p>
-            <p>Posté le
-                {{ trick.publishedAt|date("d/m/Y") }}
-                par
-                {{ trick.author.username }}
-            </p>
+        <div class="row py-5">
+            <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
         </div>
         <div class="row py-5">
             {% for picture in trick.pictures %}
@@ -39,6 +33,17 @@
                     </div>
                 </div>
             {% endfor %}
+        </div>
+        <div class="row py-5">
+            <div class="jumbotron my-4">
+                <h1 class="my-4">{{ trick.name }} / {{ trick.category.name }}</h1>
+                <p class="lead">{{ trick.description|nl2br }}</p>
+                <p>Posté le
+                    {{ trick.publishedAt|date("d/m/Y") }}
+                    par
+                    {{ trick.author.username }}
+                </p>
+            </div>
         </div>
         {% if is_granted("ROLE_USER") %}
             {{ form_start(form) }}
