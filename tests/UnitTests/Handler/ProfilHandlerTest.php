@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\User;
 use App\Handler\ProfilHandler;
 use Doctrine\ORM\EntityManagerInterface;
 //use PHPUnit\Framework\TestCase;
@@ -39,7 +40,7 @@ class ProfilHandlerTest extends TestCase
         $handler->setFormFactory($formFactory);
 
         $this->assertTrue(
-            $handler->handle($this->createMock(Request::class))
+            $handler->handle($this->createMock(Request::class), new User())
         );
     }
 
