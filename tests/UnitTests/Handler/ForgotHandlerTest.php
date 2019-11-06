@@ -3,9 +3,9 @@
 namespace App\Tests\UnitTests\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
-use Composer\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
 use App\Repository\UserRepository;
@@ -27,9 +27,9 @@ class ForgotHandlerTest extends TestCase
 
     ) {
         $handler = new ForgotHandler($this->createMock(UserRepository::class),
-        $this->createMock(TokenGenerator::class),
-        $this->createMock(EventDispatcher::class),
-        $this->createMock(FlashBagInterface::class)
+            $this->createMock(TokenGenerator::class),
+            $this->createMock(FlashBagInterface::class),
+            $this->createMock(EventDispatcherInterface::class)
         );
 
         $formFactory = $this->createMock(FormFactoryInterface::class);
