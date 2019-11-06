@@ -5,19 +5,20 @@ namespace App\Tests\UnitTests\Handler;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
+use Composer\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Form\FormInterface;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Handler\ProfilHandler;
-use App\Entity\User;
+use App\Repository\UserRepository;
+use App\Services\TokenGenerator;
+use App\Handler\ForgotHandler;
+use App\Model\Forgot;
 
 /**
- * Class ProfilHandlerTest
+ * Class ForgotHandlerTest
  *
  * @package App\Tests\UnitTests\Handler
  */
-class ProfilHandlerTest extends TestCase
+class ForgotHandlerTest extends TestCase
 {
     /**
      *
@@ -25,9 +26,10 @@ class ProfilHandlerTest extends TestCase
     public function testHandle(
 
     ) {
-        $handler = new ProfilHandler($this->createMock(EntityManagerInterface::class),
-            $this->createMock(FlashBagInterface::class),
-            $this->createMock(Security::class)
+        $handler = new ForgotHandler($this->createMock(UserRepository::class),
+        $this->createMock(TokenGenerator::class),
+        $this->createMock(EventDispatcher::class),
+        $this->createMock(FlashBagInterface::class)
         );
 
         $formFactory = $this->createMock(FormFactoryInterface::class);
@@ -42,8 +44,7 @@ class ProfilHandlerTest extends TestCase
         $handler->setFormFactory($formFactory);
 
         $this->assertTrue(
-            $handler->handle($this->createMock(Request::class), new User())
+            $handler->handle($this->createMock(Request::class), new Forgot())
         );
     }
-
 }

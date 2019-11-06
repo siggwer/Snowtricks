@@ -2,7 +2,7 @@
 
 namespace App\Handler;
 
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use  Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\AvatarType;
