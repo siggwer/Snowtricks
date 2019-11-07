@@ -3,7 +3,7 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\NonUniqueResultException;
 use App\Event\ForgotPasswordEmailEvent;
 use App\Repository\UserRepository;
@@ -79,10 +79,11 @@ class ForgotHandler extends AbstractHandler
 
         $passwordToken = $this->tokenService->generate();
 
-        if ($this->userRepository->saveResetToken($data->getEmail(), $passwordToken)) {
-            $this->eventDispatcher->dispatch(
-                ForgotPasswordEmailEvent::NAME,
-                new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken)
+        $this->userRepository->saveResetToken($data->getEmail(), $passwordToken);
+
+        if ($data !== null) {
+            $event = new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken);
+            $this->eventDispatcher->dispatch($event, ForgotPasswordEmailEvent::NAME
             );
 
             $this->flashBag->add(

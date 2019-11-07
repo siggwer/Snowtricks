@@ -62,7 +62,6 @@ class EmailSubscriber implements EventSubscriberInterface
      */
     public function onForgotPassword(ForgotPasswordEmailEvent $event): void
     {
-        dd($event);
         $from = [
             'email' => 'admin.snowtrick@yopmail.com\'',
             'name' => 'Administrateur',

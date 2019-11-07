@@ -3,7 +3,7 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Event\AddTrickEmailEvent;
@@ -74,9 +74,8 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->flush();
 
         if ($data->getSlug()) {
-            $this->eventDispatcher->dispatch(
-                AddTrickEmailEvent::NAME,
-                new AddTrickEmailEvent($data->getAuthor()->getEmail(), $data->getSlug())
+            $event = new AddTrickEmailEvent($data->getAuthor()->getEmail(), $data->getSlug());
+            $this->eventDispatcher->dispatch($event, AddTrickEmailEvent::NAME
             );
 
             $this->flashBag->add(

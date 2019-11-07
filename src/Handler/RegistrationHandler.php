@@ -3,7 +3,7 @@
 namespace App\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Form\RegistrationFormType;
 use App\Event\RegisterEmailEvent;

@@ -2,12 +2,11 @@
 
 namespace App\Handler;
 
-use App\Event\UpdateTrickEmailEvent;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Event\UpdateTrickEmailEvent;
 use App\Form\UpdateTrickType;
 use App\Entity\Trick;
 
