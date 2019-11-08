@@ -2,13 +2,13 @@
 
 namespace App\Services;
 
-use Exception;
-use Swift_Mailer;
-use Swift_Message;
-use Twig\Environment;
-use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
+use Twig\Error\LoaderError;
 use Twig\Error\SyntaxError;
+use Twig\Environment;
+use Swift_Message;
+use Swift_Mailer;
+use Exception;
 
 /**
  * Class EmailHelper.

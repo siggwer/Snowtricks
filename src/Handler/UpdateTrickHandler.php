@@ -73,9 +73,8 @@ class UpdateTrickHandler extends AbstractHandler
         $data->setAuthor($this->security->getUser());
 
         if ($data->getSlug()) {
-            $this->eventDispatcher->dispatch(
-                UpdateTrickEmailEvent::NAME,
-                new UpdateTrickEmailEvent($data->getAuthor()->getEmail(), $data->getSlug())
+            $event = new  UpdateTrickEmailEvent($data->getAuthor()->getEmail(), $data->getSlug());
+            $this->eventDispatcher->dispatch($event,  UpdateTrickEmailEvent::NAME
             );
 
             $this->flashBag->add(

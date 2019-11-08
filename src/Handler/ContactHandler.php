@@ -2,15 +2,11 @@
 
 namespace App\Handler;
 
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use App\Event\ContactEvent;
 use App\Form\ContactType;
 use App\Model\Contact;
-use Swift_Mailer;
-use Swift_Message;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Twig\Environment;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 
 /**
  * Class ContactHandler
@@ -20,14 +16,9 @@ use Twig\Error\SyntaxError;
 class ContactHandler extends AbstractHandler
 {
     /**
-     * @var Environment
+     * @var EventDispatcherInterface
      */
-    private $templating;
-
-    /**
-     * @var Swift_Mailer
-     */
-    private $mailer;
+    private $eventDispatcher;
 
     /**
      * @var FlashBagInterface
@@ -37,17 +28,14 @@ class ContactHandler extends AbstractHandler
     /**
      * ContactHandler constructor.
      *
+     * @param EventDispatcherInterface $eventDispatcher
      * @param FlashBagInterface $flashBag
-     * @param Swift_Mailer      $mailer
-     * @param Environment       $templating
      */
     public function __construct(
-        FlashBagInterface $flashBag,
-        Swift_Mailer $mailer,
-        Environment $templating
+        EventDispatcherInterface $eventDispatcher,
+        FlashBagInterface $flashBag
     ) {
-        $this->templating = $templating;
-        $this->mailer = $mailer;
+        $this->eventDispatcher = $eventDispatcher;
         $this->flashBag = $flashBag;
     }
 
@@ -64,33 +52,28 @@ class ContactHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        $message = new Swift_Message();
+        if($data !== null){
+            $event = new ContactEvent(
+                $data->getMessage(),
+                $data->getSubject(),
+                $data->getName(),
+                $data->getEmail()
+            );
+            $this->eventDispatcher->dispatch($event, ContactEvent::NAME
+            );
 
-        try {
-            $message
-                ->setTo('admin.snowtrick@yopmail.com', 'Contact snowtricks')
-                ->setFrom('admin.snowtrick@yopmail.com', 'Contact snowtricks')
-                ->setReplyTo($data->getEmail(), $data->getName())
-                ->setBody(
-                    $this->templating->render(
-                        'contact/contact_email.html.twig',
-                        [
-                            'contact' => $data,
-                        ]
-                    ),
-                    'text/html'
-                );
-        } catch (LoaderError $e) {
-        } catch (RuntimeError $e) {
-        } catch (SyntaxError $e) {
+            $this->flashBag->add(
+                'success',
+                'Votre message a bien été envoyé.
+                 Nous répondrons dans un délais de 48 heures.'
+            );
+
+            return;
         }
 
-        $this->mailer->send($message);
-
         $this->flashBag->add(
-            'success',
-            'Votre message a bien été envoyé.
-                 Nous répondrons dans un délais de 48 heures.'
+            'error',
+            'Une erreur est survenue. Merci de réessayer ultérieurement.'
         );
     }
 }

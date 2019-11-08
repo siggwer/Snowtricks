@@ -8,6 +8,7 @@ use App\Event\UpdateTrickEmailEvent;
 use App\Event\AddTrickEmailEvent;
 use App\Event\RegisterEmailEvent;
 use App\Services\EmailHelper;
+use App\Event\ContactEvent;
 
 /**
  * Class EmailSubscriber.
@@ -53,7 +54,8 @@ class EmailSubscriber implements EventSubscriberInterface
             RegisterEmailEvent::NAME => 'onRegister',
             ForgotPasswordEmailEvent::NAME => 'onForgotPassword',
             AddTrickEmailEvent::NAME => 'onAddTrick',
-            UpdateTrickEmailEvent::NAME => 'onUpdateTrick'
+            UpdateTrickEmailEvent::NAME => 'onUpdateTrick',
+            ContactEvent::NAME => 'onContact'
         ];
     }
 
@@ -135,10 +137,13 @@ class EmailSubscriber implements EventSubscriberInterface
         );
     }
 
+    /**
+     * @param RegisterEmailEvent $event
+     */
     public function onRegister(RegisterEmailEvent $event): void
     {
         $from = [
-            'email' => 'admin.snowtrick@yopmail.com\'',
+            'email' => 'admin.snowtrick@yopmail.com',
             'name' => 'Administrateur',
         ];
         $to = [
@@ -154,6 +159,34 @@ class EmailSubscriber implements EventSubscriberInterface
             [
                 'email' => $event,
                 'token' => $event->getToken()
+            ]
+        );
+    }
+
+    /**
+     * @param ContactEvent $event
+     */
+    public function onContact(ContactEvent $event) :void
+    {
+        $from = [
+            'email' => 'admin.snowtrick@yopmail.com',
+            'name' => 'Contact',
+        ];
+        $to = [
+            'email' => $event->getEmail(),
+            'name' => explode('@', $event->getEmail())[0],
+        ];
+
+        $this->emailer->mail(
+            'Tu nous as contacté',
+            $from,
+            $to,
+            'contact/contact_email.html.twig',
+            [
+                'message' => $event->getMessage(),
+                'subject' => $event->getSubject(),
+                'name' => $event->getName(),
+                'email' => $event->getEmail()
             ]
         );
     }
