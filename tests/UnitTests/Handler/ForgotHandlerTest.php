@@ -7,6 +7,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Form\FormInterface;
 use App\Repository\UserRepository;
 use App\Services\TokenGenerator;
@@ -105,7 +106,7 @@ class ForgotHandlerTest extends TestCase
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function testHandlerIsTrue()
     {
@@ -143,7 +144,7 @@ class ForgotHandlerTest extends TestCase
     }
 
     /**
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function testHandlerIsFalse()
     {

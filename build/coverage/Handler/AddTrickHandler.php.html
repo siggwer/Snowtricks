@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Code Coverage for C:\Users\admin.ETUDIANT\Desktop\Snowtricks\src/Handler/AddTrickHandler.php</title>
+  <title>Code Coverage for D:\Users\Jerome Sauvage\Desktop\Developpement\Snowtricks\src/Handler/AddTrickHandler.php</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../.css/style.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
     <div class="row">
      <div class="col-md-12">
       <ol class="breadcrumb">
-        <li><a href="../index.html">C:\Users\admin.ETUDIANT\Desktop\Snowtricks\src</a></li>
+        <li><a href="../index.html">D:\Users\Jerome Sauvage\Desktop\Developpement\Snowtricks\src</a></li>
         <li><a href="index.html">Handler</a></li>
         <li class="active">AddTrickHandler.php</li>
 
@@ -67,7 +67,7 @@
        </div>
 </td>
       <td class="danger small"><div align="right">0.00%</div></td>
-      <td class="danger small"><div align="right">0&nbsp;/&nbsp;33</div></td>
+      <td class="danger small"><div align="right">0&nbsp;/&nbsp;32</div></td>
      </tr>
 
      <tr>
@@ -96,7 +96,7 @@
        </div>
 </td>
       <td class="danger small"><div align="right">0.00%</div></td>
-      <td class="danger small"><div align="right">0&nbsp;/&nbsp;33</div></td>
+      <td class="danger small"><div align="right">0&nbsp;/&nbsp;32</div></td>
      </tr>
 
      <tr>
@@ -164,7 +164,7 @@
        </div>
 </td>
       <td class="danger small"><div align="right">0.00%</div></td>
-      <td class="danger small"><div align="right">0&nbsp;/&nbsp;20</div></td>
+      <td class="danger small"><div align="right">0&nbsp;/&nbsp;19</div></td>
      </tr>
 
 
@@ -177,7 +177,7 @@
      <tr><td><div align="right"><a name="3"></a><a href="#3">3</a></div></td><td class="codeLine"><span class="keyword">namespace</span><span class="default">&nbsp;</span><span class="default">App</span><span class="default">\</span><span class="default">Handler</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="4"></a><a href="#4">4</a></div></td><td class="codeLine"></td></tr>
      <tr><td><div align="right"><a name="5"></a><a href="#5">5</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Symfony</span><span class="default">\</span><span class="default">Component</span><span class="default">\</span><span class="default">HttpFoundation</span><span class="default">\</span><span class="default">Session</span><span class="default">\</span><span class="default">Flash</span><span class="default">\</span><span class="default">FlashBagInterface</span><span class="keyword">;</span></td></tr>
-     <tr><td><div align="right"><a name="6"></a><a href="#6">6</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Symfony</span><span class="default">\</span><span class="default">Component</span><span class="default">\</span><span class="default">EventDispatcher</span><span class="default">\</span><span class="default">EventDispatcherInterface</span><span class="keyword">;</span></td></tr>
+     <tr><td><div align="right"><a name="6"></a><a href="#6">6</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Symfony</span><span class="default">\</span><span class="default">Contracts</span><span class="default">\</span><span class="default">EventDispatcher</span><span class="default">\</span><span class="default">EventDispatcherInterface</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="7"></a><a href="#7">7</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Symfony</span><span class="default">\</span><span class="default">Component</span><span class="default">\</span><span class="default">Security</span><span class="default">\</span><span class="default">Core</span><span class="default">\</span><span class="default">Security</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="8"></a><a href="#8">8</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">Doctrine</span><span class="default">\</span><span class="default">ORM</span><span class="default">\</span><span class="default">EntityManagerInterface</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="9"></a><a href="#9">9</a></div></td><td class="codeLine"><span class="keyword">use</span><span class="default">&nbsp;</span><span class="default">App</span><span class="default">\</span><span class="default">Event</span><span class="default">\</span><span class="default">AddTrickEmailEvent</span><span class="keyword">;</span></td></tr>
@@ -248,25 +248,24 @@
      <tr class="danger"><td><div align="right"><a name="74"></a><a href="#74">74</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">entityManager</span><span class="default">-&gt;</span><span class="default">flush</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
      <tr><td><div align="right"><a name="75"></a><a href="#75">75</a></div></td><td class="codeLine"></td></tr>
      <tr class="danger"><td><div align="right"><a name="76"></a><a href="#76">76</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">if</span><span class="default">&nbsp;</span><span class="keyword">(</span><span class="default">$data</span><span class="default">-&gt;</span><span class="default">getSlug</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="default">&nbsp;</span><span class="keyword">{</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="77"></a><a href="#77">77</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">eventDispatcher</span><span class="default">-&gt;</span><span class="default">dispatch</span><span class="keyword">(</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="78"></a><a href="#78">78</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">AddTrickEmailEvent</span><span class="default">::</span><span class="default">NAME</span><span class="keyword">,</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="79"></a><a href="#79">79</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">AddTrickEmailEvent</span><span class="keyword">(</span><span class="default">$data</span><span class="default">-&gt;</span><span class="default">getAuthor</span><span class="keyword">(</span><span class="keyword">)</span><span class="default">-&gt;</span><span class="default">getEmail</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$data</span><span class="default">-&gt;</span><span class="default">getSlug</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="80"></a><a href="#80">80</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
-     <tr><td><div align="right"><a name="81"></a><a href="#81">81</a></div></td><td class="codeLine"></td></tr>
-     <tr class="danger"><td><div align="right"><a name="82"></a><a href="#82">82</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">flashBag</span><span class="default">-&gt;</span><span class="default">add</span><span class="keyword">(</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="83"></a><a href="#83">83</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'success'</span><span class="keyword">,</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="84"></a><a href="#84">84</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'Le&nbsp;trick&nbsp;a&nbsp;bien&nbsp;été&nbsp;crée,&nbsp;un&nbsp;email&nbsp;de&nbsp;confirmation&nbsp;t\'a&nbsp;été&nbsp;envoyé.'</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="85"></a><a href="#85">85</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
-     <tr><td><div align="right"><a name="86"></a><a href="#86">86</a></div></td><td class="codeLine"></td></tr>
-     <tr class="danger"><td><div align="right"><a name="87"></a><a href="#87">87</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="keyword">;</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="88"></a><a href="#88">88</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
-     <tr><td><div align="right"><a name="89"></a><a href="#89">89</a></div></td><td class="codeLine"></td></tr>
-     <tr class="danger"><td><div align="right"><a name="90"></a><a href="#90">90</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">flashBag</span><span class="default">-&gt;</span><span class="default">add</span><span class="keyword">(</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="91"></a><a href="#91">91</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'error'</span><span class="keyword">,</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="92"></a><a href="#92">92</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'Une&nbsp;erreur&nbsp;est&nbsp;survenue.&nbsp;Merce&nbsp;de&nbsp;réessayer.'</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="93"></a><a href="#93">93</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
-     <tr class="danger"><td><div align="right"><a name="94"></a><a href="#94">94</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
-     <tr><td><div align="right"><a name="95"></a><a href="#95">95</a></div></td><td class="codeLine"><span class="keyword">}</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="77"></a><a href="#77">77</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$event</span><span class="default">&nbsp;</span><span class="keyword">=</span><span class="default">&nbsp;</span><span class="keyword">new</span><span class="default">&nbsp;</span><span class="default">AddTrickEmailEvent</span><span class="keyword">(</span><span class="default">$data</span><span class="default">-&gt;</span><span class="default">getAuthor</span><span class="keyword">(</span><span class="keyword">)</span><span class="default">-&gt;</span><span class="default">getEmail</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">$data</span><span class="default">-&gt;</span><span class="default">getSlug</span><span class="keyword">(</span><span class="keyword">)</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="78"></a><a href="#78">78</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">eventDispatcher</span><span class="default">-&gt;</span><span class="default">dispatch</span><span class="keyword">(</span><span class="default">$event</span><span class="keyword">,</span><span class="default">&nbsp;</span><span class="default">AddTrickEmailEvent</span><span class="default">::</span><span class="default">NAME</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="79"></a><a href="#79">79</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+     <tr><td><div align="right"><a name="80"></a><a href="#80">80</a></div></td><td class="codeLine"></td></tr>
+     <tr class="danger"><td><div align="right"><a name="81"></a><a href="#81">81</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">flashBag</span><span class="default">-&gt;</span><span class="default">add</span><span class="keyword">(</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="82"></a><a href="#82">82</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'success'</span><span class="keyword">,</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="83"></a><a href="#83">83</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'Le&nbsp;trick&nbsp;a&nbsp;bien&nbsp;été&nbsp;crée,&nbsp;un&nbsp;email&nbsp;de&nbsp;confirmation&nbsp;t\'a&nbsp;été&nbsp;envoyé.'</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="84"></a><a href="#84">84</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+     <tr><td><div align="right"><a name="85"></a><a href="#85">85</a></div></td><td class="codeLine"></td></tr>
+     <tr class="danger"><td><div align="right"><a name="86"></a><a href="#86">86</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">return</span><span class="keyword">;</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="87"></a><a href="#87">87</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
+     <tr><td><div align="right"><a name="88"></a><a href="#88">88</a></div></td><td class="codeLine"></td></tr>
+     <tr class="danger"><td><div align="right"><a name="89"></a><a href="#89">89</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">$this</span><span class="default">-&gt;</span><span class="default">flashBag</span><span class="default">-&gt;</span><span class="default">add</span><span class="keyword">(</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="90"></a><a href="#90">90</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'error'</span><span class="keyword">,</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="91"></a><a href="#91">91</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="default">'Une&nbsp;erreur&nbsp;est&nbsp;survenue.&nbsp;Merce&nbsp;de&nbsp;réessayer.'</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="92"></a><a href="#92">92</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">)</span><span class="keyword">;</span></td></tr>
+     <tr class="danger"><td><div align="right"><a name="93"></a><a href="#93">93</a></div></td><td class="codeLine"><span class="default">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="keyword">}</span></td></tr>
+     <tr><td><div align="right"><a name="94"></a><a href="#94">94</a></div></td><td class="codeLine"><span class="keyword">}</span></td></tr>
 
     </tbody>
    </table>
@@ -279,7 +278,7 @@
      <span class="warning"><strong>Dead Code</strong></span>
     </p>
     <p>
-     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.3.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.18</a> with <a href="https://xdebug.org/">Xdebug 2.7.2</a> and <a href="https://phpunit.de/">PHPUnit 6.5.14</a> at Thu Nov 7 15:27:12 UTC 2019.</small>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.3.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.18</a> with <a href="https://xdebug.org/">Xdebug 2.7.2</a> and <a href="https://phpunit.de/">PHPUnit 6.5.14</a> at Sun Nov 10 18:17:29 UTC 2019.</small>
     </p>
     <a title="Back to the top" id="toplink" href="#"><span class="glyphicon glyphicon-arrow-up"></span></a>
    </footer>
