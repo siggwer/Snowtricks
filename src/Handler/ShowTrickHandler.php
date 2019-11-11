@@ -2,11 +2,11 @@
 
 namespace App\Handler;
 
-use App\Entity\Comment;
-use App\Form\CommentType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\CommentType;
+use App\Entity\Comment;
 
 /**
  * Class ShowTrickHandler
