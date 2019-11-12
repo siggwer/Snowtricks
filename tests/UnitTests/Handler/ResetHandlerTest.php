@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\AbstractHandler;
@@ -23,5 +24,10 @@ class ResetHandlerTest extends AbstractTestHandler
             $this->createMock(EntityManagerInterface::class),
             $this->createMock(FlashBagInterface::class)
         );
+    }
+
+    public function getData()
+    {
+        return new User();
     }
 }

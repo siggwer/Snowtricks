@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Model\Forgot;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use App\Repository\UserRepository;
@@ -27,5 +28,10 @@ class ForgotHandlerTest extends AbstractTestHandler
             $this->createMock(EventDispatcherInterface::class),
             $this->createMock(FlashBagInterface::class)
         );
+    }
+
+    public function getData()
+    {
+       return new Forgot();
     }
 }

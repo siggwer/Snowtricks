@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Model\Contact;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use App\Handler\AbstractHandler;
@@ -23,5 +24,12 @@ class ContactHandlerTest extends AbstractTestHandler
             $this->createMock(EventDispatcherInterface::class),
             $this->createMock(FlashBagInterface::class)
         );
+    }
+
+    public function getData()
+    {
+        $contact = new Contact();
+
+        return new Contact();
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,5 +28,10 @@ class RegistrationHandlerTest extends AbstractTestHandler
             $this->createMock(TokenGenerator::class),
             $this->createMock(FlashBagInterface::class)
         );
+    }
+
+    public function getData()
+    {
+        return new User();
     }
 }

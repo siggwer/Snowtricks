@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\Trick;
 use App\Handler\AbstractHandler;
 use App\Handler\UpdateTrickHandler;
 use Doctrine\ORM\EntityManagerInterface;
@@ -27,5 +28,10 @@ class UpdateHandlerTest extends AbstractTestHandler
             $this->createMock(FlashBagInterface::class),
             $this->createMock(Security::class)
         );
+    }
+
+    public function getData()
+    {
+        return new Trick();
     }
 }

@@ -22,16 +22,16 @@ class UserTest extends TestCase
         $username = 'test';
         $email = 'test@yopmail.com';
         $password = 'sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm';
-        $registerAt = 'date("Y-m-d H:i:s", strtotime(\'2019-10-31 09:20:35\'))';
+        $registerAt = new \DateTimeImmutable();
 
         $user->setUsername($username);
-        $user->setUsername($email);
-        $user->setUsername($password);
-        $user->setUsername($registerAt);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        $user->setRegisteredAt($registerAt);
 
         $this->assertEquals('test', $user->getUsername());
         $this->assertEquals('test@yopmail.com', $user->getEmail());
         $this->assertEquals('sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm\'', $user->getPassword());
-        $this->assertEquals('date("Y-m-d H:i:s", strtotime(\'2019-10-31 09:20:35\'))', $user->getRegisteredAt());
+        $this->assertInstanceOf(\DateTimeImmutable::class, $user->getRegisteredAt());
     }
 }

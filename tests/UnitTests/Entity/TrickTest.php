@@ -77,9 +77,9 @@ class TrickTest extends TestCase
      */
     public function testGetPublishedAt()
     {
-        $this->trick->setPublishedAt(new DateTime('20/11/2019'));
+        $this->trick->setPublishedAt(new \DateTimeImmutable());
         $result = $this->trick->getPublishedAt();
-        $this->assertSame(new DateTime('20/11/2019'), $result);
+        $this->assertInstanceOf(\DateTimeImmutable::class, $result);
     }
 
     /**
@@ -115,9 +115,9 @@ class TrickTest extends TestCase
      */
     public function testGetAuthor()
     {
-        $this->trick->setAuthor($this->trick->getName('trick'));
+        $this->trick->setAuthor($this->user);
         $result = $this->trick->getAuthor();
-        $this->assertSame($this->trick->getName('trick'), $result);
+        $this->assertSame($this->user, $result);
     }
 
     /**
@@ -134,17 +134,9 @@ class TrickTest extends TestCase
      */
     public function testGetSlug()
     {
+        $this->assertNull($this->trick->getSlug());
         $this->trick->setSlug('test-trick');
         $result = $this->trick->getSlug();
         $this->assertSame('test-trick', $result);
-    }
-
-    /**
-     *
-     */
-    public function testGetSlugIfIsNull()
-    {
-        $this->trick->setSlug(null);
-        $this->assertNull($this->trick->getSlug());
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
@@ -25,5 +26,10 @@ class ProfilHandlerTest extends AbstractTestHandler
             $this->createMock(FlashBagInterface::class),
             $this->createMock(Security::class)
         );
+    }
+
+    public function getData()
+    {
+        return new User();
     }
 }

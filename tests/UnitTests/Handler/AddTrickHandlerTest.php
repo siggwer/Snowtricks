@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Handler;
 
+use App\Entity\Trick;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
@@ -27,5 +28,10 @@ class AddTrickHandlerTest extends AbstractTestHandler
             $this->createMock(FlashBagInterface::class),
             $this->createMock(Security::class)
         );
+    }
+
+    public function getData()
+    {
+       return new Trick();
     }
 }
