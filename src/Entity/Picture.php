@@ -9,7 +9,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Picture.
  *
- *
  * @ORM\Entity(repositoryClass="App\Repository\PictureRepository")
  * @ORM\EntityListeners({"App\EntityListener\PictureListener"})
  */

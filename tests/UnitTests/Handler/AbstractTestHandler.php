@@ -21,7 +21,7 @@ abstract class AbstractTestHandler extends TestCase
     /**
      * @return AbstractHandler
      */
-    abstract public function getHandler() : AbstractHandler;
+    abstract public function getHandler(): AbstractHandler;
 
     /**
      * @throws Exception
@@ -42,7 +42,7 @@ abstract class AbstractTestHandler extends TestCase
         $handler->setFormFactory($formFactory);
 
         $this->assertTrue(
-            $handler->handle($this->createMock(Request::class), new User())
+            $handler->handle($this->createMock(Request::class), new User)
         );
     }
 
@@ -65,7 +65,7 @@ abstract class AbstractTestHandler extends TestCase
         $handler->setFormFactory($formFactory);
 
         $this->assertFalse(
-            $handler->handle($this->createMock(Request::class), new User())
+            $handler->handle($this->createMock(Request::class), new User)
         );
     }
 }

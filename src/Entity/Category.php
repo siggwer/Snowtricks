@@ -13,6 +13,7 @@ class Category
 {
     /**
      * @var int|null
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -21,6 +22,7 @@ class Category
 
     /**
      * @var string|null
+     *
      * @ORM\Column(type="string")
      */
     private $name;

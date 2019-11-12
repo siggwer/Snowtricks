@@ -8,7 +8,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Class Video.
  *
- *
  * @ORM\Entity(repositoryClass="App\Repository\VideoRepository")
  */
 class Video
