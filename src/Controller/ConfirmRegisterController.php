@@ -2,9 +2,8 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -20,16 +19,14 @@ use App\Repository\UserRepository;
 class ConfirmRegisterController extends AbstractController
 {
     /**
-     * @Route("/confirmregister", name="confirm_register")
+     * @Route("/confirmregister/{token}", name="confirm_register")
      *
      * @param Request $request
-     * @param UrlGeneratorInterface $urlGenerator
      * @param UserRepository $userRepository
      * @return RedirectResponse|Response
      */
     public function confirmRegister(
         Request $request,
-        UrlGeneratorInterface $urlGenerator,
         FlashBagInterface $flashBag,
         UserRepository $userRepository
     ){
@@ -40,9 +37,13 @@ class ConfirmRegisterController extends AbstractController
 
         if ($user !== null) {
 
-           $confirmRegistration = $userRepository->save($user);
-           $flashBag->add('success', 'Votre compte à bien été créer');
-            return new RedirectResponse($this->generateUrl('login'),
+            $user->setToken(null);
+
+            $userRepository->save($user);
+
+           $flashBag->add('success', 'Votre compte à bien été créé');
+
+            return new RedirectResponse($this->generateUrl('security_login'),
                 RedirectResponse::HTTP_FOUND);
         }
         return new Response($this->render('home.html.twig'),

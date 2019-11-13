@@ -51,11 +51,11 @@ class EmailSubscriber implements EventSubscriberInterface
     public static function getSubscribedEvents(): array
     {
         return [
-            RegisterEmailEvent::NAME => 'onRegister',
-            ForgotPasswordEmailEvent::NAME => 'onForgotPassword',
-            AddTrickEmailEvent::NAME => 'onAddTrick',
-            UpdateTrickEmailEvent::NAME => 'onUpdateTrick',
-            ContactEvent::NAME => 'onContact'
+                RegisterEmailEvent::NAME => 'onRegister',
+                ForgotPasswordEmailEvent::NAME => 'onForgotPassword',
+                AddTrickEmailEvent::NAME => 'onAddTrick',
+                UpdateTrickEmailEvent::NAME => 'onUpdateTrick',
+                ContactEvent::NAME => 'onContact'
         ];
     }
 
@@ -126,12 +126,12 @@ class EmailSubscriber implements EventSubscriberInterface
         ];
 
         $this->emailer->mail(
-            'Ton trick a été crée',
+            'Ton trick a été modifié',
             $from,
             $to,
             'trick/update_trick_email.html.twig',
             [
-                'email' => $event,
+                'email' => $event->getEmail(),
                 'slug' => $event->getSlug()
             ]
         );
@@ -143,7 +143,7 @@ class EmailSubscriber implements EventSubscriberInterface
     public function onRegister(RegisterEmailEvent $event): void
     {
         $from = [
-            'email' => 'admin.snowtrick@yopmail.com',
+            'email' => 'admin.snowtrick@yopmail.com\'',
             'name' => 'Administrateur',
         ];
         $to = [
@@ -152,12 +152,12 @@ class EmailSubscriber implements EventSubscriberInterface
         ];
 
         $this->emailer->mail(
-            'Ton trick a été crée',
+            'Ton compte a été créé',
             $from,
             $to,
             'security/register/confirm_email.html.twig',
             [
-                'email' => $event,
+                'email' => $event->getEmail(),
                 'token' => $event->getToken()
             ]
         );

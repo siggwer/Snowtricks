@@ -74,7 +74,9 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->flush();
 
         if ($data->getSlug()) {
-            $event = new AddTrickEmailEvent($data->getAuthor()->getEmail(), $data->getSlug());
+            $event = new AddTrickEmailEvent(
+                $data->getAuthor()->getEmail(),
+                $data->getSlug());
             $this->eventDispatcher->dispatch($event, AddTrickEmailEvent::NAME
             );
 

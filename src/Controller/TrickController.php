@@ -4,14 +4,14 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
 use App\Handler\UpdateTrickHandler;
-use App\Handler\AddTrickHandler;
 use App\Handler\ShowTrickHandler;
+use App\Handler\AddTrickHandler;
 use App\Entity\Comment;
 use App\Entity\Trick;
 use Exception;
@@ -63,6 +63,8 @@ class TrickController extends AbstractController
         Request $request,
         AddTrickHandler $handler
     ): Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $trick = new Trick();
         if ($handler->handle($request, $trick)) {
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
@@ -142,6 +144,8 @@ class TrickController extends AbstractController
         Trick $trick,
         UpdateTrickHandler $handler
     ): Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         if ($handler->handle($request, $trick)) {
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }

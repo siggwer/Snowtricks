@@ -16,7 +16,7 @@ use Exception;
 class RegistrationController extends AbstractController
 {
     /**
-     * @Route("/register", name="security_register")
+     * @Route("/register", name="security_register", methods={"GET","POST"})
      *
      * @param Request             $request
      * @param RegistrationHandler $handler
@@ -30,7 +30,7 @@ class RegistrationController extends AbstractController
         RegistrationHandler $handler
     ): Response {
         if ($handler->handle($request, new User())) {
-            return $this->redirectToRoute('mon-compte');
+            return $this->redirectToRoute('home');
         }
 
         return $this->render(

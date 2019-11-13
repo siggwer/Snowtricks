@@ -76,8 +76,11 @@ class RegistrationHandler extends AbstractHandler
         $this->entityManager->flush();
 
         if($data !== null) {
-            $event = new  RegisterEmailEvent($data->getEmail(), $data->getToken());
-            $this->eventDispatcher->dispatch($event,  RegisterEmailEvent::NAME
+            $event = new  RegisterEmailEvent(
+                $data->getEmail(),
+                $data->getToken()
+            );
+            $this->eventDispatcher->dispatch($event, RegisterEmailEvent::NAME
             );
 
             $this->flashBag->add(

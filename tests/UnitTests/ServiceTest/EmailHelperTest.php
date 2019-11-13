@@ -4,8 +4,8 @@ namespace App\Tests\UnitTests\ServiceTest;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Services\EmailHelper;
-use Swift_Mailer;
 use Twig\Environment;
+use Swift_Mailer;
 
 /**
  * Class EmailHelperTest
@@ -19,6 +19,9 @@ class EmailHelperTest extends KernelTestCase
      */
     private $swiftMailer;
 
+    /**
+     * @var Environment
+     */
     private $templating;
 
     /**
