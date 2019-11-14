@@ -41,7 +41,7 @@ class ConfirmRegisterController extends AbstractController
 
             $userRepository->save($user);
 
-           $flashBag->add('success', 'Votre compte à bien été créé');
+            $flashBag->add('success', 'Votre compte à bien été créé');
 
             return new RedirectResponse($this->generateUrl('security_login'),
                 RedirectResponse::HTTP_FOUND);

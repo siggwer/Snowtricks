@@ -2,13 +2,14 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\RegistrationHandler;
 use App\Handler\AbstractHandler;
 use App\Services\TokenGenerator;
+use App\Entity\User;
+use Exception;
 
 /**
  * Class RegistrationHandlerTest
@@ -30,8 +31,26 @@ class RegistrationHandlerTest extends AbstractTestHandler
         );
     }
 
+    /**
+     * @return User|mixed
+     *
+     * @throws Exception
+     */
     public function getData()
     {
         return new User();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+        return [
+          'username' => 'test',
+          'email' => 'test@email.com',
+          'plainPasswordFirst' => 'password',
+          'plainPasswordSecond' => 'password',
+        ];
     }
 }

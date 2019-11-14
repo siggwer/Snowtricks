@@ -2,13 +2,12 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Entity\Trick;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use Symfony\Component\Form\FormFactoryInterface;
+use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormInterface;
 use App\Handler\AbstractHandler;
-use App\Entity\User;
 use Exception;
 
 /**
@@ -24,7 +23,15 @@ abstract class AbstractTestHandler extends TestCase
      */
     abstract public function getHandler(): AbstractHandler;
 
+    /**
+     * @return mixed
+     */
     abstract public function getData();
+
+    /**
+     * @return array
+     */
+    abstract public function getFormData(): array;
 
     /**
      * @throws Exception
@@ -43,6 +50,9 @@ abstract class AbstractTestHandler extends TestCase
         $formFactory->method('create')->willReturn($form);
 
         $handler->setFormFactory($formFactory);
+
+        $request = $this->createMock(Request::class);
+        $request->request = new ParameterBag($this->getFormData());
 
         $this->assertTrue(
             $handler->handle($this->createMock(Request::class), $this->getData())
@@ -66,6 +76,9 @@ abstract class AbstractTestHandler extends TestCase
         $formFactory->method('create')->willReturn($form);
 
         $handler->setFormFactory($formFactory);
+
+//        $request = $this->createMock(Request::class);
+//        $request->request = new ParameterBag($this->getFormData());
 
         $this->assertFalse(
             $handler->handle($this->createMock(Request::class), $this->getData())

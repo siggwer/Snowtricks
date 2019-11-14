@@ -19,7 +19,6 @@ use Exception;
 /**
  * Class TrickController.
  *
- *
  * @Route("/trick")
  */
 class TrickController extends AbstractController

@@ -30,8 +30,21 @@ class ForgotHandlerTest extends AbstractTestHandler
         );
     }
 
+    /**
+     * @return Forgot|mixed
+     */
     public function getData()
     {
        return new Forgot();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+        return [
+          'email' => 'test@email.com'
+        ];
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\UnitTests\ServiceTest;
+namespace App\Tests\UnitTests\Service;
 
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use App\Services\TokenGenerator;

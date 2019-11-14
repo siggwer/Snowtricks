@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\UnitTests\ServiceTest;
+namespace App\Tests\UnitTests\Service;
 
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use App\Services\EmailHelper;

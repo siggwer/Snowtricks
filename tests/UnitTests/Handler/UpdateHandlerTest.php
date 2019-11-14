@@ -2,13 +2,14 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Entity\Trick;
-use App\Handler\AbstractHandler;
-use App\Handler\UpdateTrickHandler;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Security\Core\Security;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Handler\UpdateTrickHandler;
+use App\Handler\AbstractHandler;
+use App\Entity\Trick;
+use Exception;
 
 /**
  * Class UpdateHandlerTest
@@ -30,8 +31,26 @@ class UpdateHandlerTest extends AbstractTestHandler
         );
     }
 
+    /**
+     * @return Trick|mixed
+     *
+     * @throws Exception
+     */
     public function getData()
     {
         return new Trick();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+        return [
+            'name' => 'test',
+            'description' => 'test',
+            'alt' => 'test',
+            'uploadedFile' => '\public\uploads\image.png'
+        ];
     }
 }

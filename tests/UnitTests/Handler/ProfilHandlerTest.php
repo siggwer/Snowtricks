@@ -32,4 +32,15 @@ class ProfilHandlerTest extends AbstractTestHandler
     {
         return new User();
     }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+       return [
+         'alt' => 'test',
+         'uploadedFile' => '\public\uploads\image.png'
+       ];
+    }
 }

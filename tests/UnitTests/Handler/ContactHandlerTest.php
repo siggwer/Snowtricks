@@ -2,11 +2,11 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Model\Contact;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use App\Handler\AbstractHandler;
 use App\Handler\ContactHandler;
+use App\Model\Contact;
 
 /**
  * Class ContactHandlerTest
@@ -26,10 +26,26 @@ class ContactHandlerTest extends AbstractTestHandler
         );
     }
 
+    /**
+     * @return Contact|mixed
+     */
     public function getData()
     {
         $contact = new Contact();
 
         return new Contact();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+        return [
+            'message' => 'message',
+            'subject' => 'subject',
+            'name' => 'name',
+            'email' => 'test@email.com'
+        ];
     }
 }

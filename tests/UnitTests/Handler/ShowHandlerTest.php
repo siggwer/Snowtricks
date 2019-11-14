@@ -2,12 +2,13 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Entity\Comment;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\ShowTrickHandler;
 use App\Handler\AbstractHandler;
+use App\Entity\Comment;
+use Exception;
 
 /**
  * Class ShowHandlerTest
@@ -28,8 +29,23 @@ class ShowHandlerTest extends AbstractTestHandler
        );
     }
 
+    /**
+     * @return Comment|mixed
+     *
+     * @throws Exception
+     */
     public function getData()
     {
         return new Comment();
+    }
+
+    /**
+     * @return array
+     */
+    public function getFormData(): array
+    {
+       return [
+         'content' => 'test'
+       ];
     }
 }
