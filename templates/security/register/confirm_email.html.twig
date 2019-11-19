@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr">
 <head>
-    <title>Contact</title>
+    <title>Confirmation de création de compte</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style type="text/css">
@@ -93,6 +93,7 @@
     </tr>
     <tr>
         <td class="wrapper" style="padding:50px 10px;">
+
             <table data-module="module-6" data-thumb="" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                     <td data-bgcolor="bg-module" bgcolor="#eaeced">
@@ -102,32 +103,25 @@
                                     <table width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td data-color="title" data-size="size title" data-min="20" data-max="40" data-link-color="link title color" data-link-style="text-decoration:none; color:#292c34;" class="title" align="center" style="font:30px/33px Arial, Helvetica, sans-serif; color:#292c34; padding:0 0 23px;">
-                                                Contact
+                                                Création de ton compte
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:16px/29px Arial, Helvetica, sans-serif; color:#888; padding:0 0 21px;">
-                                                <strong>Bonjour :</strong> {{ name }}
+                                                <strong>Bonjour :</strong> {{ email }}
                                             </td>
                                         </tr>
                                         <tr>
                                             <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:16px/29px Arial, Helvetica, sans-serif; color:#888; padding:0 0 21px;">
-                                                Merci de ton message que tu trouvereas ci-dessous
+                                                Pour confirmer ton mot de passe clique sur le bouton :)
                                             </td>
                                         </tr>
                                         <tr>
                                             <td style="padding:0 0 20px;">
                                                 <table width="232" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
                                                     <tr>
-                                                        <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:16px/29px Arial, Helvetica, sans-serif; color:#888; padding:0 0 21px;">
-                                                            <strong>Sujet :</strong> {{ subject }} <br />
-                                                            <strong>Message :</strong> {{ message|nl2br }}
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td data-color="text" data-size="size text" data-min="10" data-max="26" data-link-color="link text color" data-link-style="font-weight:bold; text-decoration:underline; color:#40aceb;" align="center" style="font:16px/29px Arial, Helvetica, sans-serif; color:#888; padding:0 0 21px;">
-                                                            Nous te répondrons très rapidement à l'adresse suivante
-                                                            <strong>Email :</strong> {{ email }} <br />
+                                                        <td data-bgcolor="bg-button" data-size="size button" data-min="10" data-max="20" class="btn" align="center" style="font:bold 16px/18px Arial, Helvetica, sans-serif; color:#f9f9f9; text-transform:uppercase; mso-padding-alt:22px 10px; border-radius:3px;" bgcolor="#233b6f">
+                                                            <a target="_blank" style="text-decoration:none; color:#f9f9f9; display:block; padding:22px 10px;" href="http://localhost:8000/confirmregister/{{ token }}">Confirme ton compte</a>
                                                         </td>
                                                     </tr>
                                                 </table>
