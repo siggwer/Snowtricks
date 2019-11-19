@@ -76,8 +76,11 @@ class AddTrickHandler extends AbstractHandler
         if ($data->getSlug()) {
             $event = new AddTrickEmailEvent(
                 $data->getAuthor()->getEmail(),
-                $data->getSlug());
-            $this->eventDispatcher->dispatch($event, AddTrickEmailEvent::NAME
+                $data->getSlug()
+            );
+            $this->eventDispatcher->dispatch(
+                $event,
+                AddTrickEmailEvent::NAME
             );
 
             $this->flashBag->add(

@@ -83,7 +83,9 @@ class ForgotHandler extends AbstractHandler
 
         if ($data !== null) {
             $event = new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken);
-            $this->eventDispatcher->dispatch($event, ForgotPasswordEmailEvent::NAME
+            $this->eventDispatcher->dispatch(
+                $event,
+                ForgotPasswordEmailEvent::NAME
             );
 
             $this->flashBag->add(

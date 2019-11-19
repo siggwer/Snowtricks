@@ -29,24 +29,27 @@ class ConfirmRegisterController extends AbstractController
         Request $request,
         FlashBagInterface $flashBag,
         UserRepository $userRepository
-    ){
+    ) {
         try {
             $user = $userRepository->checkRegistrationToken($request->get('token'));
         } catch (NonUniqueResultException $e) {
         }
 
         if ($user !== null) {
-
             $user->setToken(null);
 
             $userRepository->save($user);
 
             $flashBag->add('success', 'Votre compte à bien été créé');
 
-            return new RedirectResponse($this->generateUrl('security_login'),
-                RedirectResponse::HTTP_FOUND);
+            return new RedirectResponse(
+                $this->generateUrl('security_login'),
+                RedirectResponse::HTTP_FOUND
+            );
         }
-        return new Response($this->render('home.html.twig'),
-            Response::HTTP_OK);
+        return new Response(
+            $this->render('home.html.twig'),
+            Response::HTTP_OK
+        );
     }
 }

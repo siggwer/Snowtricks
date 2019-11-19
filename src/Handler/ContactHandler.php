@@ -52,14 +52,16 @@ class ContactHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        if($data !== null){
+        if ($data !== null) {
             $event = new ContactEvent(
                 $data->getMessage(),
                 $data->getSubject(),
                 $data->getName(),
                 $data->getEmail()
             );
-            $this->eventDispatcher->dispatch($event, ContactEvent::NAME
+            $this->eventDispatcher->dispatch(
+                $event,
+                ContactEvent::NAME
             );
 
             $this->flashBag->add(

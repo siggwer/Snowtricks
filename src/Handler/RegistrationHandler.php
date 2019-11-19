@@ -75,12 +75,14 @@ class RegistrationHandler extends AbstractHandler
         $this->entityManager->persist($data);
         $this->entityManager->flush();
 
-        if($data !== null) {
+        if ($data !== null) {
             $event = new  RegisterEmailEvent(
                 $data->getEmail(),
                 $data->getToken()
             );
-            $this->eventDispatcher->dispatch($event, RegisterEmailEvent::NAME
+            $this->eventDispatcher->dispatch(
+                $event,
+                RegisterEmailEvent::NAME
             );
 
             $this->flashBag->add(
@@ -88,8 +90,7 @@ class RegistrationHandler extends AbstractHandler
                 'Ton compte a bien été créé, un email t\'a été envoyé pour le valider.'
             );
 
-        return;
-
+            return;
         }
 
         $this->flashBag->add(

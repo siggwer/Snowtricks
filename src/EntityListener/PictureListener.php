@@ -64,11 +64,11 @@ class PictureListener
             return;
         }
 
-        $filename = md5(uniqid('', true)).'.'.$picture
+        $filename = md5(uniqid('', true)) . '.' . $picture
             ->getUploadedFile()
             ->getClientOriginalExtension();
         $picture->getUploadedFile()->move($this->uploadDir, $filename);
-        $picture->setPath('uploads/'.$filename);
+        $picture->setPath('uploads/' . $filename);
     }
 
     /**
@@ -77,6 +77,6 @@ class PictureListener
     public function preRemove(
         Picture $picture
     ) {
-        unlink($this->uploadDir.'/'.$picture->getPath());
+        unlink($this->uploadDir . '/' . $picture->getPath());
     }
 }

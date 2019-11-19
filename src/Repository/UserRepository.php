@@ -45,7 +45,7 @@ class UserRepository extends ServiceEntityRepository
      *
      * @throws NonUniqueResultException
      */
-    public Function checkRegistrationToken($token): ?User
+    public function checkRegistrationToken($token): ?User
     {
         return  $this->createQueryBuilder('user')
             ->where('user.token = :token')
