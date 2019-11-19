@@ -24,7 +24,6 @@
         </div>
         <div class="row py-5">
             {% for video in trick.videos %}
-                {{ dump(trick.videos) }}
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card h-100">
                         <iframe width="100%" height="100%" src="{{ video.url }}"
