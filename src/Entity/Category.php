@@ -5,15 +5,15 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class Category
+ * Class Category.
  *
- * @package                                                         App\Entity
  * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
  */
 class Category
 {
     /**
-     * @var                        int|null
+     * @var int|null
+     *
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -21,7 +21,8 @@ class Category
     private $id;
 
     /**
-     * @var                       string|null
+     * @var string|null
+     *
      * @ORM\Column(type="string")
      */
     private $name;

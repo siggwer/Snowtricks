@@ -10,9 +10,7 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class FileTypeExtension
- *
- * @package App\Form\TypeExtension
+ * Class FileTypeExtension.
  */
 class FileTypeExtension implements FormTypeExtensionInterface
 {

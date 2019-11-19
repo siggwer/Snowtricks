@@ -9,14 +9,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class CommentType
- *
- * @package App\Form
+ * Class CommentType.
  */
 class CommentType extends AbstractType
 {
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -27,14 +25,14 @@ class CommentType extends AbstractType
                 [
                 'label' => 'Votre commentaire',
                 'attr' => array(
-                    'placeholder' => 'Ecrivez un commentaire'
-                )
+                    'placeholder' => 'Ecrivez un commentaire',
+                ),
                 ]
             );
     }
 
     /**
-     * @inheritDoc
+     * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver): void
     {

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Form;
 
 use App\Entity\Category;
@@ -14,15 +13,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class TrickType
- *
- * @package App\Form
+ * Class TrickType.
  */
 class TrickType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     *
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -35,8 +31,8 @@ class TrickType extends AbstractType
                 'label' => 'Nom du trick',
                 'required' => false,
                 'attr' => array(
-                    'placeholder' => 'Titre'
-                )
+                    'placeholder' => 'Titre',
+                ),
                 ]
             )
             ->add(
@@ -46,7 +42,7 @@ class TrickType extends AbstractType
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Indiquez la catégorie',
-                'required' => true
+                'required' => true,
                 ]
             )
             ->add(
@@ -56,8 +52,8 @@ class TrickType extends AbstractType
                 'label' => 'Indiquez une description',
                 'required' => true,
                 'attr' => array(
-                    'placeholder' => 'Description'
-                )
+                    'placeholder' => 'Description',
+                ),
                 ]
             )
             ->add(
@@ -66,8 +62,8 @@ class TrickType extends AbstractType
                 [
                 'label' => false,
                 'attr' => array(
-                    'placeholder' => 'Image principale'
-                )
+                    'placeholder' => 'Image principale',
+                ),
                 ]
             )
             ->add(
@@ -79,7 +75,7 @@ class TrickType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
                 ]
             )
             ->add(
@@ -91,7 +87,7 @@ class TrickType extends AbstractType
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
-                'by_reference' => false
+                'by_reference' => false,
                 ]
             );
     }

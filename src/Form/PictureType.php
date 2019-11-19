@@ -5,22 +5,19 @@ namespace App\Form;
 use App\Entity\Picture;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Image;
 
 /**
- * Class PictureType
- *
- * @package App\Form
+ * Class PictureType.
  */
 class PictureType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     *
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -39,8 +36,8 @@ class PictureType extends AbstractType
                         'maxWidth' => $options['width'],
                         'maxHeight' => $options['height'],
                         ]
-                    )
-                ]
+                    ),
+                ],
                 ]
             )
             ->add(
@@ -55,7 +52,7 @@ class PictureType extends AbstractType
                 FormEvents::SUBMIT,
                 function (formEvent $event) {
                     $picture = $event->getData();
-                    if ($picture->getUploadedFile() !== null) {
+                    if (null !== $picture->getUploadedFile()) {
                         $picture->setPath(null);
                     }
                 }
@@ -71,7 +68,7 @@ class PictureType extends AbstractType
             [
             'data_class' => Picture::class,
             'width' => 400,
-            'height' => 400
+            'height' => 400,
             ]
         );
     }

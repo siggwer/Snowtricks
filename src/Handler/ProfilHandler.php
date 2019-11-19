@@ -2,11 +2,11 @@
 
 namespace App\Handler;
 
-use App\Entity\User;
-use App\Form\AvatarType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\AvatarType;
+use App\Entity\User;
 
 /**
  * Class ProfilHandler
@@ -29,11 +29,14 @@ class ProfilHandler extends AbstractHandler
      * ProfilHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface $flashBag
-     * @param Security $security
+     * @param FlashBagInterface      $flashBag
+     * @param Security               $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag,
+        Security $security
+    ) {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->security = $security;

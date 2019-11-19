@@ -2,16 +2,16 @@
 
 namespace App\Handler;
 
-use App\Entity\Trick;
-use App\Form\TrickType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Event\AddTrickEmailEvent;
+use App\Form\TrickType;
+use App\Entity\Trick;
 
 /**
- * Class AddTrickHandler
- *
- * @package App\Handler
+ * Class AddTrickHandler.
  */
 class AddTrickHandler extends AbstractHandler
 {
@@ -19,6 +19,11 @@ class AddTrickHandler extends AbstractHandler
      * @var EntityManagerInterface
      */
     private $entityManager;
+
+    /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcher;
 
     /**
      * @var FlashBagInterface
@@ -34,12 +39,18 @@ class AddTrickHandler extends AbstractHandler
      * AddTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
+     * @param EventDispatcherInterface $eventDispatcher
      * @param FlashBagInterface $flashBag
      * @param Security $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        EventDispatcherInterface $eventDispatcher,
+        FlashBagInterface $flashBag,
+        Security $security
+    ) {
         $this->entityManager = $entityManager;
+        $this->eventDispatcher = $eventDispatcher;
         $this->flashBag = $flashBag;
         $this->security = $security;
     }
@@ -62,12 +73,24 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->persist($data);
         $this->entityManager->flush();
 
-        $this->flashBag->add(
-                'success',
-                'Le trick a bien été crée.'
-        );
+        if ($data->getSlug()) {
+            $event = new AddTrickEmailEvent(
+                $data->getAuthor()->getEmail(),
+                $data->getSlug());
+            $this->eventDispatcher->dispatch($event, AddTrickEmailEvent::NAME
+            );
 
+            $this->flashBag->add(
+                'success',
+                'Le trick a bien été crée, un email de confirmation t\'a été envoyé.'
+            );
+
+            return;
+        }
+
+        $this->flashBag->add(
+            'error',
+            'Une erreur est survenue. Merce de réessayer.'
+        );
     }
 }
-
-

@@ -12,15 +12,12 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class RegistrationFormType
- *
- * @package App\Form
+ * Class RegistrationFormType.
  */
 class RegistrationFormType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
-     *
      * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
@@ -31,8 +28,8 @@ class RegistrationFormType extends AbstractType
                 TextType::class,
                 [
                 'attr' => array(
-                    'placeholder' => 'Votre pseudo'
-                )
+                    'placeholder' => 'Votre pseudo',
+                ),
                 ]
             )
             ->add(
@@ -40,8 +37,8 @@ class RegistrationFormType extends AbstractType
                 EmailType::class,
                 [
                 'attr' => array(
-                    'placeholder' => 'Votre email'
-                )
+                    'placeholder' => 'Votre email',
+                ),
                 ]
             )
             ->add(
@@ -51,12 +48,12 @@ class RegistrationFormType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Mot de passe',
                     'attr' => array(
-                    'placeholder' => 'Votre mot de passe'
-                )],
+                    'placeholder' => 'Votre mot de passe',
+                ), ],
                 'second_options' => ['label' => 'Répéter votre mot de passe',
                     'attr' => array(
-                    'placeholder' => 'Répetez votre mot de passe'
-                )]
+                    'placeholder' => 'Répetez votre mot de passe',
+                ), ],
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 ]

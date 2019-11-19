@@ -8,13 +8,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Exception;
-use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Class Trick
+ * Class Trick.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
  * @ORM\EntityListeners({"App\EntityListener\TrickListener"})
@@ -93,7 +92,6 @@ class Trick
      *
      * @ORM\OneToOne(targetEntity="Picture", cascade={"persist"})
      */
-
     private $pictureOnFront;
 
     /**
@@ -226,7 +224,7 @@ class Trick
     /**
      * @return string
      */
-    public function getSlug(): string
+    public function getSlug(): ?string
     {
         return $this->slug;
     }
@@ -329,6 +327,7 @@ class Trick
             $this->pictures[] = $picture;
             $picture->setTrick($this);
         }
+
         return $this;
     }
 
@@ -337,7 +336,7 @@ class Trick
      *
      * @return Trick
      */
-    public function removePicture(Picture $picture):  self //void
+    public function removePicture(Picture $picture): self //void
     {
         /*if ($this->pictures->contains($picture)) {
             $picture->setTrick(null);
@@ -369,6 +368,7 @@ class Trick
             $this->videos[] = $video;
             $video->setTrick($this);
         }
+
         return $this;
     }
 
@@ -390,6 +390,7 @@ class Trick
                 $video->setTrick(null);
             }
         }
+
         return $this;
     }
 }

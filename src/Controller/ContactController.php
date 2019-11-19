@@ -2,17 +2,15 @@
 
 namespace App\Controller;
 
-use App\Handler\ContactHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use App\Handler\ContactHandler;
 use App\Model\Contact;
 
 /**
- * Class ContactController
- *
- * @package App\Controller
+ * Class ContactController.
  */
 class ContactController extends AbstractController
 {
@@ -24,8 +22,10 @@ class ContactController extends AbstractController
      *
      * @return Response
      */
-    public function __invoke(Request $request, ContactHandler $handler): Response
-    {
+    public function __invoke(
+        Request $request,
+        ContactHandler $handler
+    ): Response {
         if ($handler->handle($request, new Contact())) {
             return $this->redirectToRoute('contact');
         }
@@ -33,7 +33,7 @@ class ContactController extends AbstractController
         return $this->render(
             'contact/contact.html.twig',
             [
-            'form' => $handler->createView()
+            'form' => $handler->createView(),
             ]
         );
     }

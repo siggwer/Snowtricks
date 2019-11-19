@@ -2,11 +2,11 @@
 
 namespace App\Handler;
 
-use App\Entity\Comment;
-use App\Form\CommentType;
-use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Security;
+use Doctrine\ORM\EntityManagerInterface;
+use App\Form\CommentType;
+use App\Entity\Comment;
 
 /**
  * Class ShowTrickHandler
@@ -34,11 +34,14 @@ class ShowTrickHandler extends AbstractHandler
      * ShowTrickHandler constructor.
      *
      * @param EntityManagerInterface $entityManager
-     * @param FlashBagInterface $flashBag
-     * @param Security $security
+     * @param FlashBagInterface      $flashBag
+     * @param Security               $security
      */
-    public function __construct(EntityManagerInterface $entityManager, FlashBagInterface $flashBag, Security $security)
-    {
+    public function __construct(
+        EntityManagerInterface $entityManager,
+        FlashBagInterface $flashBag,
+        Security $security
+    ) {
         $this->entityManager = $entityManager;
         $this->flashBag = $flashBag;
         $this->security = $security;

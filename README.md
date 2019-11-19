@@ -4,7 +4,6 @@
 ```
 Development of a community site based on symfony 4.
 ```
-
 ## Installation
 
 Clone this repository.

@@ -2,11 +2,11 @@
 
 namespace App\Controller;
 
-use App\Handler\ProfilHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use App\Handler\ProfilHandler;
 
 /**
  * Class ProfileController
@@ -36,9 +36,9 @@ class ProfileController extends AbstractController
         return $this->render(
             'user/profile.html.twig',
             [
-            'user'=> $this->getUser(),
-            'avatar'=> $this->getUser()->getAvatar(),
-            'form'=> $handler->createView()
+            'user' => $this->getUser(),
+            'avatar' => $this->getUser()->getAvatar(),
+            'form' => $handler->createView(),
             ]
         );
     }

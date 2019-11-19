@@ -11,9 +11,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * Class ContactType
- *
- * @package App\Form
+ * Class ContactType.
  */
 class ContactType extends AbstractType
 {
@@ -30,8 +28,8 @@ class ContactType extends AbstractType
                 [
                 'label' => 'votre nom :',
                 'attr' => array(
-                   'placeholder' => 'Votre nom '
-                )
+                   'placeholder' => 'Votre nom ',
+                ),
                 ]
             )
             ->add(
@@ -40,9 +38,8 @@ class ContactType extends AbstractType
                 [
                 'label' => 'votre email :',
                 'attr' => array(
-                   'placeholder' => 'Votre email '
-                )
-
+                   'placeholder' => 'Votre email ',
+                ),
                 ]
             )
             ->add(
@@ -51,8 +48,8 @@ class ContactType extends AbstractType
                 [
                 'label' => 'Sujet :',
                 'attr' => array(
-                   'placeholder' => 'Indiquez un sujet '
-                )
+                   'placeholder' => 'Indiquez un sujet ',
+                ),
                 ]
             )
             ->add(
@@ -61,8 +58,8 @@ class ContactType extends AbstractType
                 [
                 'label' => 'votre message :',
                 'attr' => array(
-                   'placeholder' => 'Ecrivez votre message'
-                )
+                   'placeholder' => 'Ecrivez votre message',
+                ),
                 ]
             );
     }

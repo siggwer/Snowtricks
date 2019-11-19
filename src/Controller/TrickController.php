@@ -2,24 +2,22 @@
 
 namespace App\Controller;
 
-use App\Handler\UpdateTrickHandler;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Comment;
-use App\Entity\Trick;
-use App\Handler\AddTrickHandler;
-use App\Handler\ShowTrickHandler;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use App\Repository\CommentRepository;
 use App\Repository\TrickRepository;
+use App\Handler\UpdateTrickHandler;
+use App\Handler\ShowTrickHandler;
+use App\Handler\AddTrickHandler;
+use App\Entity\Comment;
+use App\Entity\Trick;
 use Exception;
 
 /**
- * Class TrickController
- *
- * @package App\Controller
+ * Class TrickController.
  *
  * @Route("/trick")
  */
@@ -42,10 +40,10 @@ class TrickController extends AbstractController
             [
             'tricks' => $trickRepository->findBy(
                 [],
-                ['publishedAt' => "desc"],
+                ['publishedAt' => 'desc'],
                 6,
                 ($request->query->get('page', 2) - 1) * 6
-            )
+            ),
             ]
         );
     }
@@ -60,13 +58,17 @@ class TrickController extends AbstractController
      *
      * @throws Exception
      */
-    public function add(Request $request, AddTrickHandler $handler): Response
-    {
+    public function add(
+        Request $request,
+        AddTrickHandler $handler
+    ): Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
         $trick = new Trick();
         if ($handler->handle($request, $trick)) {
-
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
+
         return $this->render(
             'trick/add.html.twig',
             [
@@ -78,16 +80,21 @@ class TrickController extends AbstractController
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
-     * @param Trick             $trick
-     * @param CommentRepository $commentRepository
-     * @param Request           $request
+     * @param Request $request
      *
+     * @param CommentRepository $commentRepository
+     * @param Trick $trick
+     * @param ShowTrickHandler $handler
      * @return Response
      *
      * @throws Exception
      */
-    public function show(Request $request,CommentRepository $commentRepository, Trick $trick, ShowTrickHandler $handler): Response
-    {
+    public function show(
+        Request $request,
+        CommentRepository $commentRepository,
+        Trick $trick,
+        ShowTrickHandler $handler
+    ): Response {
         $totalComments = $commentRepository->count(['trick' => $trick]);
 
         $page = $request->query->get('page', 1);
@@ -96,7 +103,6 @@ class TrickController extends AbstractController
         $comment->setTrick($trick);
 
         if ($handler->handle($request, $comment)) {
-
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug(), '_fragment' => 'comments']);
         }
 
@@ -104,7 +110,7 @@ class TrickController extends AbstractController
             'trick/show.html.twig',
             [
             'form' => $handler->createView(),
-            'trick' =>$trick,
+            'trick' => $trick,
             'comments' => $commentRepository->findBy(
                 ['trick' => $trick],
                 ['publishedAt' => 'desc'],
@@ -115,10 +121,10 @@ class TrickController extends AbstractController
                 'page' => $page,
                 'pages' => ceil($totalComments / 10),
                 'range' => range(
-                    max(1, $page- 3),
+                    max(1, $page - 3),
                     min(ceil($totalComments / 10), $page + 3)
-                )
-            ]
+                ),
+            ],
             ]
         );
     }
@@ -126,8 +132,8 @@ class TrickController extends AbstractController
     /**
      * @Route("/update/{slug}", name="trick_update", methods={"GET","POST"})
      *
-     * @param Request $request
-     * @param Trick $trick
+     * @param Request            $request
+     * @param Trick              $trick
      * @param UpdateTrickHandler $handler
      *
      * @return Response
@@ -137,18 +143,17 @@ class TrickController extends AbstractController
         Trick $trick,
         UpdateTrickHandler $handler
     ): Response {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
         if ($handler->handle($request, $trick)) {
-
             return $this->redirectToRoute('trick_show', ['slug' => $trick->getSlug()]);
         }
 
         return $this->render(
-            "trick/update.html.twig",
+            'trick/update.html.twig',
             [
             'trick' => $trick,
-            'form' => $handler->createView()
-
+            'form' => $handler->createView(),
             ]
         );
     }

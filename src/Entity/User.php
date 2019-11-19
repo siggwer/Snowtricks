@@ -2,22 +2,22 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
+use Doctrine\ORM\Mapping as ORM;
+use Exception;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
-use DateTimeImmutable;
-use Serializable;
-use Exception;
 
 /**
- * Class User
+ * Class User.
  *
- * @package App\Entity
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\EntityListeners({"App\EntityListener\UserListener"})
+ *
  * @UniqueEntity("email")
  * @UniqueEntity("username")
  */
@@ -68,6 +68,13 @@ class User implements UserInterface, Serializable
     private $plainPassword;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $passwordToken;
+
+    /**
      * @var DateTimeImmutable|null
      *
      * @ORM\Column(type="datetime_immutable")
@@ -91,6 +98,13 @@ class User implements UserInterface, Serializable
      * @Assert\NotNull(groups={"add"})
      */
     private $uploadedFile;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $token;
 
     /**
      * @var string|null
@@ -124,35 +138,11 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return UploadedFile|null
-     */
-    public function getUploadedFile(): ?UploadedFile
-    {
-        return $this->uploadedFile;
-    }
-
-    /**
-     * @param string|null $username
-     */
-    public function setUsername(?string $username): void
-    {
-        $this->username = $username;
-    }
-
-    /**
      * @return string|null
      */
     public function getEmail(): ?string
     {
         return $this->email;
-    }
-
-    /**
-     * @param string|null $email
-     */
-    public function setEmail(?string $email): void
-    {
-        $this->email = $email;
     }
 
     /**
@@ -164,14 +154,6 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string|null $password
-     */
-    public function setPassword(?string $password): void
-    {
-        $this->password = $password;
-    }
-
-    /**
      * @return string|null
      */
     public function getPlainPassword(): ?string
@@ -180,11 +162,19 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @param string|null $plainPassword
+     * @return string|null
      */
-    public function setPlainPassword(?string $plainPassword): void
+    public function getPasswordToken(): ?string
     {
-        $this->plainPassword = $plainPassword;
+        return $this->passwordToken;
+    }
+
+    /**
+     * @return UploadedFile|null
+     */
+    public function getUploadedFile(): ?UploadedFile
+    {
+        return $this->uploadedFile;
     }
 
     /**
@@ -203,6 +193,61 @@ class User implements UserInterface, Serializable
         return $this->avatar;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string|null $username
+     */
+    public function setUsername(?string $username): void
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @param string|null $email
+     */
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param string|null $password
+     */
+    public function setPassword(?string $password): void
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @param string|null $plainPassword
+     */
+    public function setPlainPassword(?string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
+     * @param string|null $passwordToken
+     */
+    public function setPasswordToken(?string $passwordToken): void
+    {
+        $this->passwordToken = $passwordToken;
+    }
 
     /**
      * @param DateTimeImmutable|null $registeredAt
@@ -221,11 +266,19 @@ class User implements UserInterface, Serializable
     }
 
     /**
-     * @return string|null
+     * @param UploadedFile|null $uploadedFile
      */
-    public function getRole(): ?string
+    public function setUploadedFile(?UploadedFile $uploadedFile): void
     {
-        return $this->role;
+        $this->uploadedFile = $uploadedFile;
+    }
+
+    /**
+     * @param string|null $token
+     */
+    public function setToken(?string $token): void
+    {
+        $this->token = $token;
     }
 
     /**
@@ -234,14 +287,6 @@ class User implements UserInterface, Serializable
     public function setRole(?string $role): void
     {
         $this->role = $role;
-    }
-
-    /**
-     * @param UploadedFile|null $uploadedFile
-     */
-    public function setUploadedFile(?UploadedFile $uploadedFile): void
-    {
-        $this->uploadedFile = $uploadedFile;
     }
 
     /**
@@ -258,7 +303,7 @@ class User implements UserInterface, Serializable
      *
      * @return array (Role|string)[] The user roles
      */
-    public function getRoles()
+    public function getRoles(): array
     {
         return ['ROLE_USER'];
     }
@@ -281,7 +326,7 @@ class User implements UserInterface, Serializable
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
      */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
         // TODO: Implement eraseCredentials() method.
     }
@@ -289,14 +334,14 @@ class User implements UserInterface, Serializable
     /**
      * @return string
      */
-    public function serialize()
+    public function serialize(): string
     {
         return serialize(
             array(
             $this->id,
             $this->username,
             $this->password,
-            $this->email
+            $this->email,
             // see section on salt below
             // $this->salt,
             )
@@ -306,7 +351,7 @@ class User implements UserInterface, Serializable
     /**
      * @param $serialized
      */
-    public function unserialize($serialized)
+    public function unserialize($serialized): void
     {
         list(
             $this->id,
