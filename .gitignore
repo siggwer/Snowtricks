@@ -13,6 +13,7 @@ composer.phar
 ###> symfony/phpunit-bridge ###
 .phpunit
 /phpunit.xml
+/build/
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/web-server-bundle ###

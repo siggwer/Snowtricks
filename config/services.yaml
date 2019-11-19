@@ -43,7 +43,7 @@ services:
 
     email_service:
         class: App\Handler\ContactHandler
-        arguments: ['@session.flash_bag', '@Swift_Mailer']
+        arguments: ['@Symfony\Contracts\EventDispatcher\EventDispatcherInterface', '@Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface']
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

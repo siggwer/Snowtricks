@@ -275,6 +275,22 @@ http://www.github.com/halibegic/merlin GitHub*/
 
 /*END LOGIN */
 
+/* BEGIN FORGOT */
+
+.forgot-container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding-left: 21%;
+}
+.forgot-form-1 {
+    padding: 5%;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+.forgot-container form {
+    padding: 10%;
+}
+
+/*END FORGOT */
 
 /* BEGIN REGISTER */
 
@@ -459,7 +475,8 @@ http://www.github.com/halibegic/merlin GitHub*/
 /* BEGIN FOOTER */
 
 #footer {
-    padding: 4rem 0;
+    padding: 2rem 0;
+    bottom:0;
     color: #ccc;
     text-align: center;
     background: #233b6f;
@@ -543,6 +560,12 @@ http://www.github.com/halibegic/merlin GitHub*/
         padding: 3%;
         margin-left: 150px;
     }
+    .forgot-container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
     .register-container {
         margin-top: 5%;
         margin-bottom: 5%;
@@ -555,7 +578,7 @@ http://www.github.com/halibegic/merlin GitHub*/
         margin-left: 250px;
     }
     #footer {
-        padding: 4rem 0;
+        padding: 2rem 0;
         color: #ccc;
         text-align: center;
         background: #233b6f;
@@ -573,6 +596,16 @@ http://www.github.com/halibegic/merlin GitHub*/
         padding: 3%;
         margin-left: 130px;
     }
+    .forgot-container {
+        margin-top: 10%;
+        margin-bottom: 0;
+        padding-left: 21%;
+        padding-bottom: 12.5%;
+    }
+    .forgot-form-1 {
+        padding: 3%;
+        margin-left: 130px;
+    }
     .register-container {
         margin-top: 5%;
         margin-bottom: 5%;
@@ -584,7 +617,8 @@ http://www.github.com/halibegic/merlin GitHub*/
         margin-left: 130px;
     }
     #footer {
-        padding: 4rem 0;
+        padding: 2rem 0;
+        bottom:0;
         color: #ccc;
         text-align: center;
         background: #233b6f;

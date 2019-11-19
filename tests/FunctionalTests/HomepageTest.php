@@ -9,10 +9,14 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class HomepageTest
+ *
  * @package App\Tests\FunctionalTests
  */
 class HomepageTest extends WebTestCase
 {
+    /**
+     *
+     */
     public function testHome()
     {
         $client = static::createClient();
@@ -22,6 +26,9 @@ class HomepageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
     }
 
+    /**
+     *
+     */
     public function testShow()
     {
         $client = static::createClient();
@@ -41,6 +48,9 @@ class HomepageTest extends WebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 
+    /**
+     *
+     */
     public function testList()
     {
         $client = static::createClient();

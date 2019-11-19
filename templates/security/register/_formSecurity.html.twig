@@ -1,6 +1,11 @@
 {{ form_start(registrationForm) }}
 {{ form_errors(registrationForm) }}
 {{ form_widget(registrationForm._token) }}
+{{ form_errors(form.username) }}
+{{ form_errors(form.email) }}
+{{ form_errors(form.plainPassword.first) }}
+{{ form_errors(form.plainPassword.second) }}
+
 <div class="form-group input-group">
     <div class="input-group-prepend">
         <span class="input-group-text"> <i class="fa fa-user"></i></span>
