@@ -2,8 +2,8 @@
 
 namespace App\EntityListener;
 
-use App\Entity\Trick;
 use Symfony\Component\Security\Core\Security;
+use App\Entity\Trick;
 
 /**
  * Class TrickListener.

@@ -68,6 +68,10 @@ class AddTrickHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
+//        $url1 = $data->getVideos();
+//        $url = $this->videoOembedConverter->converter($url1);
+//        dd($url,$data);
+
         $data->setAuthor($this->security->getUser());
 
         $this->entityManager->persist($data);
