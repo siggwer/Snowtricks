@@ -2,8 +2,6 @@
 
 namespace App\Entity;
 
-use Embera\Embera;
-use Essence\Essence;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -78,13 +76,13 @@ class Video
      */
     public function setUrl(?string $url): void
     {
-        dd($url);
-        $embera = new Embera();
-        $embera->autoEmbed($url);
-        $url = $embera->getUrlInfo($url);
-        $Essence = new Essence();
-        $media = $Essence->extractAll($url);
-        dd($media,$url);
+        $video_url = $url;
+        if(!empty($video_url))
+            {
+                $url = str_replace(
+                    'www.youtube.com/watch?v=',
+                    'www.youtube.com/embed/', $video_url);
+            }
         $this->url = $url;
     }
 }
