@@ -5,12 +5,12 @@ namespace App\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use App\Services\VideoEmbedConverter;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use DateTimeImmutable;
 use DateTimeInterface;
 use Exception;
-use function Sodium\version_string;
 
 /**
  * Class Trick.
@@ -367,6 +367,15 @@ class Trick
         }*/
         if (!$this->videos->contains($video)) {
             $this->videos[] = $video;
+            $url = new VideoEmbedConverter();
+            $url->converter($video->getUrl());
+            dd($url);
+            //$url = $video->getUrl();
+
+
+            //dd($this->converter->converter($url));
+            //$this->converter->converter($url);
+            //dd($url);
             $video->setTrick($this);
         }
 
