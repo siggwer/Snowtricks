@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use Embera\Embera;
+use App\Entity\Video;
 
 /**
  * Class VideoEmbedConverter
@@ -11,75 +11,35 @@ use Embera\Embera;
  */
 class VideoEmbedConverter
 {
-//    /**
-//     * @var string
-//     */
-//    private $embra;
-//
-//    /**
-//     * VideoEmbedConverter constructor.
-//     *
-//     * @param string $embra
-//     */
-//    public function __construct(
-//        string $embra
-//    ){
-//        $this->embra = $embra;
-//    }
-
     /**
-     * @param string $embra
+     * @param Video
      *
-     * @return Embera
+     * @return $url
      */
-    public function converter(string $embra)
+    public function converter(Video $video)
     {
-//        preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $embra, $matches);
-////        dd(preg_match('/[\\?\\&]v=([^\\?\\&]+)/', $embra, $matches));
-//        $config = array(
-//            'allow' => array('Youtube', 'Vimeo', 'Daylymotion'),
-//            'ignore_tags' => array('a', 'img', 'strong', 'iframe', 'width', 'heigh', 'html', 'frameborder ','allow', 'autoplay')
-//        );
-//        $convert = new Essence();
-//        $url = $convert->crawlUrl($embra);
-//        $embera = new Embera($config);
-//        $media = $embera->autoEmbed($embra);
-//        $preUrl = array($media);
-//        $convert = new Essence();
-//        $url = $convert->extract($preUrl);
-//        preg_match('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/');
-//        preg_match('/(?:vimeo\.com\/)(?:channels\/[A-z]+\/)?([0-9]+)/');
-//        preg_match('/(?:dailymotion\.com\/|dai\.ly)(?:video|hub)?\/([0-9a-z]+)/');
+        if($video !== null) {
+            $toConvert = $video->getUrl();
 
-        if(!empty($embra))
+            if (preg_match('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
+                    $toConvert, $match) == true)
             {
-//                $url = str_replace(
-//                    'www.youtube.com/watch?v=',
-//                    'www.youtube.com/embed/', $embra);
-            $sid = preg_match('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
-                $embra, $match);
+                $toConvert = preg_replace('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
+                    'youtube.com/embed/' . $match[1], $toConvert);
 
-//            $sid = preg_match('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
-//                'www.youtube.com/embed/', $match, $embra);
-//
-            $sid1 = preg_replace('/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
-            'youtube.com/embed/'.$match[1],$embra);
+            } elseif (preg_match('/(?:dailymotion\.com\/|dai\.ly)(?:video|hub)?\/([0-9a-z]+)/',
+                    $toConvert, $match) == true)
+            {
+                $toConvert = preg_replace('/(?:dailymotion\.com\/|dai\.ly)(?:video|hub)?\/([0-9a-z]+)/',
+                    'dailymotion.com/embed/video/' . $match[1], $toConvert);
 
-
-            dd($sid, $match, $sid1);
-
-//            $youtube = preg_replace(
-//                '/(?:youtube\.com|youtu\.be)(?:\/watch\?v=|\/)(.+)/',
-//                'www.youtube.com/embed/',
-//            );
-//           dd($youtube);
-            
+            } elseif (preg_match('/(?:vimeo\.com\/)(?:channels\/[A-z]+\/)?([0-9]+)/',
+                    $toConvert, $match) == true)
+            {
+                $toConvert = preg_replace('/(?:vimeo\.com\/)(?:channels\/[A-z]+\/)?([0-9]+)/',
+                    'vimeo.com/embed/' . $match[1], $toConvert);
             }
-
-
-
-        //dd($embra, $youtube);
-        //return $url;
+        }
+        return $toConvert;
     }
-
 }

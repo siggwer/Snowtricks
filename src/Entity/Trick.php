@@ -317,13 +317,8 @@ class Trick
      *
      * @return Trick
      */
-    public function addPicture(Picture $picture): self //void
+    public function addPicture(Picture $picture): self
     {
-        /*if (!$this->pictures->contains($picture)) {
-            $picture->setTrick($this);
-            $this->pictures->add($picture);
-        }*/
-
         if (!$this->pictures->contains($picture)) {
             $this->pictures[] = $picture;
             $picture->setTrick($this);
@@ -337,13 +332,8 @@ class Trick
      *
      * @return Trick
      */
-    public function removePicture(Picture $picture): self //void
+    public function removePicture(Picture $picture): self
     {
-        /*if ($this->pictures->contains($picture)) {
-            $picture->setTrick(null);
-            $this->pictures->removeElement($picture);
-        }*/
-
         if ($this->pictures->contains($picture)) {
             $this->pictures->removeElement($picture);
             if ($picture->getTrick() === $this) {
@@ -359,23 +349,14 @@ class Trick
      *
      * @return Trick
      */
-    public function addVideo(Video $video): self //void
+    public function addVideo(Video $video): self
     {
-        /*if (!$this->videos->contains($video)) {
-            $video->setTrick($this);
-            $this->videos->add($video);
-        }*/
         if (!$this->videos->contains($video)) {
+
+            $url1 = new VideoEmbedConverter();
+            $url = $url1->converter($video);
+            $video->setUrl($url);
             $this->videos[] = $video;
-            $url = new VideoEmbedConverter();
-            $url->converter($video->getUrl());
-            dd($url);
-            //$url = $video->getUrl();
-
-
-            //dd($this->converter->converter($url));
-            //$this->converter->converter($url);
-            //dd($url);
             $video->setTrick($this);
         }
 
@@ -387,13 +368,8 @@ class Trick
      *
      * @return Trick
      */
-    public function removeVideo(Video $video): self //void
+    public function removeVideo(Video $video): self
     {
-        /*if ($this->videos->contains($video)) {
-            $video->setTrick(null);
-            $this->videos->removeElement($video);
-        }*/
-
         if ($this->videos->contains($video)) {
             $this->videos->removeElement($video);
             if ($video->getTrick() === $this) {
