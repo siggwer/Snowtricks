@@ -37,7 +37,7 @@ class VideoEmbedConverter
                     $toConvert, $match) == true)
             {
                 $toConvert = preg_replace('/(?:vimeo\.com\/)(?:channels\/[A-z]+\/)?([0-9]+)/',
-                    'vimeo.com/embed/' . $match[1], $toConvert);
+                    'player.vimeo.com/video/' . $match[1], $toConvert);
             }
         }
         return $toConvert;
