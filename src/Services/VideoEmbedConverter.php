@@ -12,9 +12,9 @@ use App\Entity\Video;
 class VideoEmbedConverter
 {
     /**
-     * @param Video
-     *
-     * @return $url
+     * @param Video $video
+     * 
+     * @return string|string[]|null
      */
     public function converter(Video $video)
     {

@@ -76,13 +76,6 @@ class Video
      */
     public function setUrl(?string $url): void
     {
-//        $video_url = $url;
-//        if(!empty($video_url))
-//            {
-//                $url = str_replace(
-//                    'www.youtube.com/watch?v=',
-//                    'www.youtube.com/embed/', $video_url);
-//            }
         $this->url = $url;
     }
 }

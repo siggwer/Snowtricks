@@ -347,7 +347,7 @@ class Trick
     /**
      * @param Video $video
      *
-     * @return Trick
+     * @return $this
      */
     public function addVideo(Video $video): self
     {
