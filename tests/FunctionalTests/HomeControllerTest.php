@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
  */
 class HomeControllerTest extends WebTestCase
 {
-    use AuthentificationTrait;
+    //use AuthentificationTrait;
 
     /**
      *

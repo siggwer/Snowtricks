@@ -307,7 +307,7 @@ class User implements UserInterface, Serializable
      *
      * @return array (Role|string)[] The user roles
      *
-     * @@codeCoverageIgnore
+     * @codeCoverageIgnore
      */
     public function getRoles(): array
     {
@@ -338,7 +338,7 @@ class User implements UserInterface, Serializable
      */
     public function eraseCredentials(): void
     {
-        // TODO: Implement eraseCredentials() method.
+
     }
 
     /**

@@ -15,6 +15,9 @@ class TrickControllerListTest extends WebTestCase
 {
     use AuthentificationTrait;
 
+    /**
+     *
+     */
     public function testList()
     {
         $client = static::createClient();

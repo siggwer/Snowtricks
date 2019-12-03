@@ -54,6 +54,7 @@ class UserTest extends TestCase
         $this->assertInstanceOf(Picture::class, $user->getAvatar());
         $this->assertEquals('lmqsdkqqSDLMQdlùqSLQ', $user->getToken());
         $this->assertEquals('user', $user->getRole());
+        $this->assertEquals(['ROLE_USER'], $user->getRoles());
 
     }
 }

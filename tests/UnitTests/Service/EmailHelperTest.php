@@ -86,6 +86,6 @@ class EmailHelperTest extends KernelTestCase
     {
         $mail = $this->testBuildMail();
 
-        return $this->swiftMailer->send($mail);
+        return $this->Emailhelper->send($mail);
     }
 }
