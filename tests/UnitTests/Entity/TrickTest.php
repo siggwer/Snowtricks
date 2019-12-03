@@ -2,11 +2,15 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use App\Entity\Category;
+use App\Entity\Picture;
+use App\Entity\Video;
+use App\Entity\Comment;
+use DateTimeImmutable;
 use App\Entity\Trick;
+use App\Entity\User;
 use Exception;
-use DateTime;
 
 /**
  * Class TrickTest
@@ -21,6 +25,11 @@ class TrickTest extends TestCase
     private $trick;
 
     /**
+     * @var Comment
+     */
+    private $comment;
+
+    /**
      * @var User
      */
     private $user;
@@ -31,6 +40,7 @@ class TrickTest extends TestCase
     public function setUp()
     {
         $this->trick = new Trick();
+        $this->comment = new Comment();
         $this->user = new User();
     }
 
@@ -75,11 +85,93 @@ class TrickTest extends TestCase
     /**
      * @throws Exception
      */
+    public function testGetComment()
+    {
+        $this->trick->setComments('test');
+        $result = $this->trick->getComments();
+        $this->assertSame('test', $result);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetCommentIfIsNull()
+    {
+        $this->trick->setComments(null);
+        $this->assertNull($this->trick->getComments());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetCategory()
+    {
+        $category = new Category();
+        $this->trick->setCategory($category);
+        $result = $this->trick->getCategory();
+        $this->assertEquals($category, $result);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetCategoryIfIsNull()
+    {
+        $this->trick->setCategory(null);
+        $this->assertNull($this->trick->getCategory());
+    }
+
+    /**
+ * @throws Exception
+ */
+    public function testGetPictureOnFront()
+    {
+        $picture = new Picture();
+        $this->trick->setPictureOnFront($picture);
+        $result = $this->trick->getPictureOnFront();
+        $this->assertEquals($picture, $result);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetPictureOnFrontIfIsNull()
+    {
+        $this->trick->setPictureOnFront(null);
+        $this->assertNull($this->trick->getPictureOnFront());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetPicture()
+    {
+        $picture = new Picture();
+        $this->trick->addPicture($picture);
+        $this->assertSame($picture, $this->trick->getPictures()->first());
+        $this->assertCount(1, $this->trick->getPictures());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetVideo()
+    {
+        $video = new Video();
+        $this->trick->addVideo($video);
+        $this->assertSame($video, $this->trick->getVideos()->first());
+        $this->assertCount(1, $this->trick->getVideos());
+    }
+
+
+    /**
+     * @throws Exception
+     */
     public function testGetPublishedAt()
     {
-        $this->trick->setPublishedAt(new \DateTimeImmutable());
+        $this->trick->setPublishedAt(new DateTimeImmutable());
         $result = $this->trick->getPublishedAt();
-        $this->assertInstanceOf(\DateTimeImmutable::class, $result);
+        $this->assertInstanceOf(DateTimeImmutable::class, $result);
     }
 
     /**
@@ -96,9 +188,9 @@ class TrickTest extends TestCase
      */
     public function testGetUpdatedAt()
     {
-        $this->trick->setUpdatedAt(new DateTime('20/11/2019'));
+        $this->trick->setUpdatedAt(new DateTimeImmutable());
         $result = $this->trick->getUpdatedAt();
-        $this->assertSame(new DateTime('20/11/2019'), $result);
+        $this->assertInstanceOf(DateTimeImmutable::class, $result);
     }
 
     /**

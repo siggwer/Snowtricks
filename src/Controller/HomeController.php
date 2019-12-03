@@ -10,7 +10,6 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class HomeController.
  *
- *
  * @method getRequest()
  */
 class HomeController extends AbstractController

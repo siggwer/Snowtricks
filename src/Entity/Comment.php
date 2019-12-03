@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use DateTimeInterface;
 
 /**
  * Class Comment.
@@ -33,7 +35,7 @@ class Comment
     private $content;
 
     /**
-     * @var \DateTimeInterface|null
+     * @var DateTimeInterface|null
      *
      * @ORM\Column(type="datetime_immutable")
      */
@@ -61,7 +63,7 @@ class Comment
      */
     public function __construct()
     {
-        $this->publishedAt = new \DateTimeImmutable();
+        $this->publishedAt = new DateTimeImmutable();
     }
 
     /**
@@ -89,17 +91,17 @@ class Comment
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return DateTimeInterface|null
      */
-    public function getPublishedAt(): ?\DateTimeInterface
+    public function getPublishedAt(): ?DateTimeInterface
     {
         return $this->publishedAt;
     }
 
     /**
-     * @param \DateTimeInterface|null $publishedAt
+     * @param DateTimeInterface|null $publishedAt
      */
-    public function setPublishedAt(?\DateTimeInterface $publishedAt): void
+    public function setPublishedAt(?DateTimeInterface $publishedAt): void
     {
         $this->publishedAt = $publishedAt;
     }

@@ -57,7 +57,7 @@ class EmailHelperTest extends KernelTestCase
      */
     public function testBuildMail()
     {
-        $emailer = new Swift_Message();
+        $email = new Swift_Message();
         $to ='test@yopmail.com';
         $from = 'test@yopmail.com';
         $subject = 'test';
@@ -65,12 +65,12 @@ class EmailHelperTest extends KernelTestCase
         $contentType = 'text/html';
         $body = 'contact/contact_email.html.twig';
 
-        $emailer->setTo($to);
-        $emailer->setFrom($from);
-        $emailer->setSubject($subject);
-        $emailer->setCharset($charset);
-        $emailer->setContentType($contentType);
-        $emailer->setBody($body);
+        $email->setTo($to);
+        $email->setFrom($from);
+        $email->setSubject($subject);
+        $email->setCharset($charset);
+        $email->setContentType($contentType);
+        $email->setBody($body);
 
         $this->assertSame('test@yopmail.com', $to);
         $this->assertSame('test@yopmail.com', $from);
@@ -79,7 +79,7 @@ class EmailHelperTest extends KernelTestCase
         $this->assertSame('text/html', $contentType);
         $this->assertSame('contact/contact_email.html.twig', $body);
 
-        return $emailer;
+        return $email;
     }
 
     public function TestMail()

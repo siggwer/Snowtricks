@@ -2,8 +2,9 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use App\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use App\Entity\Video;
+use Exception;
 
 /**
  * Class VideoTest
@@ -22,7 +23,7 @@ class VideoTest extends TestCase
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetUrl()
     {
@@ -32,7 +33,7 @@ class VideoTest extends TestCase
         $this->assertSame('video', $result);
     }
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetUrlIfIfNull()
     {
