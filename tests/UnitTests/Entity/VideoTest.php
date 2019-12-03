@@ -2,7 +2,7 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Video;
 use Exception;
 

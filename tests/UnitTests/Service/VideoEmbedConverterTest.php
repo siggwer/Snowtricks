@@ -2,8 +2,8 @@
 
 namespace App\Tests\UnitTests\Service;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use App\Services\VideoEmbedConverter;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Video;
 
 /**

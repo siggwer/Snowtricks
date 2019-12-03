@@ -3,7 +3,7 @@
 namespace App\Tests\UnitTests\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Picture;
 use DateTimeImmutable;
 use App\Entity\User;

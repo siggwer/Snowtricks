@@ -7,22 +7,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
- * Class HomeControllerTest
+ * Class TrickControllerListTest
  *
  * @package App\Tests\FunctionalTests
  */
-class HomeControllerTest extends WebTestCase
+class TrickControllerListTest extends WebTestCase
 {
     use AuthentificationTrait;
 
-    /**
-     *
-     */
-    public function testHome()
+    public function testList()
     {
         $client = static::createClient();
 
-        $client->request(Request::METHOD_GET, '/');
+        $client->request(Request::METHOD_GET, "/trick/list");
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
     }

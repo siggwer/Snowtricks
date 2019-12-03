@@ -2,11 +2,11 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Picture;
 use App\Entity\Trick;
 use Exception;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 /**
  * Class PictureTest

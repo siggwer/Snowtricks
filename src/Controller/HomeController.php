@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\TrickRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+use App\Repository\TrickRepository;
 
 /**
  * Class HomeController.

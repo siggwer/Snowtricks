@@ -2,13 +2,13 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Category;
 use App\Entity\Picture;
-use App\Entity\Video;
 use App\Entity\Comment;
 use DateTimeImmutable;
 use App\Entity\Trick;
+use App\Entity\Video;
 use App\Entity\User;
 use Exception;
 
