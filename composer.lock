@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eca3c2fdeda1b5eec4d6f0930352518b",
+    "content-hash": "46e1244910a04dd62f7c90342929eb4b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1266,187 +1266,6 @@
             "time": "2019-08-13T17:33:27+00:00"
         },
         {
-            "name": "essence/dom",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/essence/dom.git",
-                "reference": "e5776d2286f4ccbd048d160c28ac77ccc6d68f3a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/essence/dom/zipball/e5776d2286f4ccbd048d160c28ac77ccc6d68f3a",
-                "reference": "e5776d2286f4ccbd048d160c28ac77ccc6d68f3a",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Essence\\Dom\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Félix Girault",
-                    "email": "felix.girault@gmail.com",
-                    "homepage": "http://www.felix-girault.fr",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Essence's DOM parser.",
-            "homepage": "http://github.com/essence/dom",
-            "keywords": [
-                "dom",
-                "parser"
-            ],
-            "time": "2015-07-23T20:33:17+00:00"
-        },
-        {
-            "name": "essence/essence",
-            "version": "3.5.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/essence/essence.git",
-                "reference": "9e67470902da23f9a492b909c20927f2bd643ce3"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/essence/essence/zipball/9e67470902da23f9a492b909c20927f2bd643ce3",
-                "reference": "9e67470902da23f9a492b909c20927f2bd643ce3",
-                "shasum": ""
-            },
-            "require": {
-                "essence/dom": "~1.0.0",
-                "essence/http": "~1.0.0",
-                "fg/parkour": "~1.1.0",
-                "php": ">=5.5.0"
-            },
-            "suggest": {
-                "ext-curl": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Essence\\": "lib/Essence"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Félix Girault",
-                    "email": "felix.girault@gmail.com",
-                    "homepage": "http://www.felix-girault.fr",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Extracts information about medias on the web, like youtube videos, twitter statuses or blog articles.",
-            "homepage": "http://github.com/essence/essence",
-            "keywords": [
-                "embed",
-                "media",
-                "oembed",
-                "opengraph"
-            ],
-            "time": "2018-06-14T12:03:26+00:00"
-        },
-        {
-            "name": "essence/http",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/essence/http.git",
-                "reference": "ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/essence/http/zipball/ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2",
-                "reference": "ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2",
-                "shasum": ""
-            },
-            "suggest": {
-                "ext-curl": "*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Essence\\Http\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Félix Girault",
-                    "email": "felix.girault@gmail.com",
-                    "homepage": "http://www.felix-girault.fr",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Essence's HTTP client.",
-            "homepage": "http://github.com/essence/http",
-            "keywords": [
-                "client",
-                "http"
-            ],
-            "time": "2015-07-23T20:33:50+00:00"
-        },
-        {
-            "name": "fg/parkour",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/felixgirault/parkour.git",
-                "reference": "f837eb640fc4aac81b11fe50d2fa04fb4ec71496"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/felixgirault/parkour/zipball/f837eb640fc4aac81b11fe50d2fa04fb4ec71496",
-                "reference": "f837eb640fc4aac81b11fe50d2fa04fb4ec71496",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.3.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Parkour\\": "lib"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-2-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Félix Girault",
-                    "email": "felix.girault@gmail.com",
-                    "homepage": "http://www.felix-girault.fr",
-                    "role": "Developer"
-                }
-            ],
-            "description": "A collection of utilities to manipulate arrays.",
-            "homepage": "http://github.com/felixgirault/parkour",
-            "keywords": [
-                "array",
-                "manipulation",
-                "traversing"
-            ],
-            "time": "2015-10-03T10:39:22+00:00"
-        },
-        {
             "name": "fig/link-util",
             "version": "1.0.0",
             "source": {
@@ -1627,57 +1446,6 @@
                 "psr-3"
             ],
             "time": "2018-11-05T09:00:11+00:00"
-        },
-        {
-            "name": "mpratt/embera",
-            "version": "1.9.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mpratt/Embera.git",
-                "reference": "45c380c40f6d08687c193c685a7ebd3f3db27811"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mpratt/Embera/zipball/45c380c40f6d08687c193c685a7ebd3f3db27811",
-                "reference": "45c380c40f6d08687c193c685a7ebd3f3db27811",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "Embera": "Lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Pratt",
-                    "email": "pratt@hablarmierda.net",
-                    "homepage": "http://www.michael-pratt.com",
-                    "role": "Author/Developer"
-                }
-            ],
-            "description": "Oembed consumer library, that gives information about urls. It helps you replace urls to 60+ sites like youtube or vimeo, with their html embed code.",
-            "homepage": "https://github.com/mpratt/Embera",
-            "keywords": [
-                "Auto embed",
-                "Embed Text",
-                "Url Embed",
-                "embed",
-                "instagram",
-                "oembed",
-                "twitter",
-                "vimeo",
-                "vine",
-                "youtube"
-            ],
-            "time": "2016-07-15T15:57:44+00:00"
         },
         {
             "name": "ocramius/package-versions",
@@ -3539,31 +3307,31 @@
         },
         {
             "name": "symfony/http-foundation",
-            "version": "v4.3.4",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/http-foundation.git",
-                "reference": "d804bea118ff340a12e22a79f9c7e7eb56b35adc"
+                "reference": "8bccc59e61b41963d14c3dbdb23181e5c932a1d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/d804bea118ff340a12e22a79f9c7e7eb56b35adc",
-                "reference": "d804bea118ff340a12e22a79f9c7e7eb56b35adc",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/8bccc59e61b41963d14c3dbdb23181e5c932a1d5",
+                "reference": "8bccc59e61b41963d14c3dbdb23181e5c932a1d5",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.1.3",
-                "symfony/mime": "^4.3",
+                "symfony/mime": "^4.3|^5.0",
                 "symfony/polyfill-mbstring": "~1.1"
             },
             "require-dev": {
                 "predis/predis": "~1.0",
-                "symfony/expression-language": "~3.4|~4.0"
+                "symfony/expression-language": "^3.4|^4.0|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -3590,7 +3358,7 @@
             ],
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-26T08:55:16+00:00"
+            "time": "2019-11-28T13:33:56+00:00"
         },
         {
             "name": "symfony/http-kernel",
@@ -3819,16 +3587,16 @@
         },
         {
             "name": "symfony/mime",
-            "version": "v4.3.4",
+            "version": "v4.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "987a05df1c6ac259b34008b932551353f4f408df"
+                "reference": "010cc488e56cafe5f7494dea70aea93100c234df"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/987a05df1c6ac259b34008b932551353f4f408df",
-                "reference": "987a05df1c6ac259b34008b932551353f4f408df",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/010cc488e56cafe5f7494dea70aea93100c234df",
+                "reference": "010cc488e56cafe5f7494dea70aea93100c234df",
                 "shasum": ""
             },
             "require": {
@@ -3836,14 +3604,17 @@
                 "symfony/polyfill-intl-idn": "^1.10",
                 "symfony/polyfill-mbstring": "^1.0"
             },
+            "conflict": {
+                "symfony/mailer": "<4.4"
+            },
             "require-dev": {
                 "egulias/email-validator": "^2.1.10",
-                "symfony/dependency-injection": "~3.4|^4.1"
+                "symfony/dependency-injection": "^3.4|^4.1|^5.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "4.4-dev"
                 }
             },
             "autoload": {
@@ -3874,7 +3645,7 @@
                 "mime",
                 "mime-type"
             ],
-            "time": "2019-08-22T08:16:11+00:00"
+            "time": "2019-11-30T08:27:26+00:00"
         },
         {
             "name": "symfony/monolog-bridge",
@@ -4147,16 +3918,16 @@
         },
         {
             "name": "symfony/polyfill-intl-idn",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-intl-idn.git",
-                "reference": "6af626ae6fa37d396dc90a399c0ff08e5cfc45b2"
+                "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6af626ae6fa37d396dc90a399c0ff08e5cfc45b2",
-                "reference": "6af626ae6fa37d396dc90a399c0ff08e5cfc45b2",
+                "url": "https://api.github.com/repos/symfony/polyfill-intl-idn/zipball/6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
+                "reference": "6f9c239e61e1b0c9229a28ff89a812dc449c3d46",
                 "shasum": ""
             },
             "require": {
@@ -4170,7 +3941,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4205,20 +3976,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17"
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/b42a2f66e8f1b15ccf25652c3424265923eb4f17",
-                "reference": "b42a2f66e8f1b15ccf25652c3424265923eb4f17",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/7b4aab9743c30be783b73de055d24a39cf4b954f",
+                "reference": "7b4aab9743c30be783b73de055d24a39cf4b954f",
                 "shasum": ""
             },
             "require": {
@@ -4230,7 +4001,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4264,20 +4035,20 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T14:18:11+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
-            "version": "v1.12.0",
+            "version": "v1.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php72.git",
-                "reference": "04ce3335667451138df4307d6a9b61565560199e"
+                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/04ce3335667451138df4307d6a9b61565560199e",
-                "reference": "04ce3335667451138df4307d6a9b61565560199e",
+                "url": "https://api.github.com/repos/symfony/polyfill-php72/zipball/66fea50f6cb37a35eea048d75a7d99a45b586038",
+                "reference": "66fea50f6cb37a35eea048d75a7d99a45b586038",
                 "shasum": ""
             },
             "require": {
@@ -4286,7 +4057,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.12-dev"
+                    "dev-master": "1.13-dev"
                 }
             },
             "autoload": {
@@ -4319,7 +4090,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2019-08-06T08:03:45+00:00"
+            "time": "2019-11-27T13:56:44+00:00"
         },
         {
             "name": "symfony/polyfill-php73",
@@ -5905,19 +5676,19 @@
             "authors": [
                 {
                     "name": "Fabien Potencier",
-                    "role": "Lead Developer",
                     "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org"
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
                 },
                 {
                     "name": "Armin Ronacher",
-                    "role": "Project Founder",
-                    "email": "armin.ronacher@active-4.com"
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
                 },
                 {
                     "name": "Twig Team",
-                    "role": "Contributors",
-                    "homepage": "https://twig.symfony.com/contributors"
+                    "homepage": "https://twig.symfony.com/contributors",
+                    "role": "Contributors"
                 }
             ],
             "description": "Twig, the flexible, fast, and secure template language for PHP",
@@ -6297,6 +6068,187 @@
             "time": "2018-07-27T15:41:37+00:00"
         },
         {
+            "name": "essence/dom",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/essence/dom.git",
+                "reference": "e5776d2286f4ccbd048d160c28ac77ccc6d68f3a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/essence/dom/zipball/e5776d2286f4ccbd048d160c28ac77ccc6d68f3a",
+                "reference": "e5776d2286f4ccbd048d160c28ac77ccc6d68f3a",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Essence\\Dom\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Félix Girault",
+                    "email": "felix.girault@gmail.com",
+                    "homepage": "http://www.felix-girault.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Essence's DOM parser.",
+            "homepage": "http://github.com/essence/dom",
+            "keywords": [
+                "dom",
+                "parser"
+            ],
+            "time": "2015-07-23T20:33:17+00:00"
+        },
+        {
+            "name": "essence/essence",
+            "version": "3.5.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/essence/essence.git",
+                "reference": "9e67470902da23f9a492b909c20927f2bd643ce3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/essence/essence/zipball/9e67470902da23f9a492b909c20927f2bd643ce3",
+                "reference": "9e67470902da23f9a492b909c20927f2bd643ce3",
+                "shasum": ""
+            },
+            "require": {
+                "essence/dom": "~1.0.0",
+                "essence/http": "~1.0.0",
+                "fg/parkour": "~1.1.0",
+                "php": ">=5.5.0"
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Essence\\": "lib/Essence"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Félix Girault",
+                    "email": "felix.girault@gmail.com",
+                    "homepage": "http://www.felix-girault.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Extracts information about medias on the web, like youtube videos, twitter statuses or blog articles.",
+            "homepage": "http://github.com/essence/essence",
+            "keywords": [
+                "embed",
+                "media",
+                "oembed",
+                "opengraph"
+            ],
+            "time": "2018-06-14T12:03:26+00:00"
+        },
+        {
+            "name": "essence/http",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/essence/http.git",
+                "reference": "ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/essence/http/zipball/ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2",
+                "reference": "ce0e52e0c0f2ed894ce2922ab2fd598dcaac91d2",
+                "shasum": ""
+            },
+            "suggest": {
+                "ext-curl": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Essence\\Http\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Félix Girault",
+                    "email": "felix.girault@gmail.com",
+                    "homepage": "http://www.felix-girault.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Essence's HTTP client.",
+            "homepage": "http://github.com/essence/http",
+            "keywords": [
+                "client",
+                "http"
+            ],
+            "time": "2015-07-23T20:33:50+00:00"
+        },
+        {
+            "name": "fg/parkour",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/felixgirault/parkour.git",
+                "reference": "f837eb640fc4aac81b11fe50d2fa04fb4ec71496"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/felixgirault/parkour/zipball/f837eb640fc4aac81b11fe50d2fa04fb4ec71496",
+                "reference": "f837eb640fc4aac81b11fe50d2fa04fb4ec71496",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.3.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Parkour\\": "lib"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-2-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Félix Girault",
+                    "email": "felix.girault@gmail.com",
+                    "homepage": "http://www.felix-girault.fr",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A collection of utilities to manipulate arrays.",
+            "homepage": "http://github.com/felixgirault/parkour",
+            "keywords": [
+                "array",
+                "manipulation",
+                "traversing"
+            ],
+            "time": "2015-10-03T10:39:22+00:00"
+        },
+        {
             "name": "fzaninotto/faker",
             "version": "v1.8.0",
             "source": {
@@ -6494,6 +6446,57 @@
                 "symfony"
             ],
             "time": "2019-08-04T18:39:27+00:00"
+        },
+        {
+            "name": "mpratt/embera",
+            "version": "1.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpratt/Embera.git",
+                "reference": "45c380c40f6d08687c193c685a7ebd3f3db27811"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpratt/Embera/zipball/45c380c40f6d08687c193c685a7ebd3f3db27811",
+                "reference": "45c380c40f6d08687c193c685a7ebd3f3db27811",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Embera": "Lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Pratt",
+                    "email": "pratt@hablarmierda.net",
+                    "homepage": "http://www.michael-pratt.com",
+                    "role": "Author/Developer"
+                }
+            ],
+            "description": "Oembed consumer library, that gives information about urls. It helps you replace urls to 60+ sites like youtube or vimeo, with their html embed code.",
+            "homepage": "https://github.com/mpratt/Embera",
+            "keywords": [
+                "Auto embed",
+                "Embed Text",
+                "Url Embed",
+                "embed",
+                "instagram",
+                "oembed",
+                "twitter",
+                "vimeo",
+                "vine",
+                "youtube"
+            ],
+            "time": "2016-07-15T15:57:44+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -6846,8 +6849,8 @@
             "authors": [
                 {
                     "name": "Luis Montealegre",
-                    "role": "Developer",
-                    "email": "montealegreluis@gmail.com"
+                    "email": "montealegreluis@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "phUML is a fully automatic UML class diagram generator for PHP code",
