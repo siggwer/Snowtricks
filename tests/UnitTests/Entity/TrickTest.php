@@ -20,6 +20,11 @@ use Exception;
 class TrickTest extends TestCase
 {
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * @var Trick
      */
     private $trick;
@@ -30,18 +35,20 @@ class TrickTest extends TestCase
     private $comment;
 
     /**
-     * @var User
+     * @var Picture
      */
-    private $user;
+    private $picture;
 
     /**
      * @throws Exception
      */
     public function setUp()
     {
+        $this->user = new User();
         $this->trick = new Trick();
         $this->comment = new Comment();
-        $this->user = new User();
+        $this->picture = new Picture();
+
     }
 
     /**
@@ -150,6 +157,14 @@ class TrickTest extends TestCase
         $this->trick->addPicture($picture);
         $this->assertSame($picture, $this->trick->getPictures()->first());
         $this->assertCount(1, $this->trick->getPictures());
+    }
+
+    public function testRemovePicture()
+    {
+        $picture = new Picture();
+        $picture->setTrick($this->trick);
+        $this->trick->removePicture($picture);
+        $this->assertSame($picture, $this->trick->removePicture($this->picture));
     }
 
     /**

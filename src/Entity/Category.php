@@ -29,6 +29,8 @@ class Category
 
     /**
      * @return int|null
+     *
+     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {

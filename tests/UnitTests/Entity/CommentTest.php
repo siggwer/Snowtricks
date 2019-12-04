@@ -103,7 +103,7 @@ class CommentTest extends TestCase
     /**
      *
      */
-    public function getTrick()
+    public function testGetTrick()
     {
         $this->comment->setTrick($this->trick);
         $result = $this->comment->getTrick();
@@ -113,7 +113,7 @@ class CommentTest extends TestCase
     /**
      *
      */
-    public function getTrickIsNull()
+    public function testGetTrickIsNull()
     {
         $this->comment->setTrick(null);
         $this->assertNull($this->comment->getTrick());

@@ -56,6 +56,8 @@ class Picture
 
     /**
      * @return int|null
+     *
+     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {

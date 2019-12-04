@@ -306,8 +306,6 @@ class User implements UserInterface, Serializable
      * is created.
      *
      * @return array (Role|string)[] The user roles
-     *
-     * @codeCoverageIgnore
      */
     public function getRoles(): array
     {

@@ -136,6 +136,8 @@ class Trick
 
     /**
      * @return int|null
+     *
+     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {
@@ -292,14 +294,6 @@ class Trick
     public function setPictureOnFront(?Picture $pictureOnFront): void
     {
         $this->pictureOnFront = $pictureOnFront;
-    }
-
-    /**
-     * @param Video|null $video
-     */
-    public function setVideos(?Video $videos): void
-    {
-        $this->videos = $videos;
     }
 
     /**

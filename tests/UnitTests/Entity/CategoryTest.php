@@ -21,12 +21,6 @@ class CategoryTest extends TestCase
     /**
      *
      */
-    public function TestCategoryConstruct()
-    {
-        $category = $this->createMock(Category::class);
-        $this->assertInstanceOf(Category::class, $category);
-    }
-
     public function setUp()
     {
         $this->category = new Category();
