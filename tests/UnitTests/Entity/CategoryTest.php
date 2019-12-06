@@ -27,6 +27,15 @@ class CategoryTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testGetId()
+    {
+        $result = $this->category->getId();
+        $this->assertNotNull('1', $result);
+    }
+
+    /**
      * @throws \Exception
      */
     public function testGetTitleIfIsString()

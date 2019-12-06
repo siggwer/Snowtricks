@@ -37,6 +37,15 @@ class PictureTest extends TestCase
     /**
      *
      */
+    public function testGetId()
+    {
+        $result = $this->picture->getId();
+        $this->assertNotNull('1', $result);
+    }
+
+    /**
+     *
+     */
     public function testGetTrick()
     {
         $this->picture->setTrick($this->trick);

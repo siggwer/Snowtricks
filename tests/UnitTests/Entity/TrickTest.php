@@ -40,6 +40,11 @@ class TrickTest extends TestCase
     private $picture;
 
     /**
+     * @var Video
+     */
+    private $video;
+
+    /**
      * @throws Exception
      */
     public function setUp()
@@ -48,7 +53,16 @@ class TrickTest extends TestCase
         $this->trick = new Trick();
         $this->comment = new Comment();
         $this->picture = new Picture();
+        $this->video = new Video();
+    }
 
+    /**
+     *
+     */
+    public function testGetId()
+    {
+        $result = $this->trick->getId();
+        $this->assertNotNull('1', $result);
     }
 
     /**
@@ -159,12 +173,16 @@ class TrickTest extends TestCase
         $this->assertCount(1, $this->trick->getPictures());
     }
 
+    /**
+     *
+     */
     public function testRemovePicture()
     {
-        $picture = new Picture();
-        $picture->setTrick($this->trick);
-        $this->trick->removePicture($picture);
-        $this->assertSame($picture, $this->trick->removePicture($this->picture));
+        static::assertCount(0, $this->trick->getPictures());
+        $this->trick->addPicture($this->picture);
+        static::assertCount(1, $this->trick->getPictures());
+        $this->trick->removePicture($this->picture);
+        static::assertCount(0, $this->trick->getPictures());
     }
 
     /**
@@ -178,6 +196,17 @@ class TrickTest extends TestCase
         $this->assertCount(1, $this->trick->getVideos());
     }
 
+    /**
+     *
+     */
+    public function testRemoveVideo()
+    {
+        static::assertCount(0, $this->trick->getVideos());
+        $this->trick->addVideo($this->video);
+        static::assertCount(1, $this->trick->getVideos());
+        $this->trick->removeVideo($this->video);
+        static::assertCount(0, $this->trick->getVideos());
+    }
 
     /**
      * @throws Exception

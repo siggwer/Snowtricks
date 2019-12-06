@@ -42,6 +42,15 @@ class CommentTest extends TestCase
     }
 
     /**
+     *
+     */
+    public function testGetId()
+    {
+        $result = $this->comment->getId();
+        $this->assertNotNull('1', $result);
+    }
+
+    /**
      * @throws Exception
      */
     public function testGetMessageIfIsString()

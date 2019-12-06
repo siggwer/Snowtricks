@@ -68,8 +68,6 @@ class Comment
 
     /**
      * @return int|null
-     *
-     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {

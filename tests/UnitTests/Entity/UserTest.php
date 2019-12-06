@@ -22,6 +22,7 @@ class UserTest extends TestCase
     public function testUser()
     {
         $user = new User();
+        $id = '1';
         $username = 'test';
         $email = 'test@yopmail.com';
         $password = 'sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm';
@@ -44,6 +45,8 @@ class UserTest extends TestCase
         $user->setToken($token);
         $user->setRole($role);
 
+        static::assertObjectHasAttribute('id', $user);
+        static::assertNotNull($id, $user->getId());
         $this->assertEquals('test', $user->getUsername());
         $this->assertEquals('test@yopmail.com', $user->getEmail());
         $this->assertEquals('sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm', $user->getPassword());

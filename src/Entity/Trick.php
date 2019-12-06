@@ -136,8 +136,6 @@ class Trick
 
     /**
      * @return int|null
-     *
-     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {

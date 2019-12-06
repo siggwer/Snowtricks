@@ -123,8 +123,6 @@ class User implements UserInterface, Serializable
 
     /**
      * @return int|null
-     *
-     * @codeCoverageIgnore
      */
     public function getId(): ?int
     {
@@ -133,8 +131,6 @@ class User implements UserInterface, Serializable
 
     /**
      * @return string|null
-     *
-     * @codeCoverageIgnore
      */
     public function getUsername(): ?string
     {
