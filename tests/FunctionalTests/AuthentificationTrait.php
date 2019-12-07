@@ -9,7 +9,7 @@ use Symfony\Component\BrowserKit\Cookie;
 use App\Entity\User;
 
 /**
- * Trait AuthentificationTrait
+ * Traits AuthentificationTrait
  *
  * @package App\Tests\FunctionalTests
  */

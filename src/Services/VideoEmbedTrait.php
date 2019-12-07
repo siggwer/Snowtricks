@@ -5,11 +5,11 @@ namespace App\Services;
 use App\Entity\Video;
 
 /**
- * Class VideoEmbedConverter
+ * Class VideoEmbedTrait
  *
  * @package App\Services
  */
-class VideoEmbedConverter
+trait VideoEmbedTrait
 {
     /**
      * @param Video $video
