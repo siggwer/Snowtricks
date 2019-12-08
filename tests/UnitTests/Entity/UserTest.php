@@ -44,8 +44,8 @@ class UserTest extends TestCase
         $user->setAvatar($avatar);
         $user->setToken($token);
         $user->setRole($role);
-
         static::assertObjectHasAttribute('id', $user);
+
         static::assertNotNull($id, $user->getId());
         $this->assertEquals('test', $user->getUsername());
         $this->assertEquals('test@yopmail.com', $user->getEmail());
@@ -58,6 +58,5 @@ class UserTest extends TestCase
         $this->assertEquals('lmqsdkqqSDLMQdlùqSLQ', $user->getToken());
         $this->assertEquals('user', $user->getRole());
         $this->assertEquals(['ROLE_USER'], $user->getRoles());
-
     }
 }

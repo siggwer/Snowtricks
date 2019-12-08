@@ -2,13 +2,13 @@
 
 namespace App\Tests\FunctionalTests;
 
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use App\Entity\Trick;
 
 /**
  * Class TrickControllerAddTest
+ *
  * @package App\Tests\FunctionalTests
  */
 class TrickControllerAddTest  extends WebTestCase
@@ -28,8 +28,13 @@ class TrickControllerAddTest  extends WebTestCase
             'trick[name]' => 'name',
             'trick[category]' => '1',
             'trick[description]' => 'description',
-//            'trick[pictureOnFront]' => 'public/images/image.png',
-//            'trick[pictures]' => 'public/images/image.png',
+            'trick[pictureOnFront]' => [
+                "uploadedFile" => $this->createFile()
+            ],
+            'trick[pictures]' => [
+                "uploadedFile" => $this->createFile()
+            ]
+
 //            'trick[videos]' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
 
         ]);
@@ -37,5 +42,24 @@ class TrickControllerAddTest  extends WebTestCase
         $client->submit($form);
 
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    private function createFile(): UploadedFile
+    {
+        $filename = md5(uniqid('', true)).'.png';
+        file_put_contents(
+            __DIR__.'/../../public/uploads/' . $filename,
+            file_get_contents('http://via.placeholder.com/400x400')
+        );
+        return new UploadedFile(
+            __DIR__.'/../../public/uploads/' . $filename,
+            $filename,
+            'image/png',
+            null,
+            true
+        );
     }
 }

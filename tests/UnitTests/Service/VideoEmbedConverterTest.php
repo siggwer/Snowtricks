@@ -13,6 +13,8 @@ use App\Entity\Video;
  */
 class VideoEmbedConverterTest extends TestCase
 {
+    use VideoEmbedTrait;
+
     /**
      *
      */
@@ -23,9 +25,10 @@ class VideoEmbedConverterTest extends TestCase
         $trick = null;
         $url = 'https://www.youtube.com/watch?v=oI-umOzNBME';
         $video->setUrl($url);
-        $converter = new VideoEmbedTrait();
-        static::assertSame('https://www.youtube.com/embed/oI-umOzNBME', $converter->converter($video));
+
+        static::assertSame('https://www.youtube.com/embed/oI-umOzNBME', $this->converter($video));
     }
+
     /**
      *
      */
@@ -36,8 +39,8 @@ class VideoEmbedConverterTest extends TestCase
         $trick = null;
         $url = 'https://www.dailymotion.com/video/x6bq2cb';
         $video->setUrl($url);
-        $converter = new VideoEmbedTrait();
-        static::assertSame('https://www.dailymotion.com/embed/video/x6bq2cb', $converter->converter($video));
+
+        static::assertSame('https://www.dailymotion.com/embed/video/x6bq2cb', $this->converter($video));
     }
 
     /**
@@ -50,7 +53,7 @@ class VideoEmbedConverterTest extends TestCase
         $trick = null;
         $url = 'https://vimeo.com/85087990';
         $video->setUrl($url);
-        $converter = new VideoEmbedTrait();
-        static::assertSame('https://player.vimeo.com/video/85087990', $converter->converter($video));
+
+        static::assertSame('https://player.vimeo.com/video/85087990', $this->converter($video));
     }
 }

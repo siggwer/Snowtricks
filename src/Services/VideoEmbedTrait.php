@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Entity\Video;
 
 /**
- * Class VideoEmbedTrait
+ * Trait VideoEmbedTrait
  *
  * @package App\Services
  */

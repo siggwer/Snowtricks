@@ -7,7 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trick;
 
-
+/**
+ * Class TrickControllerShowTest
+ *
+ * @package App\Tests\FunctionalTests
+ */
 class TrickControllerShowTest  extends WebTestCase
 {
     use AuthentificationTrait;

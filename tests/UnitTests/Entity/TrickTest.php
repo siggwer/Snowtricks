@@ -2,6 +2,7 @@
 
 namespace App\Tests\UnitTests\Entity;
 
+use App\Services\VideoEmbedTrait;
 use PHPUnit\Framework\TestCase;
 use App\Entity\Category;
 use App\Entity\Picture;
@@ -19,6 +20,8 @@ use Exception;
  */
 class TrickTest extends TestCase
 {
+    use VideoEmbedTrait;
+
     /**
      * @var User
      */

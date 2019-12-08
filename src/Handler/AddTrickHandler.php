@@ -73,27 +73,18 @@ class AddTrickHandler extends AbstractHandler
         $this->entityManager->persist($data);
         $this->entityManager->flush();
 
-        if ($data->getSlug()) {
-            $event = new AddTrickEmailEvent(
-                $data->getAuthor()->getEmail(),
-                $data->getSlug()
-            );
-            $this->eventDispatcher->dispatch(
-                $event,
-                AddTrickEmailEvent::NAME
-            );
-
-            $this->flashBag->add(
-                'success',
-                'Le trick a bien été crée, un email de confirmation t\'a été envoyé.'
-            );
-
-            return;
-        }
+        $event = new AddTrickEmailEvent(
+            $data->getAuthor()->getEmail(),
+            $data->getSlug()
+        );
+        $this->eventDispatcher->dispatch(
+            $event,
+            AddTrickEmailEvent::NAME
+        );
 
         $this->flashBag->add(
-            'error',
-            'Une erreur est survenue. Merce de réessayer.'
+            'success',
+            'Le trick a bien été crée, un email de confirmation t\'a été envoyé.'
         );
     }
 }

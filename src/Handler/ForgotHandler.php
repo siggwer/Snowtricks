@@ -81,24 +81,15 @@ class ForgotHandler extends AbstractHandler
 
         $this->userRepository->saveResetToken($data->getEmail(), $passwordToken);
 
-        if ($data !== null) {
-            $event = new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken);
-            $this->eventDispatcher->dispatch(
-                $event,
-                ForgotPasswordEmailEvent::NAME
-            );
-
-            $this->flashBag->add(
-                'success',
-                'Un email t\'a été envoyé pour récupérer ton mot de passe.'
-            );
-
-            return;
-        }
+        $event = new ForgotPasswordEmailEvent($data->getEmail(), $passwordToken);
+        $this->eventDispatcher->dispatch(
+            $event,
+            ForgotPasswordEmailEvent::NAME
+        );
 
         $this->flashBag->add(
-            'error',
-            'Votre email n\'est pas reconnu'
+            'success',
+            'Un email t\'a été envoyé pour récupérer ton mot de passe.'
         );
     }
 }
