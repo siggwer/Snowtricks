@@ -23,9 +23,9 @@ class TrickControllerShowTest  extends WebTestCase
     {
         $client = static::createAuthenticatedClient();
 
-        $trick = $client->getContainer()->get("doctrine.orm.entity_manager")->getRepository(Trick::class)->findOneBy([]);
+        $trick = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Trick::class)->findOneBy([]);
 
-        $crawler = $client->request(Request::METHOD_GET, "/trick/" . $trick->getSlug());
+        $crawler = $client->request(Request::METHOD_GET, '/trick/' . $trick->getSlug());
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 

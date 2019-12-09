@@ -11,14 +11,14 @@ use Symfony\Component\HttpFoundation\Response;
  *
  * @package App\Tests\FunctionalTests
  */
-class TrickControllerAddTest  extends WebTestCase
+class TrickControllerAddTest extends WebTestCase
 {
     use AuthentificationTrait;
 
     /**
      *
      */
-    public function testShow()
+    public function testAdd()
     {
         $client = static::createAuthenticatedClient();
 
@@ -29,13 +29,20 @@ class TrickControllerAddTest  extends WebTestCase
             'trick[category]' => '1',
             'trick[description]' => 'description',
             'trick[pictureOnFront]' => [
-                "uploadedFile" => $this->createFile()
+                'uploadedFile' => $this->createFile()
             ],
+//            $crawler->selectButton('Ajouter une image')->form(['trick[pictures]' => [
+//                'uploadedFile' => $this->createFile()
+//            ],]),
+//            $crawler->selectButton('Ajouter une video')->form(['trick[videos]' => [
+//                'url' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
+//            ],])
             'trick[pictures]' => [
-                "uploadedFile" => $this->createFile()
+                'uploadedFile' => $this->createFile()
+            ],
+            'trick[videos]' => [
+               'url' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
             ]
-
-//            'trick[videos]' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
 
         ]);
 
