@@ -29,24 +29,44 @@ class TrickControllerUpdateTest  extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $form = $crawler->filter('form[name=updateTrick]')->form([
-            'trick[name]' => 'name',
-            'trick[category]' => '1',
-            'trick[description]' => 'description',
-            'trick[pictureOnFront]' => [
-                "uploadedFile" => $this->createFile()
-            ],
-            'trick[pictures]' => [
-                "uploadedFile" => $this->createFile()
-            ]
-            
-//            'trick[videos]' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
+        $form = $crawler->filter('form[name=update_trick]')->form([]);
 
-        ]);
+        $csrfToken = $form->get('update_trick')['_token']->getValue();
+
+        $formData = [
+            'update_trick' => [
+                '_token' => $csrfToken,
+                'name' => 'name',
+                'category' => '1',
+                'description]' => 'description]',
+                'pictureOnFront' => [
+                    'alt' => 'alt',
+                    'uploadedFile' => $this->createFile()
+                ],
+                'videos' => [
+                    [
+                        'url' => 'https://www.youtube.com/watch?v=oI-umOzNBME'
+                    ]
+                ]
+            ]
+        ];
+
+        $fileData = [
+            'update_trick' => [
+                'pictures' => [
+                    [
+                        'alt' => 'alt',
+                        'uploadedFile' => $this->createFile()
+                    ]
+                ]
+            ]
+        ];
+
+        $client->request(Request::METHOD_POST, '/trick/ '. $trick->getSlug(), $formData, $fileData);
 
         $client->submit($form);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 
     private function createFile(): UploadedFile
