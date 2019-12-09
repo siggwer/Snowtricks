@@ -5,3 +5,4 @@ App\Entity\User:
     plainPassword: 'password'
     avatar: '@avatar_<current()>'
     passwordToken: 'token-<current()>'
+    token: 'token-<current()>'

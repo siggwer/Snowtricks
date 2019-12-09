@@ -22,11 +22,11 @@ class ForgotControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/forgot');
 
         $form = $crawler->filter('form[name=forgot]')->form([
-            'forgot[email]' => 'test@yopmail.com'
+            'forgot[email]' => 'email+1@email.com'
         ]);
 
         $client->submit($form);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 }

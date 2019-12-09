@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -27,16 +28,12 @@ class ConfirmRegisterController extends AbstractController
      */
     public function confirmRegister(
         Request $request,
+        User $user,
         FlashBagInterface $flashBag,
         UserRepository $userRepository
     ) {
-        try {
-            $user = $userRepository->checkRegistrationToken($request->get('token'));
-        } catch (NonUniqueResultException $e) {
-        }
 
-        if ($user !== null) {
-            $user->setToken(null);
+        $user->setToken(null);
 
             $userRepository->save($user);
 
@@ -46,10 +43,5 @@ class ConfirmRegisterController extends AbstractController
                 $this->generateUrl('security_login'),
                 RedirectResponse::HTTP_FOUND
             );
-        }
-        return new Response(
-            $this->render('home.html.twig'),
-            Response::HTTP_OK
-        );
     }
 }

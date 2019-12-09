@@ -17,7 +17,7 @@ class ConfirmControllerTest extends WebTestCase
     /**
      *
      */
-    public function testConform()
+    public function testConfirm()
     {
         $client = static::createClient();
 
@@ -25,6 +25,6 @@ class ConfirmControllerTest extends WebTestCase
 //
         $crawler = $client->request(Request::METHOD_GET, '/confirmregister/token-1');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 }

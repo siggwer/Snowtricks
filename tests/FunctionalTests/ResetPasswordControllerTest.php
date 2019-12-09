@@ -15,13 +15,13 @@ class ResetPasswordControllerTest extends WebTestCase
 
         $form = $crawler->filter('form[name=reset_form]')->form([
             'reset_form[plainPassword]' => [
-                'first_options' => 'password',
-                'second_options' => 'password'
+                'first' => 'password',
+                'second' => 'password'
             ]
         ]);
 
         $client->submit($form);
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 }

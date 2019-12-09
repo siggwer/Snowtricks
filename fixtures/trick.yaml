@@ -1,7 +1,7 @@
 App\Entity\Trick:
   trick_{1..100}:
     name: 'Trick <current()>'
-    slug: 'Trick-<current()>'
+#    slug: 'Trick-<current()>'
     category: '@category_<($current % 10 + 1)>'
     author: '@user_<($current % 10 + 1)>'
     description: '<paragraph(4, true)>'
