@@ -3,7 +3,9 @@
 namespace App\Tests\UnitTests\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\ShowTrickHandler;
 use App\Handler\AbstractHandler;
@@ -15,7 +17,7 @@ use Exception;
  *
  * @package App\Tests\UnitTests\Handler
  */
-class ShowHandlerTest extends AbstractTestHandler
+class ShowHandlerTest extends AbstractHandlerTest
 {
     /**
      * @return AbstractHandler
@@ -45,7 +47,15 @@ class ShowHandlerTest extends AbstractTestHandler
     public function getFormData(): array
     {
        return [
-         'content' => 'test'
+           'comment' => [
+                'content' => 'test'
+           ]
        ];
+    }
+
+    public function hydrate(Request $request): FormInterface
+    {
+        $this->data->setContent($request->request->get('comment')['content']);
+        return $this->form;
     }
 }

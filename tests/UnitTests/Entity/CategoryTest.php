@@ -2,7 +2,7 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Category;
 
 /**
@@ -21,15 +21,18 @@ class CategoryTest extends TestCase
     /**
      *
      */
-    public function TestCategoryConstruct()
-    {
-        $category = $this->createMock(Category::class);
-        $this->assertInstanceOf(Category::class, $category);
-    }
-
     public function setUp()
     {
         $this->category = new Category();
+    }
+
+    /**
+     *
+     */
+    public function testGetId()
+    {
+        $result = $this->category->getId();
+        $this->assertNotNull('1', $result);
     }
 
     /**

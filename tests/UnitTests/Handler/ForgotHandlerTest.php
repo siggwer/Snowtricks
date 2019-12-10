@@ -2,20 +2,22 @@
 
 namespace App\Tests\UnitTests\Handler;
 
-use App\Model\Forgot;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormInterface;
 use App\Repository\UserRepository;
 use App\Services\TokenGenerator;
 use App\Handler\AbstractHandler;
 use App\Handler\ForgotHandler;
+use App\Model\Forgot;
 
 /**
  * Class ForgotHandlerTest
  *
  * @package App\Tests\UnitTests\Handler
  */
-class ForgotHandlerTest extends AbstractTestHandler
+class ForgotHandlerTest extends AbstractHandlerTest
 {
     /**
      * @return AbstractHandler
@@ -35,7 +37,7 @@ class ForgotHandlerTest extends AbstractTestHandler
      */
     public function getData()
     {
-       return new Forgot();
+        return new Forgot();
     }
 
     /**
@@ -44,7 +46,20 @@ class ForgotHandlerTest extends AbstractTestHandler
     public function getFormData(): array
     {
         return [
-          'email' => 'test@email.com'
+            'forgot' => [
+                'email' => 'test@email.com'
+           ]
         ];
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return FormInterface
+     */
+    public function hydrate(Request $request): FormInterface
+    {
+        $this->data->setEmail($request->request->get("forgot")["email"]);
+        return $this->form;
     }
 }

@@ -3,6 +3,8 @@
 namespace App\Tests\UnitTests\Handler;
 
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Form\FormInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Handler\AbstractHandler;
 use App\Handler\ResetHandler;
@@ -14,7 +16,7 @@ use Exception;
  *
  * @package App\Tests\UnitTests\Handler
  */
-class ResetHandlerTest extends AbstractTestHandler
+class ResetHandlerTest extends AbstractHandlerTest
 {
     /**
      * @return AbstractHandler
@@ -43,8 +45,15 @@ class ResetHandlerTest extends AbstractTestHandler
     public function getFormData(): array
     {
        return [
-           'plainPasswordFirst' => 'password',
-           'plainPasswordSecond' => 'password',
+           'reset' => [
+                'plainPassword' => ["first" => 'password', 'second' => 'password'],
+           ]
        ];
+    }
+
+    public function hydrate(Request $request): FormInterface
+    {
+        $this->data->setPlainPassword($request->request->get('reset')['plainPassword']['first']);
+        return $this->form;
     }
 }

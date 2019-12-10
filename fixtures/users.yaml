@@ -4,4 +4,5 @@ App\Entity\User:
     email: 'email+<current()>\@email.com'
     plainPassword: 'password'
     avatar: '@avatar_<current()>'
-    passwordToken: '14f5e999ec2ff5035adadf3dcac05958'
+    passwordToken: 'token-<current()>'
+    token: 'token-<current()>'

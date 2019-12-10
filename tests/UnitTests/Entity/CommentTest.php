@@ -2,8 +2,11 @@
 
 namespace App\Tests\UnitTests\Entity;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
+use PHPUnit\Framework\TestCase;
 use App\Entity\Comment;
+use DateTimeImmutable;
+use App\Entity\Trick;
+use App\Entity\User;
 use Exception;
 
 /**
@@ -14,12 +17,37 @@ use Exception;
 class CommentTest extends TestCase
 {
     /**
+     * @var Trick
+     */
+    private $trick;
+
+    /**
+     * @var Comment
+     */
+    private $comment;
+
+    /**
+     * @var User
+     */
+    private $user;
+
+    /**
      *
      */
     public function setUp()
     {
-        $comment = $this->createMock(Comment::class);
-        $this->assertInstanceOf(Comment::class, $comment);
+        $this->comment = new Comment();
+        $this->trick = new Trick();
+        $this->user = new User();
+    }
+
+    /**
+     *
+     */
+    public function testGetId()
+    {
+        $result = $this->comment->getId();
+        $this->assertNotNull('1', $result);
     }
 
     /**
@@ -32,6 +60,7 @@ class CommentTest extends TestCase
         $result = $comment->getContent();
         $this->assertSame('message test', $result);
     }
+
     /**
      * @throws Exception
      */
@@ -40,5 +69,62 @@ class CommentTest extends TestCase
         $comment = new Comment();
         $comment->setContent(null);
         $this->assertNull($comment->getContent());
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetPublishedAt()
+    {
+        $this->comment->setPublishedAt(new DateTimeImmutable());
+        $result = $this->comment->getPublishedAt();
+        $this->assertInstanceOf(DateTimeImmutable::class, $result);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetPublishedAtIfIsNull()
+    {
+        $this->comment->setPublishedAt(null);
+        $this->assertNull($this->comment->getPublishedAt());
+    }
+
+    /**
+     *
+     */
+    public function testGetAuthor()
+    {
+        $this->comment->setAuthor($this->user);
+        $result = $this->comment->getAuthor();
+        $this->assertSame($this->user, $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetAuthorIsNull()
+    {
+        $this->comment->setAuthor(null);
+        $this->assertNull($this->comment->getAuthor());
+    }
+
+    /**
+     *
+     */
+    public function testGetTrick()
+    {
+        $this->comment->setTrick($this->trick);
+        $result = $this->comment->getTrick();
+        $this->assertSame($this->trick, $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetTrickIsNull()
+    {
+        $this->comment->setTrick(null);
+        $this->assertNull($this->comment->getTrick());
     }
 }

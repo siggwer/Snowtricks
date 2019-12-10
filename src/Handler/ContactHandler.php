@@ -52,30 +52,22 @@ class ContactHandler extends AbstractHandler
      */
     public function process($data = null): void
     {
-        if ($data !== null) {
-            $event = new ContactEvent(
-                $data->getMessage(),
-                $data->getSubject(),
-                $data->getName(),
-                $data->getEmail()
-            );
-            $this->eventDispatcher->dispatch(
-                $event,
-                ContactEvent::NAME
-            );
-
-            $this->flashBag->add(
-                'success',
-                'Votre message a bien été envoyé.
-                 Nous répondrons dans un délais de 48 heures.'
-            );
-
-            return;
-        }
+        $event = new ContactEvent(
+            $data->getMessage(),
+            $data->getSubject(),
+            $data->getName(),
+            $data->getEmail()
+        );
+        $this->eventDispatcher->dispatch(
+            $event,
+            ContactEvent::NAME
+        );
 
         $this->flashBag->add(
-            'error',
-            'Une erreur est survenue. Merci de réessayer ultérieurement.'
+            'success',
+            'Votre message a bien été envoyé.
+                 Nous répondrons dans un délais de 48 heures.'
         );
+
     }
 }

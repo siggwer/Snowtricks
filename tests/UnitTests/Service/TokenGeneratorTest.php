@@ -2,8 +2,8 @@
 
 namespace App\Tests\UnitTests\Service;
 
-use Symfony\Bundle\FrameworkBundle\Tests\TestCase;
 use App\Services\TokenGenerator;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class TokenGeneratorTest
@@ -19,6 +19,6 @@ class TokenGeneratorTest extends TestCase
     {
         $token = new TokenGenerator();
 
-        static::assertNotNull($token::generate());
+        static::assertNotNull($token->generate());
     }
 }

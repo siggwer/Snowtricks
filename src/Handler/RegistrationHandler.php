@@ -75,27 +75,18 @@ class RegistrationHandler extends AbstractHandler
         $this->entityManager->persist($data);
         $this->entityManager->flush();
 
-        if ($data !== null) {
-            $event = new  RegisterEmailEvent(
-                $data->getEmail(),
-                $data->getToken()
-            );
-            $this->eventDispatcher->dispatch(
-                $event,
-                RegisterEmailEvent::NAME
-            );
-
-            $this->flashBag->add(
-                'success',
-                'Ton compte a bien été créé, un email t\'a été envoyé pour le valider.'
-            );
-
-            return;
-        }
+        $event = new  RegisterEmailEvent(
+            $data->getEmail(),
+            $data->getToken()
+        );
+        $this->eventDispatcher->dispatch(
+            $event,
+            RegisterEmailEvent::NAME
+        );
 
         $this->flashBag->add(
-            'error',
-            'Une erreur s\'est produite, merci de réessayer ultérieurement.'
+            'success',
+            'Ton compte a bien été créé, un email t\'a été envoyé pour le valider.'
         );
     }
 }

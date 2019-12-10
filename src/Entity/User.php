@@ -314,6 +314,8 @@ class User implements UserInterface, Serializable
      * This can return null if the password was not encoded using a salt.
      *
      * @return string|null The salt
+     *
+     * @codeCoverageIgnore
      */
     public function getSalt()
     {
@@ -325,14 +327,18 @@ class User implements UserInterface, Serializable
      *
      * This is important if, at any given point, sensitive information like
      * the plain-text password is stored on this object.
+     *
+     * @codeCoverageIgnore
      */
     public function eraseCredentials(): void
     {
-        // TODO: Implement eraseCredentials() method.
+
     }
 
     /**
      * @return string
+     *
+     * @codeCoverageIgnore
      */
     public function serialize(): string
     {
@@ -350,6 +356,8 @@ class User implements UserInterface, Serializable
 
     /**
      * @param $serialized
+     *
+     * @codeCoverageIgnore
      */
     public function unserialize($serialized): void
     {

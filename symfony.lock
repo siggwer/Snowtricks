@@ -2,8 +2,17 @@
     "behat/transliterator": {
         "version": "v1.2.0"
     },
-    "composer/ca-bundle": {
-        "version": "1.2.4"
+    "dama/doctrine-test-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "56eaa387b5e48ebcc7c95a893b47dfa1ad51449c"
+        },
+        "files": [
+            "./config/packages/test/dama_doctrine_test_bundle.yaml"
+        ]
     },
     "doctrine/annotations": {
         "version": "1.0",
@@ -102,21 +111,6 @@
     "egulias/email-validator": {
         "version": "2.1.9"
     },
-    "essence/dom": {
-        "version": "1.0.0"
-    },
-    "essence/essence": {
-        "version": "3.5.2"
-    },
-    "essence/http": {
-        "version": "1.0.0"
-    },
-    "fg/parkour": {
-        "version": "1.1.1"
-    },
-    "fig/link-util": {
-        "version": "1.0.0"
-    },
     "fzaninotto/faker": {
         "version": "v1.8.0"
     },
@@ -143,9 +137,6 @@
     "monolog/monolog": {
         "version": "1.24.0"
     },
-    "mpratt/embera": {
-        "version": "1.9.3"
-    },
     "myclabs/deep-copy": {
         "version": "1.9.1"
     },
@@ -171,12 +162,6 @@
     "ocramius/proxy-manager": {
         "version": "2.2.2"
     },
-    "padraic/humbug_get_contents": {
-        "version": "1.1.2"
-    },
-    "padraic/phar-updater": {
-        "version": "v1.0.6"
-    },
     "php": {
         "version": "7.2"
     },
@@ -188,9 +173,6 @@
     },
     "phpdocumentor/type-resolver": {
         "version": "0.4.0"
-    },
-    "phuml/phuml": {
-        "version": "1.7.0"
     },
     "psr/cache": {
         "version": "1.0.1"
@@ -226,18 +208,6 @@
         },
         "files": [
             "config/packages/sensio_framework_extra.yaml"
-        ]
-    },
-    "stof/doctrine-extensions-bundle": {
-        "version": "1.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "1.2",
-            "ref": "6c1ceb662f8997085f739cd089bfbef67f245983"
-        },
-        "files": [
-            "./config/packages/stof_doctrine_extensions.yaml"
         ]
     },
     "swiftmailer/swiftmailer": {
@@ -303,6 +273,9 @@
     },
     "symfony/dotenv": {
         "version": "v4.3.2"
+    },
+    "symfony/error-handler": {
+        "version": "v4.4.1"
     },
     "symfony/event-dispatcher": {
         "version": "v4.3.2"
