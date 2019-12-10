@@ -23,9 +23,9 @@ class TrickControllerUpdateTest  extends WebTestCase
     {
         $client = static::createAuthenticatedClient();
 
-        $trick = $client->getContainer()->get("doctrine.orm.entity_manager")->getRepository(Trick::class)->findOneBy([]);
+        $trick = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Trick::class)->findOneBy([]);
 
-        $crawler = $client->request(Request::METHOD_GET, "/trick/update/" . $trick->getSlug());
+        $crawler = $client->request(Request::METHOD_GET, '/trick/update/' . $trick->getSlug());
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -69,6 +69,9 @@ class TrickControllerUpdateTest  extends WebTestCase
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 
+    /**
+     * @return UploadedFile
+     */
     private function createFile(): UploadedFile
     {
         $filename = md5(uniqid('', true)).'.png';
