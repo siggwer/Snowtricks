@@ -19,7 +19,7 @@ class TrickControllerUpdateTest  extends WebTestCase
     /**
      *
      */
-    public function testShow()
+    public function testUpdate()
     {
         $client = static::createAuthenticatedClient();
 
@@ -36,9 +36,9 @@ class TrickControllerUpdateTest  extends WebTestCase
         $formData = [
             'update_trick' => [
                 '_token' => $csrfToken,
-                'name' => 'name',
+                'name' => 'test',
                 'category' => '1',
-                'description]' => 'description]',
+                'description' => 'description',
                 'pictureOnFront' => [
                     'alt' => 'alt',
                     'uploadedFile' => $this->createFile()

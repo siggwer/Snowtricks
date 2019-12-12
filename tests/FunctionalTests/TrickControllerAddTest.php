@@ -23,7 +23,7 @@ class TrickControllerAddTest extends WebTestCase
     {
         $client = static::createAuthenticatedClient();
 
-        $crawler = $client->request('GET', '/trick/add');
+        $crawler = $client->request(Request::METHOD_GET, '/trick/add');
 
         $form = $crawler->filter('form[name=trick]')->form([]);
 
@@ -32,7 +32,7 @@ class TrickControllerAddTest extends WebTestCase
         $formData = [
             'trick' => [
                 '_token' => $csrfToken,
-                'name' => 'name',
+                'name' => 'test',
                 'category' => '1',
                 'description' => 'description',
                 'pictureOnFront' => [
@@ -47,24 +47,10 @@ class TrickControllerAddTest extends WebTestCase
             ]
         ];
 
-        $fileData = [
-            'trick' => [
-                'pictures' => [
-                    [
-                        'alt' => 'alt',
-                        'uploadedFile' => $this->createFile()
-                    ]
-                ]
-            ]
-        ];
+        $client->request(Request::METHOD_POST, '/trick/add', $formData);
 
-        $client->request(Request::METHOD_POST, '/trick/', $formData, $fileData);
 
-        $client->submit($form);
-
-        //$this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
-
-        //self::assertResponseStatusCodeSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 
     /**
