@@ -36,7 +36,7 @@ class TrickControllerAddTest extends WebTestCase
                 'category' => '1',
                 'description' => 'description',
                 'pictureOnFront' => [
-                    'alt' => 'alt',
+                    //'alt' => 'alt',
                     'uploadedFile' => $this->createFile()
                 ],
                 'videos' => [
@@ -48,7 +48,6 @@ class TrickControllerAddTest extends WebTestCase
         ];
 
         $client->request(Request::METHOD_POST, '/trick/add', $formData);
-
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
