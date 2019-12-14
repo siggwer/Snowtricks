@@ -36,7 +36,7 @@ class TrickControllerAddTest extends WebTestCase
                 'category' => '1',
                 'description' => 'description',
                 'pictureOnFront' => [
-                    //'alt' => 'alt',
+                    'alt' => 'alt',
                     'uploadedFile' => $this->createFile()
                 ],
                 'videos' => [

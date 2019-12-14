@@ -2,7 +2,7 @@
     <div class="col-12 col-md-8 col-lg-4 my-4">
         <div class="card mb-4">
             {% if trick.pictureOnFront is not null %}
-            <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
+                <img class="card-img-top" src="{{ asset(trick.pictureOnFront.path) }}" alt="{{ trick.pictureOnFront.alt }}">
             {% else %}
                 <img class="card-img-top" src="{{ asset('images/image.png') }}" alt="">
             {% endif %}
