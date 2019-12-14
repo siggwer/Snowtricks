@@ -159,7 +159,7 @@ class TrickController extends AbstractController
     }
 
     /**
-     * @Route("/{slug}", name="trick_delete", methods={"DELETE"})
+     * @Route("/delete/{slug}", name="trick_delete", methods={"DELETE"})
      *
      * @param Trick   $trick
      * @param Request $request

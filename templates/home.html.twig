@@ -7,7 +7,7 @@
     </div>
     <div class="container py-5">
         <div class="row py-5" id="tricks">
-            {{ include("trick/list.html.twig", { tricks: tricks }) }}
+            {{ include('trick/list.html.twig', { tricks: tricks }) }}
         </div>
         <div class="row mt-4">
             <div class="col-12 text-center">
@@ -18,8 +18,8 @@
             </div>
         </div>
     </div>
-    <div id="scrollUp">
-        <a href="#top"><img src="images/to_top.png"/></a>
+    <div id='scrollUp'>
+        <a href='#top'><img src='/images/to_top.png'/></a>
     </div>
 {% endblock %}
 {% block javascripts %}

@@ -108,9 +108,40 @@
         <div class="form-group d-flex justify-content-between">
             <a href="{{ path("home") }}" class="btn btn-primary float-left">Accueil</a>
             {% if is_granted("ROLE_USER") %}
-                <a href="{{ path("trick_add") }}" class="btn btn-primary">Ajouter un trick</a>
+                <a href="{{ path("trick_add") }}" class="btn btn-success">Ajouter un trick</a>
                 <a href="{{ path("trick_update", { 'slug': trick.slug }) }}" class="btn btn-warning float-right">Modifier</a>
+{#                <a href="{{ path("trick_delete", { 'slug': trick.slug }) }}" class="btn btn-danger">Supprimer</a>#}
+                <a href="#myModal" class="btn btn-danger" data-toggle="modal">Supprimer</a>
+                <!-- Modal HTML -->
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title">Confirmation</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Êtes-vous sûr de vouloir supprimer ce trick? Cette action ne peut pas être annulée et vous ne pourrez récupérer aucune donnée.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <form method="post" action="{{ path("trick_delete", { 'slug': trick.slug }) }}">
+                                    <input type="hidden" name="_method" value="DELETE">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.slug) }}">
+                                    <a href="#" class="btn btn-info" data-dismiss="modal">Annuler</a>
+                                    <button class="btn btn-danger float-right">Supprimer</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             {% endif %}
         </div>
     </div>
+    <div id="scrollUp">
+        <a href='#top'><img src='/images/to_top.png'/></a>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/scroll.js') }}"></script>
 {% endblock %}
