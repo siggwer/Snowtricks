@@ -21,17 +21,17 @@ class SecurityControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/login');
 
-        $form = $crawler->filter('form[name=login]')->form([
-            'login[email]' => 'email+1@email.com',
-            'login[password]' => 'password'
-        ]);
+        $form = $crawler->filter('form')->form(
+            [
+            'email' => 'email+1@email.com',
+            'password' => 'password'
+            ]
+        );
 
         $client->submit($form);
 
+        $this->assertEquals('security_login', $client->getRequest()->attributes->get('_route'));
+
         self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
-
-        //form
-
-        //redirection page d'acceuil $client->
     }
 }

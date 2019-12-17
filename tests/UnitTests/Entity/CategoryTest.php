@@ -4,6 +4,9 @@ namespace App\Tests\UnitTests\Entity;
 
 use PHPUnit\Framework\TestCase;
 use App\Entity\Category;
+use ReflectionException;
+use ReflectionClass;
+use Exception;
 
 /**
  * Class CategoryTest
@@ -28,15 +31,21 @@ class CategoryTest extends TestCase
 
     /**
      *
+     * @throws ReflectionException
      */
     public function testGetId()
     {
-        $result = $this->category->getId();
-        $this->assertNotNull('1', $result);
+        $category = new Category();
+        $this->assertNull($category->getId());
+        $reflecion = new ReflectionClass($category);
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($category, '1');
+        $this->assertEquals(1, $category->getId());
     }
 
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetTitleIfIsString()
     {
@@ -45,7 +54,7 @@ class CategoryTest extends TestCase
         $this->assertSame('name', $result);
     }
     /**
-     * @throws \Exception
+     * @throws Exception
      */
     public function testGetTitleIfIsNull()
     {

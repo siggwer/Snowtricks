@@ -22,14 +22,18 @@ trait AuthentificationTrait
      */
     public static function createAuthenticatedClient(?User $user = null): KernelBrowser
     {
-        /** @var KernelBrowser $client */
+        /**
+ * @var KernelBrowser $client 
+*/
         $client = static::createClient();
 
         $client->getCookieJar()->clear();
 
         $firewallContext = 'main';
 
-        /** @var SessionInterface $session */
+        /**
+ * @var SessionInterface $session 
+*/
         $session = $client->getContainer()->get('session');
 
         $entityManager = $client->getContainer()->get("doctrine.orm.entity_manager");

@@ -4,6 +4,7 @@ namespace App\Tests\UnitTests\Entity;
 
 use App\Services\VideoEmbedTrait;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use App\Entity\Category;
 use App\Entity\Picture;
 use App\Entity\Comment;
@@ -11,6 +12,7 @@ use DateTimeImmutable;
 use App\Entity\Trick;
 use App\Entity\Video;
 use App\Entity\User;
+use ReflectionClass;
 use Exception;
 
 /**
@@ -61,11 +63,17 @@ class TrickTest extends TestCase
 
     /**
      *
+     * @throws ReflectionException
      */
     public function testGetId()
     {
-        $result = $this->trick->getId();
-        $this->assertNotNull('1', $result);
+        $trick = new Trick();
+        $this->assertNull($trick->getId());
+        $reflecion = new ReflectionClass($trick);
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($trick, '1');
+        $this->assertEquals(1, $trick->getId());
     }
 
     /**
@@ -146,8 +154,8 @@ class TrickTest extends TestCase
     }
 
     /**
- * @throws Exception
- */
+     * @throws Exception
+     */
     public function testGetPictureOnFront()
     {
         $picture = new Picture();

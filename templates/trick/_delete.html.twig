@@ -14,7 +14,7 @@
                 <p>Êtes-vous sûr de vouloir supprimer ce trick? Cette action ne peut pas être annulée et vous ne pourrez récupérer aucune donnée.</p>
             </div>
             <div class="modal-footer">
-                <form method="post" action="{{ path("trick_delete", { 'slug': trick.slug }) }}">
+                <form method="post" action="{{ path('trick_delete', { 'slug': trick.slug }) }}">
                     <input type="hidden" name="_method" value="DELETE">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ trick.slug) }}">
                     <a href="#" class="btn btn-info" data-dismiss="modal">Annuler</a>

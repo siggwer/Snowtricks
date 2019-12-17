@@ -22,8 +22,8 @@ class ConfirmRegisterController extends AbstractController
     /**
      * @Route("/confirmregister/{token}", name="confirm_register")
      *
-     * @param Request $request
-     * @param UserRepository $userRepository
+     * @param  Request        $request
+     * @param  UserRepository $userRepository
      * @return RedirectResponse|Response
      */
     public function confirmRegister(
@@ -32,16 +32,15 @@ class ConfirmRegisterController extends AbstractController
         FlashBagInterface $flashBag,
         UserRepository $userRepository
     ) {
-
         $user->setToken(null);
 
-            $userRepository->save($user);
+        $userRepository->save($user);
 
-            $flashBag->add('success', 'Votre compte à bien été créé');
+        $flashBag->add('success', 'Votre compte à bien été créé');
 
-            return new RedirectResponse(
-                $this->generateUrl('security_login'),
-                RedirectResponse::HTTP_FOUND
-            );
+        return new RedirectResponse(
+            $this->generateUrl('security_login'),
+            RedirectResponse::HTTP_FOUND
+        );
     }
 }

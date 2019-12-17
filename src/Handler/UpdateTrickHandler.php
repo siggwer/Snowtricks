@@ -40,10 +40,10 @@ class UpdateTrickHandler extends AbstractHandler
     /**
      * UpdateTrickHandler constructor.
      *
-     * @param EntityManagerInterface $entityManager
+     * @param EntityManagerInterface   $entityManager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param FlashBagInterface $flashBag
-     * @param Security $security
+     * @param FlashBagInterface        $flashBag
+     * @param Security                 $security
      */
     public function __construct(
         EntityManagerInterface $entityManager,

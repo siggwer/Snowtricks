@@ -29,7 +29,7 @@ class ContactHandler extends AbstractHandler
      * ContactHandler constructor.
      *
      * @param EventDispatcherInterface $eventDispatcher
-     * @param FlashBagInterface $flashBag
+     * @param FlashBagInterface        $flashBag
      */
     public function __construct(
         EventDispatcherInterface $eventDispatcher,
@@ -68,6 +68,5 @@ class ContactHandler extends AbstractHandler
             'Votre message a bien été envoyé.
                  Nous répondrons dans un délais de 48 heures.'
         );
-
     }
 }

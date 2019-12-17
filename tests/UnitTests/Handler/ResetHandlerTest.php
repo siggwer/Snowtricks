@@ -44,11 +44,11 @@ class ResetHandlerTest extends AbstractHandlerTest
      */
     public function getFormData(): array
     {
-       return [
+        return [
            'reset' => [
                 'plainPassword' => ["first" => 'password', 'second' => 'password'],
            ]
-       ];
+        ];
     }
 
     public function hydrate(Request $request): FormInterface

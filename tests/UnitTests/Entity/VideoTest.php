@@ -3,8 +3,10 @@
 namespace App\Tests\UnitTests\Entity;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use App\Entity\Trick;
 use App\Entity\Video;
+use ReflectionClass;
 use Exception;
 
 /**
@@ -35,11 +37,17 @@ class VideoTest extends TestCase
 
     /**
      *
+     * @throws ReflectionException
      */
     public function testGetId()
     {
-        $result = $this->video->getId();
-        $this->assertNotNull('1', $result);
+        $video = new Video();
+        $this->assertNull($video->getId());
+        $reflecion = new ReflectionClass($video);
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($video, '1');
+        $this->assertEquals(1, $video->getId());
     }
 
     /**

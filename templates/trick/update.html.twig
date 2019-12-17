@@ -6,16 +6,19 @@
                 <div class="card">
                     <div class="card-body">
                         <h3>Modifier le trick</h3>
-                        {{ include("trick/_update_form.html.twig", { form: form }) }}
-                        {{ include('trick/_delete.html.twig', { trick: form.vars.data }) }}
+                        {{ include('trick/_update_form.html.twig', { form: form }) }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div id="scrollUp">
+        <a href='#top'><img src='/images/to_top.png' alt="Top"/></a>
+    </div>
 {% endblock %}
 {% block javascripts %}
     {{ parent() }}
+    <script src="{{ asset('js/scroll.js') }}"></script>
     <script src="{{ asset('js/picture_button.js') }}"></script>
     <script src="{{ asset('js/video_button.js') }}"></script>
     <script src="{{ asset('js/input_custom_file.js') }}"></script>

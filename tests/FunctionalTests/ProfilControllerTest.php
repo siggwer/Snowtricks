@@ -23,11 +23,13 @@ class ProfilControllerTest extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $form = $crawler->filter('form[name=avatar]')->form([
+        $form = $crawler->filter('form[name=avatar]')->form(
+            [
             'avatar[avatar]' => [
                 'uploadedFile' => $this->createFile()
             ],
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

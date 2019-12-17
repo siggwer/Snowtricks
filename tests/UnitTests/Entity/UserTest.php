@@ -4,9 +4,11 @@ namespace App\Tests\UnitTests\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use App\Entity\Picture;
 use DateTimeImmutable;
 use App\Entity\User;
+use ReflectionClass;
 use Exception;
 
 /**
@@ -17,46 +19,145 @@ use Exception;
 class UserTest extends TestCase
 {
     /**
+     * @var
+     */
+    public $user;
+
+    /**
      * @throws Exception
      */
-    public function testUser()
+    public function setUp()
+    {
+        $this->user = new User();
+    }
+
+    /**
+     * @throws ReflectionException
+     */
+    public function testGetId()
     {
         $user = new User();
-        $id = '1';
-        $username = 'test';
-        $email = 'test@yopmail.com';
-        $password = 'sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm';
-        $plainPassword = 'password';
-        $passwordToken = 'qsùdqSDKùmsd%MSDKLQù';
-        $uploadedFile = new UploadedFile('public/images/image.png', '%kernel.project_dir%/public/uploads');
-        $registerAt = new DateTimeImmutable();
-        $avatar = new Picture();
-        $token = 'lmqsdkqqSDLMQdlùqSLQ';
-        $role = 'user';
+        $this->assertNull($user->getId());
+        try {
+            $reflecion = new ReflectionClass($user);
+        } catch (ReflectionException $e) {
+        }
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($user, '1');
+        $this->assertEquals(1, $user->getId());
+    }
 
-        $user->setUsername($username);
-        $user->setEmail($email);
-        $user->setPassword($password);
-        $user->setPlainPassword($plainPassword);
-        $user->setPasswordToken($passwordToken);
-        $user->setUploadedFile($uploadedFile);
-        $user->setRegisteredAt($registerAt);
-        $user->setAvatar($avatar);
-        $user->setToken($token);
-        $user->setRole($role);
-        static::assertObjectHasAttribute('id', $user);
+    /**
+     *
+     */
+    public function testGetUsername()
+    {
+        $this->user->setUsername('test');
+        $result = $this->user->getUsername();
+        $this->assertEquals('test', $result);
+    }
 
-        static::assertNotNull($id, $user->getId());
-        $this->assertEquals('test', $user->getUsername());
-        $this->assertEquals('test@yopmail.com', $user->getEmail());
-        $this->assertEquals('sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm', $user->getPassword());
-        $this->assertEquals('password', $user->getPlainPassword());
-        $this->assertEquals('qsùdqSDKùmsd%MSDKLQù', $user->getPasswordToken());
-        $this->assertInstanceOf(UploadedFile::class, $user->getUploadedFile());
-        $this->assertInstanceOf(DateTimeImmutable::class, $user->getRegisteredAt());
-        $this->assertInstanceOf(Picture::class, $user->getAvatar());
-        $this->assertEquals('lmqsdkqqSDLMQdlùqSLQ', $user->getToken());
-        $this->assertEquals('user', $user->getRole());
-        $this->assertEquals(['ROLE_USER'], $user->getRoles());
+    /**
+     *
+     */
+    public function testGetEmail()
+    {
+        $this->user->setEmail('test@yopmail.com');
+        $result = $this->user->getEmail();
+        $this->assertEquals('test@yopmail.com', $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetPassword()
+    {
+        $this->user->setPassword('sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm');
+        $result = $this->user->getPassword();
+        $this->assertEquals('sfJDLKSmdlfsmdlfjlmskDFLMsdjflmSDFLMlm', $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetPlainPassword()
+    {
+        $this->user->setPlainPassword('password');
+        $result = $this->user->getPlainPassword();
+        $this->assertEquals('password', $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetPasswordToken()
+    {
+        $this->user->setPasswordToken('qsùdqSDKùmsd%MSDKLQù');
+        $result = $this->user->getPasswordToken();
+        $this->assertEquals('qsùdqSDKùmsd%MSDKLQù', $result);
+    }
+
+    /**
+     * @throws Exception
+     */
+    public function testGetRegisterAt()
+    {
+        $this->user->setRegisteredAt(new DateTimeImmutable());
+        $result = $this->user->getRegisteredAt();
+        $this->assertInstanceOf(DateTimeImmutable::class, $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetAvatar()
+    {
+        $this->user->setAvatar(new Picture());
+        $result = $this->user->getAvatar();
+        $this->assertInstanceOf(Picture::class, $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetUploadedFile()
+    {
+        $this->user->setUploadedFile(
+            new UploadedFile(
+                'public/images/image.png',
+                '%kernel.project_dir%/public/uploads'
+            )
+        );
+        $result = $this->user->getUploadedFile();
+        $this->assertInstanceOf(UploadedFile::class, $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetToken()
+    {
+        $this->user->setToken('lmqsdkqqSDLMQdlùqSLQ');
+        $result = $this->user->getToken();
+        $this->assertEquals('lmqsdkqqSDLMQdlùqSLQ', $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetRole()
+    {
+        $this->user->setRole('user');
+        $result = $this->user->getRole();
+        $this->assertEquals('user', $result);
+    }
+
+    /**
+     *
+     */
+    public function testGetRoles()
+    {
+        $this->assertEquals(['ROLE_USER'], $this->user->getRoles());
     }
 }

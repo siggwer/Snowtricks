@@ -3,9 +3,11 @@
 namespace App\Tests\UnitTests\Entity;
 
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use App\Entity\Comment;
 use DateTimeImmutable;
 use App\Entity\Trick;
+use ReflectionClass;
 use App\Entity\User;
 use Exception;
 
@@ -43,11 +45,17 @@ class CommentTest extends TestCase
 
     /**
      *
+     * @throws ReflectionException
      */
     public function testGetId()
     {
-        $result = $this->comment->getId();
-        $this->assertNotNull('1', $result);
+        $comment = new Comment();
+        $this->assertNull($comment->getId());
+        $reflecion = new ReflectionClass($comment);
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($comment, '1');
+        $this->assertEquals(1, $comment->getId());
     }
 
     /**

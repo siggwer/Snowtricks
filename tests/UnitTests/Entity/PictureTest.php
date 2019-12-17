@@ -4,8 +4,10 @@ namespace App\Tests\UnitTests\Entity;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use PHPUnit\Framework\TestCase;
+use ReflectionException;
 use App\Entity\Picture;
 use App\Entity\Trick;
+use ReflectionClass;
 use Exception;
 
 /**
@@ -36,11 +38,17 @@ class PictureTest extends TestCase
 
     /**
      *
+     * @throws ReflectionException
      */
     public function testGetId()
     {
-        $result = $this->picture->getId();
-        $this->assertNotNull('1', $result);
+        $picture = new Picture();
+        $this->assertNull($picture->getId());
+        $reflecion = new ReflectionClass($picture);
+        $property = $reflecion->getProperty('id');
+        $property->setAccessible(true);
+        $property->setValue($picture, '1');
+        $this->assertEquals(1, $picture->getId());
     }
 
     /**
@@ -121,5 +129,4 @@ class PictureTest extends TestCase
         $image->setUploadedFile(null);
         $this->assertNull($image->getUploadedFile());
     }
-
 }

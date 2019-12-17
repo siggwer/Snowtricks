@@ -10,22 +10,23 @@ use App\Entity\Trick;
 
 /**
  * Class TrickControllerAddTest
+ *
  * @package App\Tests\FunctionalTests
  */
-class TrickControllerUpdateTest  extends WebTestCase
+class TrickControllerUpdateTest extends WebTestCase
 {
     use AuthentificationTrait;
 
     /**
      *
      */
-    public function testShow()
+    public function testUpdate()
     {
         $client = static::createAuthenticatedClient();
 
-        $trick = $client->getContainer()->get("doctrine.orm.entity_manager")->getRepository(Trick::class)->findOneBy([]);
+        $trick = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Trick::class)->findOneBy([]);
 
-        $crawler = $client->request(Request::METHOD_GET, "/trick/update/" . $trick->getSlug());
+        $crawler = $client->request(Request::METHOD_GET, '/trick/update/' . $trick->getSlug());
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -36,9 +37,9 @@ class TrickControllerUpdateTest  extends WebTestCase
         $formData = [
             'update_trick' => [
                 '_token' => $csrfToken,
-                'name' => 'name',
+                'name' => 'test',
                 'category' => '1',
-                'description]' => 'description]',
+                'description' => 'description',
                 'pictureOnFront' => [
                     'alt' => 'alt',
                     'uploadedFile' => $this->createFile()
@@ -69,6 +70,9 @@ class TrickControllerUpdateTest  extends WebTestCase
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 
+    /**
+     * @return UploadedFile
+     */
     private function createFile(): UploadedFile
     {
         $filename = md5(uniqid('', true)).'.png';

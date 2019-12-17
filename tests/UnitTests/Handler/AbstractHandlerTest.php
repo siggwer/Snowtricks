@@ -67,16 +67,19 @@ abstract class AbstractHandlerTest extends TestCase
             $this->createMock(EventDispatcher::class)
         );
 
-        /** @var Form form */
+        /**
+ * @var Form form 
+*/
         $this->form = $this->getMockBuilder(Form::class)
             ->setConstructorArgs([$formConfig])
-            ->setMethods([
+            ->setMethods(
+                [
                 'handleRequest',
                 'isSubmitted',
                 'isValid'
-            ])
-            ->getMock()
-        ;
+                ]
+            )
+            ->getMock();
 
         $this->data = $this->getData();
 
@@ -113,16 +116,19 @@ abstract class AbstractHandlerTest extends TestCase
             $this->createMock(EventDispatcher::class)
         );
 
-        /** @var Form form */
+        /**
+ * @var Form form 
+*/
         $this->form = $this->getMockBuilder(Form::class)
             ->setConstructorArgs([$formConfig])
-            ->setMethods([
+            ->setMethods(
+                [
                 'handleRequest',
                 'isSubmitted',
                 'isValid'
-            ])
-            ->getMock()
-        ;
+                ]
+            )
+            ->getMock();
 
         $this->form->method('handleRequest')->willReturnSelf();
         $this->form->method('isSubmitted')->willReturn(false);

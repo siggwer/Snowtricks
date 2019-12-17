@@ -2,7 +2,6 @@
 
 namespace App\Tests\FunctionalTests;
 
-use App\Entity\Trick;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +23,7 @@ class TrickControllerAddTest extends WebTestCase
     {
         $client = static::createAuthenticatedClient();
 
-        $crawler = $client->request('GET', '/trick/add');
+        $crawler = $client->request(Request::METHOD_GET, '/trick/add');
 
         $form = $crawler->filter('form[name=trick]')->form([]);
 
@@ -33,9 +32,9 @@ class TrickControllerAddTest extends WebTestCase
         $formData = [
             'trick' => [
                 '_token' => $csrfToken,
-                'name' => 'name',
+                'name' => 'test',
                 'category' => '1',
-                'description]' => 'description]',
+                'description' => 'description',
                 'pictureOnFront' => [
                     'alt' => 'alt',
                     'uploadedFile' => $this->createFile()
@@ -48,24 +47,9 @@ class TrickControllerAddTest extends WebTestCase
             ]
         ];
 
-        $fileData = [
-            'trick' => [
-                'pictures' => [
-                    [
-                        'alt' => 'alt',
-                        'uploadedFile' => $this->createFile()
-                    ]
-                ]
-            ]
-        ];
-
-        $client->request(Request::METHOD_POST, '/trick/add', $formData, $fileData);
-
-        $client->submit($form);
+        $client->request(Request::METHOD_POST, '/trick/add', $formData);
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
-
-        //self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
     }
 
     /**

@@ -8,35 +8,35 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Trick;
 
 /**
- * Class TrickControllerShowTest
+ * Class TrickControllerDeleteTest
  *
  * @package App\Tests\FunctionalTests
  */
-class TrickControllerShowTest extends WebTestCase
+class TrickControllerDeleteTest extends WebTestCase
 {
     use AuthentificationTrait;
 
     /**
      *
      */
-    public function testShow()
+    public function testDelete()
     {
         $client = static::createAuthenticatedClient();
 
         $trick = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Trick::class)->findOneBy([]);
 
-        $crawler = $client->request(Request::METHOD_GET, '/trick/' . $trick->getSlug());
+        $csrfToken = $client->getContainer()
+            ->get('security.csrf.token_manager')
+            ->getToken('deletetrick-1');
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-
-        $form = $crawler->filter('form[name=comment]')->form(
+        $client->request(
+            Request::METHOD_DELETE,
+            '/trick/delete/' . $trick->getSlug(),
             [
-            'comment[content]' => 'content'
+                '_token' => $csrfToken
             ]
         );
 
-        $client->submit($form);
-
-        self::assertResponseStatusCodeSame(Response::HTTP_FOUND);
+        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
 }

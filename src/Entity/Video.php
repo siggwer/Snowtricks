@@ -25,7 +25,7 @@ class Video
      * @var Trick|null
      *
      * @ORM\ManyToOne(targetEntity="Trick", inversedBy="videos")
-     * @ORM\JoinColumn(name="video_id", referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la suppression
+     * @ORM\JoinColumn(name="video_id",     referencedColumnName="id", onDelete="CASCADE") //ajout JoinColumn pour la suppression
      */
     private $trick;
 

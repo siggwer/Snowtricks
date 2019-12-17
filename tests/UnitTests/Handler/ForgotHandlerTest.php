@@ -48,7 +48,7 @@ class ForgotHandlerTest extends AbstractHandlerTest
         return [
             'forgot' => [
                 'email' => 'test@email.com'
-           ]
+            ]
         ];
     }
 
