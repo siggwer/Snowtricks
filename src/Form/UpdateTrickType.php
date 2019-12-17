@@ -25,13 +25,17 @@ class UpdateTrickType extends AbstractType
     {
         $builder
             ->add(
-                'name', TextType::class, [
+                'name',
+                TextType::class,
+                [
                 'label' => 'Nom du trick',
                 'required' => false,
                 ]
             )
             ->add(
-                'category', EntityType::class, [
+                'category',
+                EntityType::class,
+                [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Indiquez la catégorie',
@@ -39,7 +43,9 @@ class UpdateTrickType extends AbstractType
                 ]
             )
             ->add(
-                'description', TextareaType::class, [
+                'description',
+                TextareaType::class,
+                [
                 'label' => 'Indiquez une description',
                 'required' => true,
                 ]
@@ -55,7 +61,9 @@ class UpdateTrickType extends AbstractType
                 ]
             )
             ->add(
-                'pictures', CollectionType::class, [
+                'pictures',
+                CollectionType::class,
+                [
                 'label' => false,
                 'entry_type' => PictureType::class,
                 'entry_options' => ['label' => false],
@@ -65,7 +73,9 @@ class UpdateTrickType extends AbstractType
                 ]
             )
             ->add(
-                'videos', CollectionType::class, [
+                'videos',
+                CollectionType::class,
+                [
                 'label' => false,
                 'entry_type' => VideoType::class,
                 'entry_options' => ['label' => false],
