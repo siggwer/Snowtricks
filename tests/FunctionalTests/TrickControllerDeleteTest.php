@@ -25,7 +25,15 @@ class TrickControllerDeleteTest extends WebTestCase
 
         $trick = $client->getContainer()->get('doctrine.orm.entity_manager')->getRepository(Trick::class)->findOneBy([]);
 
-        $client->request(Request::METHOD_DELETE, '/trick/delete/' . $trick->getSlug());
+        $csrfToken = $client->getContainer()
+            ->get('security.csrf.token_manager')
+            ->getToken('deletetrick-1');
+
+        $client->request(Request::METHOD_DELETE, '/trick/delete/' . $trick->getSlug(),
+            [
+                '_token' => $csrfToken
+            ]
+        );
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
     }
