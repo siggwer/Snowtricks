@@ -47,14 +47,14 @@ class ProfilHandlerTest extends AbstractHandlerTest
      */
     public function getFormData(): array
     {
-       return [
+        return [
            'avatar' => [
                'picture' => [
                    'alt' => 'test',
                    'uploadedFile' => 'public/uploads/image.png'
                ]
-          ]
-       ];
+           ]
+        ];
     }
 
     /**

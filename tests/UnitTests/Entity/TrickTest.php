@@ -154,8 +154,8 @@ class TrickTest extends TestCase
     }
 
     /**
- * @throws Exception
- */
+     * @throws Exception
+     */
     public function testGetPictureOnFront()
     {
         $picture = new Picture();

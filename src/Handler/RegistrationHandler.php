@@ -40,10 +40,10 @@ class RegistrationHandler extends AbstractHandler
     /**
      * RegistrationHandler constructor.
      *
-     * @param EntityManagerInterface $entityManager
+     * @param EntityManagerInterface   $entityManager
      * @param EventDispatcherInterface $eventDispatcher
-     * @param TokenGenerator $tokenService
-     * @param FlashBagInterface $flashBag
+     * @param TokenGenerator           $tokenService
+     * @param FlashBagInterface        $flashBag
      */
     public function __construct(
         EntityManagerInterface $entityManager,

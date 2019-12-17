@@ -21,12 +21,14 @@ class ContactControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/contact');
 
-        $form = $crawler->filter('form[name=contact]')->form([
+        $form = $crawler->filter('form[name=contact]')->form(
+            [
             'contact[name]' => 'name',
             'contact[email]' => 'test@yopmail.com',
             'contact[subject]' => 'test',
             'contact[message]' => 'test'
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

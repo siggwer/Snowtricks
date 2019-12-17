@@ -80,11 +80,11 @@ class TrickController extends AbstractController
     /**
      * @Route("/{slug}", name="trick_show", methods={"GET", "POST"})
      *
-     * @param Request $request
+     * @param Request           $request
      *
-     * @param CommentRepository $commentRepository
-     * @param Trick $trick
-     * @param ShowTrickHandler $handler
+     * @param  CommentRepository $commentRepository
+     * @param  Trick             $trick
+     * @param  ShowTrickHandler  $handler
      * @return Response
      *
      * @throws Exception

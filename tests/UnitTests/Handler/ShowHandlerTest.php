@@ -24,11 +24,11 @@ class ShowHandlerTest extends AbstractHandlerTest
      */
     public function getHandler(): AbstractHandler
     {
-       return new ShowTrickHandler(
-           $this->createMock(EntityManagerInterface::class),
-           $this->createMock(FlashBagInterface::class),
-           $this->createMock(Security::class)
-       );
+        return new ShowTrickHandler(
+            $this->createMock(EntityManagerInterface::class),
+            $this->createMock(FlashBagInterface::class),
+            $this->createMock(Security::class)
+        );
     }
 
     /**
@@ -46,11 +46,11 @@ class ShowHandlerTest extends AbstractHandlerTest
      */
     public function getFormData(): array
     {
-       return [
+        return [
            'comment' => [
                 'content' => 'test'
            ]
-       ];
+        ];
     }
 
     public function hydrate(Request $request): FormInterface

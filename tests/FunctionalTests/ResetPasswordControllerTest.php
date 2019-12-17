@@ -21,12 +21,14 @@ class ResetPasswordControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/reset/token-1');
 
-        $form = $crawler->filter('form[name=reset]')->form([
+        $form = $crawler->filter('form[name=reset]')->form(
+            [
             'reset[plainPassword]' => [
                 'first' => 'password',
                 'second' => 'password'
             ]
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

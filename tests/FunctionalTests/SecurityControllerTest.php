@@ -21,10 +21,12 @@ class SecurityControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/login');
 
-        $form = $crawler->filter('form')->form([
+        $form = $crawler->filter('form')->form(
+            [
             'email' => 'email+1@email.com',
             'password' => 'password'
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

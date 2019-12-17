@@ -21,9 +21,11 @@ class ForgotControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/forgot');
 
-        $form = $crawler->filter('form[name=forgot]')->form([
+        $form = $crawler->filter('form[name=forgot]')->form(
+            [
             'forgot[email]' => 'email+1@email.com'
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

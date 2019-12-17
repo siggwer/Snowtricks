@@ -10,9 +10,10 @@ use App\Entity\Trick;
 
 /**
  * Class TrickControllerAddTest
+ *
  * @package App\Tests\FunctionalTests
  */
-class TrickControllerUpdateTest  extends WebTestCase
+class TrickControllerUpdateTest extends WebTestCase
 {
     use AuthentificationTrait;
 

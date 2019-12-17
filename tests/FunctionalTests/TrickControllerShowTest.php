@@ -12,7 +12,7 @@ use App\Entity\Trick;
  *
  * @package App\Tests\FunctionalTests
  */
-class TrickControllerShowTest  extends WebTestCase
+class TrickControllerShowTest extends WebTestCase
 {
     use AuthentificationTrait;
 
@@ -29,9 +29,11 @@ class TrickControllerShowTest  extends WebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $form = $crawler->filter('form[name=comment]')->form([
+        $form = $crawler->filter('form[name=comment]')->form(
+            [
             'comment[content]' => 'content'
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

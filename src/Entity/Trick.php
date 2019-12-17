@@ -15,7 +15,6 @@ use Exception;
 /**
  * Class Trick.
  *
- *
  * @ORM\Entity(repositoryClass="App\Repository\TrickRepository")
  * @ORM\EntityListeners({"App\EntityListener\TrickListener"})
  */
@@ -345,7 +344,6 @@ class Trick
     public function addVideo(Video $video): self
     {
         if (!$this->videos->contains($video)) {
-
             $url = $this->converter($video);
             $video->setUrl($url);
             $this->videos[] = $video;

@@ -29,7 +29,9 @@ class TrickControllerDeleteTest extends WebTestCase
             ->get('security.csrf.token_manager')
             ->getToken('deletetrick-1');
 
-        $client->request(Request::METHOD_DELETE, '/trick/delete/' . $trick->getSlug(),
+        $client->request(
+            Request::METHOD_DELETE,
+            '/trick/delete/' . $trick->getSlug(),
             [
                 '_token' => $csrfToken
             ]

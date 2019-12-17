@@ -28,8 +28,7 @@ class ForgotType extends AbstractType
                         'placeholder' => 'Indiquez votre email',
                     ),
                 ]
-            )
-        ;
+            );
     }
 
     /**

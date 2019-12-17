@@ -129,5 +129,4 @@ class PictureTest extends TestCase
         $image->setUploadedFile(null);
         $this->assertNull($image->getUploadedFile());
     }
-
 }

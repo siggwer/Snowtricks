@@ -21,14 +21,16 @@ class RegistrationControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/register');
 
-        $form = $crawler->filter('form[name=registration_form]')->form([
+        $form = $crawler->filter('form[name=registration_form]')->form(
+            [
             'registration_form[username]' => 'test1',
             'registration_form[email]' => 'test1@yopmail.com',
             'registration_form[plainPassword]' => [
                 'first' => 'password',
                 'second' => 'password'
             ]
-        ]);
+            ]
+        );
 
         $client->submit($form);
 

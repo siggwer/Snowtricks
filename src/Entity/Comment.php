@@ -10,7 +10,6 @@ use DateTimeInterface;
 /**
  * Class Comment.
  *
- *
  * @ORM\Entity(repositoryClass="App\Repository\CommentRepository")
  * @ORM\EntityListeners({"App\EntityListener\CommentListener"})
  */

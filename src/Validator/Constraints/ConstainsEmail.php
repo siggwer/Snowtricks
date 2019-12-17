@@ -7,7 +7,6 @@ use Symfony\Component\Validator\Constraint;
 /**
  * Class ConstainsEmail.
  *
- *
  * @Annotation
  */
 class ConstainsEmail extends Constraint

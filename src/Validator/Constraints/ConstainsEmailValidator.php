@@ -32,15 +32,17 @@ class ConstainsEmailValidator extends ConstraintValidator
      */
     public function validate($value, Constraint $constraint): void
     {
-        $existingUser = $this->userRepository->findOneBy([
+        $existingUser = $this->userRepository->findOneBy(
+            [
             'email' => $value,
-        ]);
+            ]
+        );
 
         if (!$existingUser) {
             /* @var $constraint ConstainsEmail */
             $this->context->buildViolation($constraint->message)
-            ->setParameter('{{ email }}', $value)
-            ->addViolation();
+                ->setParameter('{{ email }}', $value)
+                ->addViolation();
         }
     }
 }

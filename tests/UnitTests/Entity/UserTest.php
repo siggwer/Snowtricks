@@ -56,7 +56,6 @@ class UserTest extends TestCase
         $this->user->setUsername('test');
         $result = $this->user->getUsername();
         $this->assertEquals('test', $result);
-
     }
 
     /**
@@ -124,11 +123,12 @@ class UserTest extends TestCase
      */
     public function testGetUploadedFile()
     {
-        $this->user->setUploadedFile(new UploadedFile(
-            'public/images/image.png',
-            '%kernel.project_dir%/public/uploads')
-          )
-        ;
+        $this->user->setUploadedFile(
+            new UploadedFile(
+                'public/images/image.png',
+                '%kernel.project_dir%/public/uploads'
+            )
+        );
         $result = $this->user->getUploadedFile();
         $this->assertInstanceOf(UploadedFile::class, $result);
     }
@@ -160,5 +160,4 @@ class UserTest extends TestCase
     {
         $this->assertEquals(['ROLE_USER'], $this->user->getRoles());
     }
-
 }
